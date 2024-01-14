@@ -50,7 +50,7 @@ public class CAG
                 else
                 {
                     int dx2 = (int)dx;
-                    result.Add(new FromTo(dx2 - r.Count + 1, dx2, FromToUse.None));
+                    result.Add(new FromTo(dx2 - r.Count + 1, dx2, SunamoData.Enums.FromToUse.None));
                     dx = null;
                 }
             }
