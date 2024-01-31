@@ -11,7 +11,7 @@ void
 #endif
     Load()
     {
-        if (FS.ExistsFile(a.file))
+        if (FSSH.ExistsFile(a.file))
         {
             int dex = 0;
             foreach (string item in

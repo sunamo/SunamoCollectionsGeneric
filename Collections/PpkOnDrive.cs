@@ -21,10 +21,10 @@ public class PpkOnDrive : PpkOnDriveBase<string>
         }
     }
 
-    public void Load(string file)
+    public async Task Load(string file)
     {
         a.file = file;
-        Load();
+        await Load();
     }
 
     public override
@@ -35,7 +35,7 @@ void
 #endif
     Load()
     {
-        if (FS.ExistsFile(a.file))
+        if (FSSH.ExistsFile(a.file))
         {
             this.AddRange(
 #if ASYNC
@@ -43,7 +43,7 @@ void
 #endif
             TFSE.ReadAllLines(a.file));
 
-            CA.RemoveStringsEmpty2(this);
+            CASH.RemoveStringsEmpty2(this);
 
             if (removeDuplicates)
             {

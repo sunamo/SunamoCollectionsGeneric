@@ -1,67 +1,13 @@
 namespace SunamoCollectionsGeneric;
 
-public class CAG
+public class CAG : CAGSH
 {
     public static T[] ToArrayT<T>(params T[] aB)
     {
         return aB;
     }
 
-    /// <summary>
-    /// Return equal ranges of in A1
-    ///
-    ///
-    /// </summary>
-    /// <param name="contentOneSpace"></param>
-    /// <param name="r"></param>
-    public static List<FromTo> EqualRanges<T>(List<T> contentOneSpace, List<T> r)
-    {
-        List<FromTo> result = new List<FromTo>();
-        int? dx = null;
-        var r_first = r[0];
-        int startAt = 0;
-        int valueToCompare = 0;
-        for (int i = 0; i < contentOneSpace.Count; i++)
-        {
-            var _contentOneSpace = contentOneSpace[i];
-            if (!dx.HasValue)
-            {
-                if (EqualityComparer<T>.Default.Equals(_contentOneSpace, r_first))
-                {
-                    dx = i + 1; // +2;
-                    startAt = i;
-                }
-            }
-            else
-            {
-                valueToCompare = dx.Value - startAt;
-                if (r.Count > valueToCompare)
-                {
-                    if (EqualityComparer<T>.Default.Equals(_contentOneSpace, r[valueToCompare]))
-                    {
-                        dx++;
-                    }
-                    else
-                    {
-                        dx = null;
-                        i--;
-                    }
-                }
-                else
-                {
-                    int dx2 = (int)dx;
-                    result.Add(new FromTo(dx2 - r.Count + 1, dx2, SunamoData.Enums.FromToUse.None));
-                    dx = null;
-                }
-            }
-        }
-        foreach (var item in result)
-        {
-            item.from--;
-            item.to--;
-        }
-        return result;
-    }
+
 
     public static void AddIfNotContains<T>(List<T> founded, T e)
     {
@@ -153,17 +99,7 @@ public class CAG
         return false;
     }
 
-    /// <summary>
-    /// Get every duplicated item once
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="clipboardL"></param>
-    /// <returns></returns>
-    public static List<T> GetDuplicities<T>(List<T> clipboardL)
-    {
-        List<T> alreadyProcessed;
-        return GetDuplicities<T>(clipboardL, out alreadyProcessed);
-    }
+
 
     public static List<T> CreateListAndInsertElement<T>(T el)
     {
@@ -172,31 +108,7 @@ public class CAG
         return t;
     }
 
-    /// <summary>
-    /// Get every item once
-    /// A2 = more duplicities = more items
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="clipboardL"></param>
-    /// <param name="alreadyProcessed"></param>
-    /// <returns></returns>
-    public static List<T> GetDuplicities<T>(List<T> clipboardL, out List<T> alreadyProcessed)
-    {
-        alreadyProcessed = new List<T>(clipboardL.Count);
-        CollectionWithoutDuplicates<T> duplicated = new CollectionWithoutDuplicates<T>();
-        foreach (var item in clipboardL)
-        {
-            if (alreadyProcessed.Contains(item))
-            {
-                duplicated.Add(item);
-            }
-            else
-            {
-                alreadyProcessed.Add(item);
-            }
-        }
-        return duplicated.c;
-    }
+
 
     /// <summary>
     /// jagged = zubaty

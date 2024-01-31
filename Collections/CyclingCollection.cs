@@ -319,6 +319,22 @@ public class CyclingCollection<T> //: IStatusBroadcaster
         c.Insert(dex, nove);
     }
 
+    private static string ReplaceOnce(string input, string what, string zaco)
+    {
+
+        if (what == "")
+        {
+            return input;
+        }
+
+        int pos = input.IndexOf(what);
+        if (pos == -1)
+        {
+            return input;
+        }
+        return input.Substring(0, pos) + zaco + input.Substring(pos + what.Length);
+    }
+
     #region IStatusBroadcaster Members
 
     public void OnChange()
