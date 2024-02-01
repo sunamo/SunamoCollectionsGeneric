@@ -1,8 +1,10 @@
+namespace SunamoCollectionsGeneric._sunamo;
+
 //namespace SunamoCollectionsGeneric._sunamo;
 
-//public class DictionaryHelper
+//internal class DictionaryHelper
 //{
-//    public static void AddOrPlus<T>(Dictionary<T, int> sl, T key, int p)
+//    internal static void AddOrPlus<T>(Dictionary<T, int> sl, T key, int p)
 //    {
 //        if (sl.ContainsKey(key))
 //            sl[key] += p;
@@ -10,7 +12,7 @@
 //            sl.Add(key, p);
 //    }
 
-//    public static void CopyTo<T, U>(List<KeyValuePair<T, U>> _d, KeyValuePair<T, U>[] array, int arrayIndex)
+//    internal static void CopyTo<T, U>(List<KeyValuePair<T, U>> _d, KeyValuePair<T, U>[] array, int arrayIndex)
 //    {
 //        array = new KeyValuePair<T, U>[_d.Count - arrayIndex + 1];
 
@@ -33,7 +35,7 @@
 //        }
 //    }
 
-//    public static Dictionary<T, U> ReturnsCopy<T, U>(Dictionary<T, U> slovnik)
+//    internal static Dictionary<T, U> ReturnsCopy<T, U>(Dictionary<T, U> slovnik)
 //    {
 //        Dictionary<T, U> tu = new Dictionary<T, U>();
 //        foreach (KeyValuePair<T, U> item in slovnik)
@@ -44,7 +46,7 @@
 //        return tu;
 //    }
 
-//    public static void CopyTo<T, U>(Dictionary<T, U> _d, KeyValuePair<T, U>[] array, int arrayIndex)
+//    internal static void CopyTo<T, U>(Dictionary<T, U> _d, KeyValuePair<T, U>[] array, int arrayIndex)
 //    {
 //        array = new KeyValuePair<T, U>[_d.Count - arrayIndex + 1];
 

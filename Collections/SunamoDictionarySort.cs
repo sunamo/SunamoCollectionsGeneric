@@ -14,7 +14,8 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     /// <param name="sl"></param>
     public void SortByKeysDesc()
     {
-        Dictionary<T, U> sl = DictionaryHelper.ReturnsCopy<T, U>(this);
+        Dictionary<T, U> sl = this.ToDictionary(entry => entry.Key,
+                                               entry => entry.Value);
         List<T> klice = _ss.ReturnKeys(sl);
         klice.Sort();
         this.Clear();
@@ -29,7 +30,8 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     /// </summary>
     public void SortByValuesDesc()
     {
-        Dictionary<T, U> sl = DictionaryHelper.ReturnsCopy<T, U>(this);
+        Dictionary<T, U> sl = this.ToDictionary(entry => entry.Key,
+                                               entry => entry.Value);
         List<T> klice = _ss.ReturnKeys(sl);
         List<U> hodnoty = _ss.ReturnValues(sl);
         hodnoty.Sort();
@@ -56,7 +58,8 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     /// <param name="sl"></param>
     public void SortByKeyAsc()
     {
-        Dictionary<T, U> sl = DictionaryHelper.ReturnsCopy<T, U>(this);
+        Dictionary<T, U> sl = this.ToDictionary(entry => entry.Key,
+                                               entry => entry.Value);
         List<T> klice = _ss.ReturnKeys(this);
         //List<U> hodnoty = VratHodnoty(sl);
         klice.Sort();
@@ -74,7 +77,8 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     /// </summary>
     public void SortByValuesAsc()
     {
-        Dictionary<T, U> sl = DictionaryHelper.ReturnsCopy<T, U>(this);
+        Dictionary<T, U> sl = this.ToDictionary(entry => entry.Key,
+                                               entry => entry.Value);
         List<T> klice = _ss.ReturnKeys(sl);
         List<U> hodnoty = _ss.ReturnValues(sl);
         hodnoty.Sort();

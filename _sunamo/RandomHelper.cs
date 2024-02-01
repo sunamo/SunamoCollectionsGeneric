@@ -1,6 +1,8 @@
+namespace SunamoCollectionsGeneric._sunamo;
+
 //namespace SunamoCollectionsGeneric._sunamo;
 
-//public class RandomHelper
+//internal class RandomHelper
 //{
-//    public static Func<int> RandomInt;
+//    internal static Func<int> RandomInt;
 //}

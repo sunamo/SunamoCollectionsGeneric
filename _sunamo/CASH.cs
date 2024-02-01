@@ -1,9 +1,11 @@
+namespace SunamoCollectionsGeneric._sunamo;
+
 //namespace SunamoCollectionsGeneric._sunamo;
 
-//public class CASH
+//internal class CASH
 //{
-//    public static Func<String[], List<string>> ToListString;
-//    public static Action<List<string>> RemoveStringsEmpty2;
-//    public static Func<List<string>, int, object> GetIndex;
-//    public static Func<IList, List<string>> ToListStringIList;
+//    internal static Func<String[], List<string>> ToListString;
+//    internal static Action<List<string>> RemoveStringsEmpty2;
+//    internal static Func<List<string>, int, object> GetIndex;
+//    internal static Func<IList, List<string>> ToListStringIList;
 //}

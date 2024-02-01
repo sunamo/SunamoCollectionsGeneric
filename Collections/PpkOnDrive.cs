@@ -9,17 +9,17 @@ public class PpkOnDrive : PpkOnDriveBase<string>
     public bool removeDuplicates = false;
 
     static PpkOnDrive wroteOnDrive = null;
-    public static PpkOnDrive WroteOnDrive
-    {
-        get
-        {
-            if (wroteOnDrive == null)
-            {
-                wroteOnDrive = new PpkOnDrive(AppData.ci.GetFile(AppFolders.Logs, "WrittenFiles.txt"));
-            }
-            return wroteOnDrive;
-        }
-    }
+    //public static PpkOnDrive WroteOnDrive
+    //{
+    //    get
+    //    {
+    //        if (wroteOnDrive == null)
+    //        {
+    //            wroteOnDrive = new PpkOnDrive(AppData.ci.GetFile(AppFolders.Logs, "WrittenFiles.txt"));
+    //        }
+    //        return wroteOnDrive;
+    //    }
+    //}
 
     public async Task Load(string file)
     {
@@ -35,7 +35,7 @@ void
 #endif
     Load()
     {
-        if (FSSH.ExistsFile(a.file))
+        if (File.Exists(a.file))
         {
             this.AddRange(
 #if ASYNC
@@ -43,7 +43,8 @@ void
 #endif
             TFSE.ReadAllLines(a.file));
 
-            CASH.RemoveStringsEmpty2(this);
+            //CASH.RemoveStringsEmpty2(this);
+
 
             if (removeDuplicates)
             {

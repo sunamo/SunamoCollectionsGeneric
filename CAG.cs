@@ -1,5 +1,7 @@
-namespace SunamoCollectionsGeneric;
+using SunamoCollectionsGenericShared;
+using SunamoTextOutputGenerator;
 
+namespace SunamoCollectionsGeneric;
 public class CAG : CAGSH
 {
     public static T[] ToArrayT<T>(params T[] aB)
@@ -49,11 +51,11 @@ public class CAG : CAGSH
             }
             return vr;
         }
-        ThrowEx.Custom(sess.i18n(XlfKeys.InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray) + ";");
+        throw new Exception(xInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray + ";");
         return null;
     }
 
-
+    public static string xInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray = "InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray";
 
     /// <summary>
     /// V prvním indexu jsou řádky, v druhém sloupce
@@ -74,9 +76,10 @@ public class CAG : CAGSH
             }
             return vr;
         }
-        ThrowEx.ArgumentOutOfRangeException(sess.i18n(XlfKeys.InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray) + ";");
+        ThrowEx.ArgumentOutOfRangeException(xInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray + ";");
         return null;
     }
+
 
     public static bool MoreOrZero<T>(List<T> n, out bool? zeroOrMore)
     {
@@ -156,6 +159,43 @@ public class CAG : CAGSH
             }
         }
         return vr;
+    }
+
+    public static string CompareListSanitizeStringOutput(List<string> l1, List<string> l2, Func<List<string>, Tuple<List<string>, List<string>>> typeScriptHelperGetNamesAndTypes = null, bool tsInterface = false)
+    {
+        if (tsInterface && typeScriptHelperGetNamesAndTypes != null)
+        {
+            var t2 = typeScriptHelperGetNamesAndTypes(l1);
+            l1 = t2.Item1;
+
+            t2 = typeScriptHelperGetNamesAndTypes(l2);
+            l2 = t2.Item1;
+        }
+
+        l1 = l1.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
+        l2 = l2.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
+
+        //CAChangeContent.ChangeContent0(null, l1, SHReplace.ReplaceWhiteSpacesWithoutSpaces);
+        //CAChangeContent.ChangeContent0(null, l2, SHReplace.ReplaceWhiteSpacesWithoutSpaces);
+
+        for (int i = 0; i < l1.Count; i++)
+        {
+            l1[i] = l1[i].Replace("  ", " ");
+        }
+
+        //CAChangeContent.ChangeContent0(null, l1, SHReplace.ReplaceAllDoubleSpaceToSingle);
+        //CAChangeContent.ChangeContent0(null, l2, SHReplace.ReplaceAllDoubleSpaceToSingle);
+        var abl = CAG.CompareList(l1, l2);
+        TextOutputGenerator textOutputGenerator = new TextOutputGenerator();
+
+        textOutputGenerator.List(l1, "Only in 1:");
+        textOutputGenerator.AppendLine("");
+        textOutputGenerator.List(l2, "Only in 2:");
+        textOutputGenerator.AppendLine("");
+        textOutputGenerator.List(abl, "Both:");
+
+        var result = textOutputGenerator.ToString();
+        return result;
     }
 
     /// <summary>

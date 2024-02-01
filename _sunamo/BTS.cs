@@ -1,9 +1,11 @@
+namespace SunamoCollectionsGeneric._sunamo;
+
 //namespace SunamoCollectionsGeneric._sunamo;
 
-//public class BTS
+//internal class BTS
 //{
-//    public static Func<List<string>, List<int>> CastCollectionStringToInt;
-//    public static Func<bool, int> BoolToInt;
-//    public static Func<int, int, string, List<string>> GetNumberedListFromTo;
-//    public static Func<int, bool> IntToBool;
+//    internal static Func<List<string>, List<int>> CastCollectionStringToInt;
+//    internal static Func<bool, int> BoolToInt;
+//    internal static Func<int, int, string, List<string>> GetNumberedListFromTo;
+//    internal static Func<int, bool> IntToBool;
 //}

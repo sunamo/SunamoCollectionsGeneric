@@ -1,13 +1,15 @@
+namespace SunamoCollectionsGeneric._sunamo;
+
 //namespace SunamoCollectionsGeneric._sunamo;
 
-//public class FSSH
+//internal class FSSH
 //{
-//    public static Func<string, string> GetDirectoryName;
-//    public static Func<string, string, Task> WriteAllTextWithExc;
-//    public static Func<string, bool> TryDeleteFile;
-//    public static Func<string, bool> ExistsFile;
-//    public static Action<string> CreateFileIfDoesntExists;
-//    public static Func<string, string> WithEndSlash;
-//    public static Func<string, string> WithoutEndSlash;
+//    internal static Func<string, string> GetDirectoryName;
+//    internal static Func<string, string, Task> WriteAllTextWithExc;
+//    internal static Func<string, bool> TryDeleteFile;
+//    internal static Func<string, bool> ExistsFile;
+//    internal static Action<string> CreateFileIfDoesntExists;
+//    internal static Func<string, string> WithEndSlash;
+//    internal static Func<string, string> WithoutEndSlash;
 
 //}

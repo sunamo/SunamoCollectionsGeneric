@@ -49,6 +49,8 @@ public class UniqueTableInWhole
         return hs.Count == columnsCount;
     }
 
+    public static string xBothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse = "BothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse";
+
     /// <summary>
     /// If A1, must be all columns in all rows unique
     /// Ïf A2, must be all rows in all columns unique
@@ -59,7 +61,7 @@ public class UniqueTableInWhole
     {
         if (!columns && !rows)
         {
-            ThrowEx.Custom(sess.i18n(XlfKeys.BothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse) + ".");
+            throw new Exception(xBothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse + ".");
         }
 
         int rowsCount = _rows.GetLength(0);
@@ -90,12 +92,13 @@ public class UniqueTableInWhole
         return true;
     }
 
+    public static string xDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells = "DifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells";
     static Type type = typeof(UniqueTableInWhole);
     public void AddCells(List<string> c)
     {
         if (c.Count != _cells)
         {
-            ThrowEx.Custom(sess.i18n(XlfKeys.DifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells));
+            throw new Exception(xDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells);
         }
 
         for (int i = 0; i < c.Count; i++)

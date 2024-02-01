@@ -190,7 +190,7 @@ public class CyclingCollection<T> //: IStatusBroadcaster
                         }
                         else
                         {
-                            OnNewStatus(sess.i18n(XlfKeys.UnableToLoadElementAddSomeAndTryAgain));
+                            OnNewStatus(xUnableToLoadElementAddSomeAndTryAgain);
                         }
                     }
                 }
@@ -199,6 +199,8 @@ public class CyclingCollection<T> //: IStatusBroadcaster
             return t2;
         }
     }
+
+    public static string xUnableToLoadElementAddSomeAndTryAgain = "UnableToLoadElementAddSomeAndTryAgain";
 
     #region Simply moving about 1
     public T Before()

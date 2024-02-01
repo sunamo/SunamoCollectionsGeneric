@@ -97,12 +97,13 @@ void
     public PpkOnDriveBase(PpkOnDriveArgs a)
     {
         this.a = a;
-        FSSH.CreateFileIfDoesntExists(a.file);
+        File.AppendAllText(a.file, "");
+        //FSSH.CreateFileIfDoesntExists(a.file);
         Load(a.load);
 
         if (a.loadChangesFromDrive)
         {
-            w = new FileSystemWatcher(FSSH.GetDirectoryName(a.file));
+            w = new FileSystemWatcher(Path.GetDirectoryName(a.file));
             w.Filter = a.file;
             w.Changed += W_Changed;
         }
@@ -131,16 +132,16 @@ void
         {
             isSaving = true;
             bool removedOrNotExists = false;
-            if (FSSH.ExistsFile(a.file))
-            {
-                removedOrNotExists = FSSH.TryDeleteFile(a.file);
-            }
+            //if (FSSH.ExistsFile(a.file))
+            //{
+            //    removedOrNotExists = FSSH.TryDeleteFile(a.file);
+            //}
 
             if (removedOrNotExists)
             {
                 string obsah;
                 obsah = ReturnContent();
-                await FSSH.WriteAllTextWithExc(a.file, obsah);
+                await File.WriteAllTextAsync(a.file, obsah);
 
             }
             isSaving = false;

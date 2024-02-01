@@ -1,6 +1,8 @@
+namespace SunamoCollectionsGeneric._sunamo;
+
 //namespace SunamoCollectionsGeneric._sunamo;
 
-//public class RuntimeHelper
+//internal class RuntimeHelper
 //{
 
 //}
