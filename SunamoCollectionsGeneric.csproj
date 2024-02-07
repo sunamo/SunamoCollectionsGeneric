@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>24.2.1.2</Version>
+    <Version>24.2.6.2</Version>
     <Description>Working with generic collections</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -13,9 +13,9 @@
     <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SunamoCollectionsGenericShared" Version="24.2.1.1" />
-    <PackageReference Include="SunamoData" Version="24.2.1.1" />
-    <PackageReference Include="SunamoInterfaces" Version="24.2.1.2" />
-    <PackageReference Include="SunamoTextOutputGenerator" Version="24.2.1.2" />
+    <PackageReference Include="SunamoCollectionsGenericShared" Version="24.2.6.2" />
+    <PackageReference Include="SunamoData" Version="24.2.6.2" />
+    <PackageReference Include="SunamoInterfaces" Version="24.2.6.3" />
+    <PackageReference Include="SunamoTextOutputGenerator" Version="24.2.6.2" />
   </ItemGroup>
 </Project>
