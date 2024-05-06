@@ -1,0 +1,13 @@
+Collections
+FsWatcherDictionary
+IDictionary
+Type
+Dictionary
+ICollection
+Keys
+Values
+IsReadOnly
+KeyValuePair
+DictionaryHelper
+IEnumerator
+IEnumerable

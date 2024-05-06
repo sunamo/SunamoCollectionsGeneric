@@ -7,13 +7,16 @@
     <Description>Working with generic collections</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
+    <DefineConstants>$(DefineConstants);ASYNC;SunamoCollectionsGeneric</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
+    <DefineConstants>$(DefineConstants);ASYNC;SunamoCollectionsGeneric</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SunamoCollectionsGenericShared" Version="24.2.6.2" />
     <PackageReference Include="SunamoTextOutputGenerator" Version="24.2.6.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Args\" />
   </ItemGroup>
 </Project>

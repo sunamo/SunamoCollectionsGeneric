@@ -1,0 +1,12 @@
+Collections
+INotifyPropertyChanged
+IIdentificator
+IsChecked
+Id
+IList
+NewItems
+Object
+OldItems
+PropertyChangedEventArgs
+NotifyCollectionChangedAction
+Replace
