@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Collections.OverrideAddOrImpIList;
+namespace SunamoCollectionsGeneric;
 
 /// <summary>
 /// For debug purposes

@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Data;
+namespace SunamoCollectionsGeneric;
 
 
 public class TWithLines<T>

@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Collections;
+namespace SunamoCollectionsGeneric;
 
 /// <summary>
 /// Must be IEnumerable, not IList

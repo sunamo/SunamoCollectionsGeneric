@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Collections;
+namespace SunamoCollectionsGeneric;
 
 public class ResolvedDictionary<T, U>
 {

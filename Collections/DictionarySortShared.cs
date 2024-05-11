@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Collections;
+namespace SunamoCollectionsGeneric;
 
 
 public partial class DictionarySort<T, U>

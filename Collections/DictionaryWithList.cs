@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Collections;
+namespace SunamoCollectionsGeneric;
 
 public class DictionaryWithList<T, U> : IDictionary<T, U>
 {

@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Collections;
+namespace SunamoCollectionsGeneric;
 
 public class ListWithElements<T> : L<T>
 {

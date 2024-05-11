@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Collections;
+namespace SunamoCollectionsGeneric;
 
 public class FsWatcherDictionary<T, U> : IDictionary<T, U>
 {

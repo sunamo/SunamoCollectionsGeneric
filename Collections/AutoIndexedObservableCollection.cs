@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric.Collections;
+namespace SunamoCollectionsGeneric;
 
 public class AutoIndexedObservableCollection<T> : ObservableCollection<T>
 where T : INotifyPropertyChanged, IIdentificatorT<int>
