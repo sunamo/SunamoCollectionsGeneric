@@ -3,11 +3,11 @@ global using System;
 global using System.Linq;
 global using System.Text;
 global using System.Collections;
-global using SunamoExceptions.OnlyInSE;
-global using SunamoValues;
+
+
 global using System.IO;
 global using System.Diagnostics;
-global using SunamoInterfaces.Interfaces;
+
 global using System.Data;
 global using System.Collections.ObjectModel;
 global using System.Collections.Specialized;
