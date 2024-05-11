@@ -17,9 +17,13 @@
     <PackageReference Include="SunamoTextOutputGenerator" Version="24.2.6.2" />
     <Compile Include="..\SunamoExceptions\OnlyInSE\ThrowEx.cs" Link="_linked\SunamoExceptions\OnlyInSE\ThrowEx.cs" />
     <Compile Include="..\SunamoInterfaces\Interfaces\IIdentificator.cs" Link="_linked\SunamoInterfaces\Interfaces\IIdentificator.cs" />
+    <Compile Include="..\SunamoInterfaces\Interfaces\IIdentificatorT.cs" Link="_linked\SunamoInterfaces\IIdentificatorT.cs" />
     <Compile Include="..\SunamoInterfaces\Interfaces\IStatusBroadcaster.cs" Link="_linked\SunamoInterfaces\Interfaces\IStatusBroadcaster.cs" />
+    <Compile Include="..\SunamoTextOutputGenerator\TextOutputGenerator.cs" Link="_linked\SunamoTextOutputGenerator\TextOutputGenerator.cs" />
+    <Compile Include="..\SunamoTextOutputGenerator\TextOutputGeneratorArgs.cs" Link="_linked\SunamoTextOutputGenerator\TextOutputGeneratorArgs.cs" />
     <Compile Include="..\SunamoValues\AllStrings.cs" Link="_linked\SunamoValues\AllStrings.cs" />
     <Compile Include="..\SunamoInterfaces\Interfaces\ISunamoDictionary.cs" Link="_linked\SunamoInterfaces\Interfaces\ISunamoDictionary.cs" />
+    <Compile Include="..\SunamoValues\Constants\Messages.cs" Link="_linked\SunamoValues\Messages.cs" />
     <Compile Include="..\SunamoValues\Consts.cs" Link="_linked\SunamoValues\Consts.cs" />
     <Compile Include="..\SunamoInterfaces\Interfaces\ProgressState.cs" Link="_linked\SunamoInterfaces\Interfaces\ProgressState.cs" />
     <Compile Include="..\SunamoExceptions\OnlyInSE\Exceptions.cs" Link="_linked\SunamoExceptions\OnlyInSE\Exceptions.cs" />
@@ -29,8 +33,10 @@
     <Compile Include="..\SunamoValues\AllChars.cs" Link="_linked\SunamoValues\AllChars.cs" />
     <Compile Include="..\SunamoExceptions\OnlyInSE\Exc.cs" Link="_linked\SunamoExceptions\OnlyInSE\Exc.cs" />
     <Compile Include="..\SunamoExceptions\OnlyInSE\Types.cs" Link="_linked\SunamoExceptions\OnlyInSE\Types.cs" />
+    <Compile Include="..\SunamoXlfKeys\XlfKeys.cs" Link="_linked\SunamoXlfKeys\XlfKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Args\" />
+    <Folder Include="_linked\SunamoTextOutputGenerator\" />
   </ItemGroup>
 </Project>

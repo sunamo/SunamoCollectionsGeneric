@@ -1,7 +1,7 @@
 namespace SunamoCollectionsGeneric.Collections;
 
 public class AutoIndexedObservableCollection<T> : ObservableCollection<T>
-where T : INotifyPropertyChanged, IIdentificator<int>
+where T : INotifyPropertyChanged, IIdentificatorT<int>
 {
     int dex = 1;
 
