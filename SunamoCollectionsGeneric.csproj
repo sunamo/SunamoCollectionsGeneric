@@ -34,6 +34,7 @@
     <Compile Include="..\SunamoExceptions\OnlyInSE\Exc.cs" Link="_linked\SunamoExceptions\OnlyInSE\Exc.cs" />
     <Compile Include="..\SunamoExceptions\OnlyInSE\Types.cs" Link="_linked\SunamoExceptions\OnlyInSE\Types.cs" />
     <Compile Include="..\SunamoXlfKeys\XlfKeys.cs" Link="_linked\SunamoXlfKeys\XlfKeys.cs" />
+    <Compile Include="..\SunamoCollectionsGenericShared\CAGSH.cs" Link="_linked\SunamoCollectionsGenericShared\CAGSH.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Args\" />
