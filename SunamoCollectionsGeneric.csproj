@@ -13,8 +13,6 @@
     <DefineConstants>$(DefineConstants);ASYNC;SunamoCollectionsGeneric</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SunamoCollectionsGenericShared" Version="24.2.6.2" />
-    <PackageReference Include="SunamoTextOutputGenerator" Version="24.2.6.2" />
     <Compile Include="..\SunamoExceptions\OnlyInSE\ThrowEx.cs" Link="_linked\SunamoExceptions\OnlyInSE\ThrowEx.cs" />
     <Compile Include="..\SunamoInterfaces\Interfaces\IIdentificator.cs" Link="_linked\SunamoInterfaces\Interfaces\IIdentificator.cs" />
     <Compile Include="..\SunamoInterfaces\Interfaces\IIdentificatorT.cs" Link="_linked\SunamoInterfaces\IIdentificatorT.cs" />
