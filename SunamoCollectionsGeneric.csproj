@@ -33,6 +33,9 @@
     <Compile Include="..\SunamoExceptions\OnlyInSE\Types.cs" Link="_linked\SunamoExceptions\OnlyInSE\Types.cs" />
     <Compile Include="..\SunamoXlfKeys\XlfKeys.cs" Link="_linked\SunamoXlfKeys\XlfKeys.cs" />
     <Compile Include="..\SunamoCollectionsGenericShared\CAGSH.cs" Link="_linked\SunamoCollectionsGenericShared\CAGSH.cs" />
+    <Compile Include="..\SunamoData\Data\FromTo.cs" Link="_linked\SunamoData\Data\FromTo.cs" />
+    <Compile Include="..\SunamoData\Data\FromToTSH.cs" Link="_linked\SunamoData\Data\FromToTSH.cs" />
+    <Compile Include="..\SunamoEnums\Enums\FromToUse.cs" Link="_linked\SunamoEnums\Enums\FromToUse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Args\" />
