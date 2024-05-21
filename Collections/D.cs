@@ -13,7 +13,7 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
 
     void OnRemove()
     {
-        Debugger.Break();
+        System.Diagnostics.Debugger.Break();
     }
 #endif
 
@@ -105,7 +105,7 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
 
     public void CopyTo(KeyValuePair<T, U>[] array, int arrayIndex)
     {
-        throw new NotImplementedException();
+        ThrowEx.NotImplementedMethod();
         //DictionaryHelper.CopyTo<T, U>(d, array, arrayIndex);
     }
 

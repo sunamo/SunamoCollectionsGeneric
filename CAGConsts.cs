@@ -1,6 +1,10 @@
 namespace
 #if SunamoUri
 SunamoUri
+#elif SunamoShared
+SunamoShared
+#elif SunamoHtml
+SunamoHtml
 #else
 SunamoCollectionsGeneric
 #endif
