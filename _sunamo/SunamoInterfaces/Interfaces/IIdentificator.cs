@@ -1,7 +1,7 @@
 namespace SunamoCollectionsGeneric;
 
 
-public interface IIdentificator
+internal interface IIdentificator
 {
     object Id { get; set; }
 }
