@@ -1,7 +1,7 @@
 namespace SunamoCollectionsGeneric;
 
 
-internal interface ISunamoDictionary<T, U>
+public interface ISunamoDictionary<T, U>
 {
     U this[T key] { get; set; }
     ICollection<T> Keys { get; }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-internal interface IIdentificatorT<T>
+public interface IIdentificatorT<T>
 {
     T Id { get; set; }
     bool IsChecked { get; set; }
