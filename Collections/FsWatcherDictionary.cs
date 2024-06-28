@@ -1,10 +1,3 @@
-namespace
-#if SunamoFileSystem
-SunamoFileSystem
-#else
-SunamoCollectionsGeneric
-#endif
-;
 public class FsWatcherDictionary<T, U> : IDictionary<T, U>
 {
     static Type type = typeof(FsWatcherDictionary<T, U>);
