@@ -1,3 +1,5 @@
+
+namespace SunamoCollectionsGeneric;
 internal class CAGConsts
 {
     internal static T[] ToArrayT<T>(params T[] aB)

@@ -1,3 +1,5 @@
+
+namespace SunamoCollectionsGeneric;
 public class FsWatcherDictionary<T, U> : IDictionary<T, U>
 {
     static Type type = typeof(FsWatcherDictionary<T, U>);

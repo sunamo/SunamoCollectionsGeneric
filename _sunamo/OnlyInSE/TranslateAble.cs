@@ -1,3 +1,5 @@
+
+namespace SunamoCollectionsGeneric;
 public class TranslateAble
 {
     
