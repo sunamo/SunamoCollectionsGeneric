@@ -1,7 +1,7 @@
 namespace SunamoCollectionsGeneric;
 
 
-public class CAGSH
+internal class CAGSH
 {
     /// <summary>
     /// Get every item once
@@ -11,7 +11,7 @@ public class CAGSH
     /// <param name="clipboardL"></param>
     /// <param name="alreadyProcessed"></param>
     /// <returns></returns>
-    public static List<T> GetDuplicities<T>(List<T> clipboardL, out List<T> alreadyProcessed)
+    internal static List<T> GetDuplicities<T>(List<T> clipboardL, out List<T> alreadyProcessed)
     {
         alreadyProcessed = new List<T>(clipboardL.Count);
         List<T> duplicated = new List<T>();
@@ -35,7 +35,7 @@ public class CAGSH
     /// <typeparam name="T"></typeparam>
     /// <param name="clipboardL"></param>
     /// <returns></returns>
-    public static List<T> GetDuplicities<T>(List<T> clipboardL)
+    internal static List<T> GetDuplicities<T>(List<T> clipboardL)
     {
         List<T> alreadyProcessed;
         return GetDuplicities<T>(clipboardL, out alreadyProcessed);
@@ -47,7 +47,7 @@ public class CAGSH
     /// </summary>
     /// <param name="contentOneSpace"></param>
     /// <param name="r"></param>
-    public static List<FromTo> EqualRanges<T>(List<T> contentOneSpace, List<T> r)
+    internal static List<FromTo> EqualRanges<T>(List<T> contentOneSpace, List<T> r)
     {
         List<FromTo> result = new List<FromTo>();
         int? dx = null;
@@ -109,7 +109,7 @@ public class CAGSH
     /// <typeparam name="T"></typeparam>
     /// <param name="p"></param>
     /// <param name="list"></param>
-    public static bool IsEqualToAnyElement<T>(T p, IList<T> list)
+    internal static bool IsEqualToAnyElement<T>(T p, IList<T> list)
     {
         foreach (T item in list)
         {
@@ -134,7 +134,7 @@ public class CAGSH
     /// <param name="p"></param>
     /// <param name="prvky"></param>
     /// <returns></returns>
-    public static bool IsEqualToAnyElement<T>(T p, params T[] prvky)
+    internal static bool IsEqualToAnyElement<T>(T p, params T[] prvky)
     {
         return IsEqualToAnyElement(p, prvky.ToList());
     }
