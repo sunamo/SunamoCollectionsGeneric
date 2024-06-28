@@ -1,13 +1,6 @@
 
 
 
-namespace
-#if SunamoCollectionsValuesTableGrid
-SunamoCollectionsValuesTableGrid
-#else
-SunamoCollectionsGeneric
-#endif
-;
 public class CAG : CAGSH
 {
     public static T[] ToArrayT<T>(params T[] aB)
@@ -384,3 +377,4 @@ public class CAG : CAGSH
     }
     #endregion
 }
+

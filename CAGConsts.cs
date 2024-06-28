@@ -1,14 +1,3 @@
-namespace
-#if SunamoUri
-SunamoUri
-#elif SunamoShared
-SunamoShared
-#elif SunamoHtml
-SunamoHtml
-#else
-SunamoCollectionsGeneric
-#endif
-;
 internal class CAGConsts
 {
     internal static T[] ToArrayT<T>(params T[] aB)
