@@ -1,5 +1,5 @@
 
-namespace SunamoCollectionsGenericShared;
+namespace SunamoCollectionsGeneric;
 public class CAGSH
 {
     /// <summary>
