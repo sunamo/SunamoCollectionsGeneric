@@ -5,7 +5,7 @@ namespace SunamoCollectionsGeneric;
 ///     Must have always entered both from and to
 ///     None of event could have unlimited time!
 /// </summary>
-internal class FromToCollectionsGenericShared : FromToTSHCollectionsGenericShared<long>
+public class FromToCollectionsGenericShared : FromToTSHCollectionsGenericShared<long>
 {
     internal static FromToCollectionsGenericShared Empty = new(true);
     internal FromToCollectionsGenericShared()
