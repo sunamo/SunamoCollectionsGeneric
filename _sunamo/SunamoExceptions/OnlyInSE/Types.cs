@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGenericShared;
 
 using System.Collections;
 using System.Text;

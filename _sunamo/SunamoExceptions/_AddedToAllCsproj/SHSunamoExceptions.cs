@@ -1,5 +1,5 @@
 
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGenericShared;
 internal class SHSunamoExceptions
 {
     internal static string JoinNL(List<string> l)

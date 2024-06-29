@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGenericShared;
 
 
 internal enum FromToUse

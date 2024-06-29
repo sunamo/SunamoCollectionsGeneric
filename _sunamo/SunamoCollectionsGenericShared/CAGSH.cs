@@ -47,9 +47,9 @@ internal class CAGSH
     /// </summary>
     /// <param name="contentOneSpace"></param>
     /// <param name="r"></param>
-    internal static List<FromTo> EqualRanges<T>(List<T> contentOneSpace, List<T> r)
+    internal static List<FromToCollectionsGeneric> EqualRanges<T>(List<T> contentOneSpace, List<T> r)
     {
-        List<FromTo> result = new List<FromTo>();
+        List<FromToCollectionsGeneric> result = new List<FromToCollectionsGeneric>();
         int? dx = null;
         var r_first = r[0];
         int startAt = 0;
@@ -83,7 +83,7 @@ internal class CAGSH
                 else
                 {
                     int dx2 = (int)dx;
-                    result.Add(new FromTo(dx2 - r.Count + 1, dx2, FromToUse.None));
+                    result.Add(new FromToCollectionsGeneric(dx2 - r.Count + 1, dx2, FromToUse.None));
                     dx = null;
                 }
             }
