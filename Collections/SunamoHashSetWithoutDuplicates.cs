@@ -15,7 +15,7 @@ public class SunamoHashSetWithoutDuplicates<T>
         c = new HashSet<T>();
     }
 
-    public List<T> AddRange(IList<T> e, ProgressState clpb)
+    public List<T> AddRange(IList<T> e, ProgressStateCAG clpb)
     {
         List<T> d = new List<T>();
         foreach (var item in e)

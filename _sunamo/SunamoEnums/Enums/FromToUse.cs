@@ -1,7 +1,7 @@
 namespace SunamoCollectionsGeneric;
 
 
-internal enum FromToUse
+internal enum FromToUseCollectionsGeneric
 {
     DateTime,
     Unix,

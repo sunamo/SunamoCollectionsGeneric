@@ -26,7 +26,7 @@ internal class FromToCollectionsGeneric : FromToTSHCollectionsGeneric<long>
     /// <param name="from"></param>
     /// <param name="to"></param>
     /// <param name="ftUse"></param>
-    internal FromToCollectionsGeneric(long from, long to, FromToUse ftUse = FromToUse.DateTime)
+    internal FromToCollectionsGeneric(long from, long to, FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime)
     {
         this.from = from;
         this.to = to;

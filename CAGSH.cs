@@ -82,7 +82,7 @@ public class CAGSH
                 else
                 {
                     int dx2 = (int)dx;
-                    result.Add(new FromToCollectionsGenericShared(dx2 - r.Count + 1, dx2, FromToUse.None));
+                    result.Add(new FromToCollectionsGenericShared(dx2 - r.Count + 1, dx2, FromToUseCollectionsGeneric.None));
                     dx = null;
                 }
             }

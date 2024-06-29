@@ -1,7 +1,7 @@
 namespace SunamoCollectionsGeneric;
 
 
-internal class ProgressState
+public class ProgressStateCAG
 {
     internal bool isRegistered { get; set; } = false;
     internal void Init(Action<int> OverallSongs, Action<int> AnotherSong, Action WriteProgressBarEnd)
