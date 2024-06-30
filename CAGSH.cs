@@ -10,7 +10,7 @@ public class CAGSH
     /// <param name="clipboardL"></param>
     /// <param name="alreadyProcessed"></param>
     /// <returns></returns>
-    public static List<T> GetDuplicities<T>(List<T> clipboardL, out List<T> alreadyProcessed)
+    public static L<T> GetDuplicities<T>(List<T> clipboardL, out List<T> alreadyProcessed)
     {
         alreadyProcessed = new List<T>(clipboardL.Count);
         List<T> duplicated = new List<T>();
@@ -26,7 +26,7 @@ public class CAGSH
             }
         }
         duplicated = duplicated.Distinct().ToList();
-        return duplicated;
+        return new L<T>();
     }
     /// <summary>
     /// Get every duplicated item once
