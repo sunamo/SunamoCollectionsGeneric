@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 /// <summary>
 /// In Comparingresharper how to remove dead code in defined folder
 /// </summary>
-public class TextOutputGenerator //: ITextOutputGenerator
+internal class TextOutputGenerator //: ITextOutputGenerator
 {
     private readonly static string s_znakNadpisu = AllStrings.asterisk;
     // při převádění na nugety jsem to změnil na ITextBuilder sb = TextBuilder.Create();
