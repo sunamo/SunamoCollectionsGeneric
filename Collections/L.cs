@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGeneric.Collections;
 
 /// <summary>
 /// Can be derived because new keyword

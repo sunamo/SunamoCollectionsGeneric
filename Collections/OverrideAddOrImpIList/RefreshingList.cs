@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGeneric.Collections.OverrideAddOrImpIList;
 
 public class RefreshingList<T> : IList<T>
 {

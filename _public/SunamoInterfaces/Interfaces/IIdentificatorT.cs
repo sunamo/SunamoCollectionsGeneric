@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGeneric._public.SunamoInterfaces.Interfaces;
 
 using System;
 using System.Collections.Generic;

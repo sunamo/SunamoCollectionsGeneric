@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGeneric.Collections;
 
 /// <summary>
 /// Add one row with all columns

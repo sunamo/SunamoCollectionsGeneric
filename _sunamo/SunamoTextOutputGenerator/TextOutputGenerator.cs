@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
 
 using System.Runtime.CompilerServices;
 

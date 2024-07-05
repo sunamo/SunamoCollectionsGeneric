@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGeneric._sunamo.SunamoInterfaces.Interfaces;
 
 
 internal interface IStatusBroadcaster

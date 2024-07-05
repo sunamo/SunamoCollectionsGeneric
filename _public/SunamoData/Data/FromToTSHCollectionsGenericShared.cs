@@ -1,4 +1,4 @@
-namespace SunamoCollectionsGeneric;
+namespace SunamoCollectionsGeneric._public.SunamoData.Data;
 
 
 public class FromToTSHCollectionsGenericShared<T>
