@@ -1,4 +1,3 @@
-
 namespace SunamoCollectionsGeneric;
 internal class CAGConsts
 {

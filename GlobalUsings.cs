@@ -30,3 +30,6 @@ global using SunamoCollectionsGeneric._sunamo.SunamoExceptions.OnlyInSE;
 global using SunamoCollectionsGeneric._sunamo.SunamoExceptions._AddedToAllCsproj;
 global using SunamoCollectionsGeneric._sunamo.SunamoInterfaces.Interfaces;
 global using SunamoCollectionsGeneric._sunamo.SunamoValues.Constants;
+global using System.Net;
+global using System.Runtime.CompilerServices;
+global using System.Threading.Tasks;
