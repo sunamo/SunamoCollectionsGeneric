@@ -1,6 +1,4 @@
 namespace SunamoCollectionsGeneric._sunamo.SunamoEnums.Enums;
-
-
 public enum FromToUseCollectionsGeneric
 {
     DateTime,
