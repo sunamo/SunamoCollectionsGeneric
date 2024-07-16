@@ -1,6 +1,5 @@
 namespace SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
 
-
 /// <summary>
 /// In Comparingresharper how to remove dead code in defined folder
 /// </summary>
