@@ -2,12 +2,11 @@ namespace SunamoCollectionsGeneric.Collections;
 
 public class Joiner<T>
 {
-    List<T> list = null;
+    private readonly string joinWith;
+    private readonly List<T> list;
 
-    string joinWith = null;
     public Joiner(int capacity = int.MinValue) : this(AllStrings.cs)
     {
-
     }
 
 
@@ -16,10 +15,10 @@ public class Joiner<T>
         this.joinWith = joinWith;
         list = new List<T>(capacity);
     }
+
     public override string ToString()
     {
         return string.Join(joinWith, list);
-
     }
 
     public void Add(T appName)

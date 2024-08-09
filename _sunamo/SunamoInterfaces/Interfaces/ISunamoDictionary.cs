@@ -1,6 +1,5 @@
 namespace SunamoCollectionsGeneric._sunamo.SunamoInterfaces.Interfaces;
 
-
 internal interface ISunamoDictionary<T, U>
 {
     U this[T key] { get; set; }

@@ -6,9 +6,10 @@ public class CAGConsts
     {
         return aB;
     }
+
     /// <summary>
-    /// Tady to musí být, SunamoValues nemůže dědit od SunamoCollectionGeneric - vzniklo by Cycle detected
-    /// Těch pár řádků mě snad nezabije.
+    ///     Tady to musí být, SunamoValues nemůže dědit od SunamoCollectionGeneric - vzniklo by Cycle detected
+    ///     Těch pár řádků mě snad nezabije.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="t"></param>

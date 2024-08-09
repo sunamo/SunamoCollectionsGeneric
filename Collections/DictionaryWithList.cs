@@ -2,43 +2,33 @@ namespace SunamoCollectionsGeneric.Collections;
 
 public class DictionaryWithList<T, U> : IDictionary<T, U>
 {
+    private static Type type = typeof(DictionaryWithList<T, U>);
     public Action callWhenIsZeroElements;
-    static Type type = typeof(DictionaryWithList<T, U>);
-    List<KeyValuePair<T, U>> tu = new List<KeyValuePair<T, U>>();
+    private readonly List<KeyValuePair<T, U>> tu = new();
 
     public U this[T key]
     {
         get
         {
             if (callWhenIsZeroElements != null)
-            {
                 if (Count == 0)
-                {
                     callWhenIsZeroElements.Invoke();
-                }
-            }
 
             foreach (var item in tu)
-            {
                 if (EqualityComparer<T>.Default.Equals(item.Key, key))
-                {
                     return item.Value;
-                }
-            }
 
             return default;
         }
         set
         {
-
-            for (int i = 0; i < tu.Count; i++)
-            {
+            for (var i = 0; i < tu.Count; i++)
                 if (EqualityComparer<T>.Default.Equals(tu[i].Key, key))
                 {
                     tu[i] = new KeyValuePair<T, U>(tu[i].Key, value);
                     return;
                 }
-            }
+
             Add(key, value);
         }
     }
@@ -47,11 +37,8 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     {
         get
         {
-            List<T> u = new List<T>(tu.Count);
-            foreach (var item in tu)
-            {
-                u.Add(item.Key);
-            }
+            var u = new List<T>(tu.Count);
+            foreach (var item in tu) u.Add(item.Key);
             return u;
         }
     }
@@ -60,11 +47,8 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     {
         get
         {
-            List<U> u = new List<U>(tu.Count);
-            foreach (var item in tu)
-            {
-                u.Add(item.Value);
-            }
+            var u = new List<U>(tu.Count);
+            foreach (var item in tu) u.Add(item.Value);
             return u;
         }
     }
@@ -95,11 +79,7 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
 
     public bool ContainsKey(T key)
     {
-
-        foreach (var item in tu)
-        {
-            return true;
-        }
+        foreach (var item in tu) return true;
         return false;
     }
 
@@ -116,14 +96,13 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
 
     public bool Remove(T key)
     {
-        for (int i = 0; i < tu.Count; i++)
-        {
+        for (var i = 0; i < tu.Count; i++)
             if (EqualityComparer<T>.Default.Equals(tu[i].Key, key))
             {
                 tu.RemoveAt(i);
                 return true;
             }
-        }
+
         return false;
     }
 
@@ -135,14 +114,13 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     public bool TryGetValue(T key, out U value)
     {
         value = default;
-        for (int i = 0; i < tu.Count; i++)
-        {
+        for (var i = 0; i < tu.Count; i++)
             if (EqualityComparer<T>.Default.Equals(tu[i].Key, key))
             {
                 value = tu[i].Value;
                 return true;
             }
-        }
+
         return false;
     }
 

@@ -1,6 +1,5 @@
 namespace SunamoCollectionsGeneric._sunamo.SunamoValues.Constants;
 
-
 /// <summary>
 ///     Usage:
 /// </summary>

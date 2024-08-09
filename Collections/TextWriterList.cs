@@ -1,12 +1,12 @@
 namespace SunamoCollectionsGeneric.Collections;
 
 /// <summary>
-/// 
-/// Not working, tried with Microsoft.CodeAnalysis.SyntaxNode.WriteTo
+///     Not working, tried with Microsoft.CodeAnalysis.SyntaxNode.WriteTo
 /// </summary>
 public class TextWriterList : TextWriter
 {
-    private IList _list = null;
+    private readonly IList _list;
+
     public TextWriterList(IList list)
     {
         _list = list;

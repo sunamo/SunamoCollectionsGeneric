@@ -1,42 +1,36 @@
 namespace SunamoCollectionsGeneric.Collections;
 
 public class AutoIndexedObservableCollection<T> : ObservableCollection<T>
-where T : INotifyPropertyChanged, IIdentificatorT<int>
+    where T : INotifyPropertyChanged, IIdentificatorT<int>
 {
-    int dex = 1;
+    private int dex = 1;
 
     public AutoIndexedObservableCollection()
     {
         CollectionChanged += FullObservableCollectionCollectionChanged;
     }
 
+    public AutoIndexedObservableCollection(IList<T> pItems) : this()
+    {
+        foreach (var item in pItems) Add(item);
+    }
+
     public List<int> CheckedIndexes()
     {
         //List<int> result = new List<int>();
-        return this.Where(d => d.IsChecked == true).Select(r => r.Id).ToList();
+        return this.Where(d => d.IsChecked).Select(r => r.Id).ToList();
     }
 
     public List<T> CheckedElements()
     {
-        return this.Where(d => d.IsChecked == true).ToList();
-    }
-
-    public AutoIndexedObservableCollection(IList<T> pItems) : this()
-    {
-        foreach (var item in pItems)
-        {
-
-            this.Add(item);
-        }
+        return this.Where(d => d.IsChecked).ToList();
     }
 
     public void AddRange(IList<T> t)
     {
-        foreach (var item in t)
-        {
-            Add(item);
-        }
+        foreach (var item in t) Add(item);
     }
+
     public new void Add(T item)
     {
         item.Id = dex++;
@@ -46,30 +40,19 @@ where T : INotifyPropertyChanged, IIdentificatorT<int>
     private void FullObservableCollectionCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
         if (e.NewItems != null)
-        {
-            foreach (Object item in e.NewItems)
-            {
+            foreach (var item in e.NewItems)
                 if (item != null)
-                {
                     ((INotifyPropertyChanged)item).PropertyChanged += ItemPropertyChanged;
-                }
-            }
-        }
         if (e.OldItems != null)
-        {
-            foreach (Object item in e.OldItems)
-            {
+            foreach (var item in e.OldItems)
                 if (item != null)
-                {
                     ((INotifyPropertyChanged)item).PropertyChanged -= ItemPropertyChanged;
-                }
-            }
-        }
     }
 
     private void ItemPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        NotifyCollectionChangedEventArgs args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, sender, sender, IndexOf((T)sender));
+        var args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, sender, sender,
+            IndexOf((T)sender));
         OnCollectionChanged(args);
     }
 }

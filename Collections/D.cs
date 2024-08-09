@@ -1,38 +1,30 @@
 namespace SunamoCollectionsGeneric.Collections;
 
 /// <summary>
-/// Must be IEnumerable, not IList
-///
+///     Must be IEnumerable, not IList
 /// </summary>
 /// <typeparam name="T"></typeparam>
 /// <typeparam name="U"></typeparam>
 public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
 {
-#if DEBUG
-    const string checkForContains = "ccc_netcore31";
-
-    void OnRemove()
-    {
-        System.Diagnostics.Debugger.Break();
-    }
-#endif
+    private static Type type = typeof(D<T, U>);
 
     public Action callWhenIsZeroElements;
-    static Type type = typeof(D<T, U>);
-    Dictionary<T, U> d = new Dictionary<T, U>();
+    private readonly Dictionary<T, U> d = new();
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return d.GetEnumerator();
+    }
+
     public U this[T key]
     {
         get
         {
             if (callWhenIsZeroElements != null)
-            {
                 if (Count == 0)
-                {
                     callWhenIsZeroElements.Invoke();
-                }
-            }
             return d[key];
-
         }
         set
         {
@@ -42,22 +34,11 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
         }
     }
 
-    public D()
-    {
-
-    }
-
     public ICollection<T> Keys => d.Keys;
 
     public ICollection<U> Values => d.Values;
 
-    public int Count
-    {
-        get
-        {
-            return d.Count;
-        }
-    }
+    public int Count => d.Count;
 
     public bool IsReadOnly => false;
 
@@ -66,16 +47,6 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
         ContainsV(value);
 
         d.Add(key, value);
-    }
-
-    private void ContainsV(U v)
-    {
-#if DEBUG
-        if (v.ToString().Contains(checkForContains))
-        {
-
-        }
-#endif
     }
 
     public void Add(KeyValuePair<T, U> item)
@@ -135,8 +106,20 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
         return d.TryGetValue(key, out value);
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
+    private void ContainsV(U v)
     {
-        return d.GetEnumerator();
+#if DEBUG
+        if (v.ToString().Contains(checkForContains))
+        {
+        }
+#endif
     }
+#if DEBUG
+    private const string checkForContains = "ccc_netcore31";
+
+    private void OnRemove()
+    {
+        Debugger.Break();
+    }
+#endif
 }

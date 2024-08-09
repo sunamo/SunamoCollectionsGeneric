@@ -1,15 +1,15 @@
 namespace SunamoCollectionsGeneric.Collections;
 
 /// <summary>
-/// Can be derived because new keyword
-/// For completely derived from IList, use RefreshingList
+///     Can be derived because new keyword
+///     For completely derived from IList, use RefreshingList
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class L<T> : List<T>
 {
-    public int Length => Count;
+    public bool changed;
     public T defIfNotFoundIndex = default;
-    public bool changed = false;
+
     public L()
     {
     }
@@ -22,13 +22,10 @@ public class L<T> : List<T>
     {
     }
 
-    public L<T> ToList()
-    {
-        return this;
-    }
+    public int Length => Count;
 
     /// <summary>
-    /// Before use is needed set up defIfNotFoundIndex
+    ///     Before use is needed set up defIfNotFoundIndex
     /// </summary>
     /// <param name="i"></param>
     public new T this[int i]
@@ -38,7 +35,6 @@ public class L<T> : List<T>
 #if DEBUG
             if (value.ToString().Contains(Consts.dirUp5))
             {
-
             }
 #endif
             changed = true;
@@ -46,11 +42,13 @@ public class L<T> : List<T>
         }
         get
         {
-            if (Length > i)
-            {
-                return base[i];
-            }
+            if (Length > i) return base[i];
             return defIfNotFoundIndex;
         }
+    }
+
+    public L<T> ToList()
+    {
+        return this;
     }
 }

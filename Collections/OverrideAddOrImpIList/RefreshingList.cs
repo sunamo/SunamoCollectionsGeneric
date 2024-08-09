@@ -2,8 +2,8 @@ namespace SunamoCollectionsGeneric.Collections.OverrideAddOrImpIList;
 
 public class RefreshingList<T> : IList<T>
 {
-    List<T> l = null;
-    List<T> sourceToRefresh = null;
+    private List<T> l;
+    private readonly List<T> sourceToRefresh;
 
 
     public RefreshingList(List<T> sourceToRefresh, int count)
@@ -18,15 +18,11 @@ public class RefreshingList<T> : IList<T>
         l = new List<T>(asA1);
     }
 
-    #region Is not in any interface
-
-    public void Sort()
+    public T this[int index]
     {
-        l.Sort();
+        get => l[index];
+        set => l[index] = value;
     }
-    #endregion
-
-    public T this[int index] { get => l[index]; set => l[index] = value; }
 
     public int Count => l.Count;
 
@@ -69,7 +65,7 @@ public class RefreshingList<T> : IList<T>
 
     public bool Remove(T item)
     {
-        bool vr = l.Remove(item);
+        var vr = l.Remove(item);
         RefreshIfEmpty();
         return vr;
     }
@@ -80,16 +76,22 @@ public class RefreshingList<T> : IList<T>
         RefreshIfEmpty();
     }
 
-    private void RefreshIfEmpty()
-    {
-        if (l.Count == 0)
-        {
-            l = sourceToRefresh.ToList();
-        }
-    }
-
     IEnumerator IEnumerable.GetEnumerator()
     {
         return l.GetEnumerator();
+    }
+
+    #region Is not in any interface
+
+    public void Sort()
+    {
+        l.Sort();
+    }
+
+    #endregion
+
+    private void RefreshIfEmpty()
+    {
+        if (l.Count == 0) l = sourceToRefresh.ToList();
     }
 }

@@ -1,6 +1,5 @@
 namespace SunamoCollectionsGeneric._sunamo.SunamoData.Data;
 
-
 /// <summary>
 ///     Must have always entered both from and to
 ///     None of event could have unlimited time!
@@ -8,9 +7,11 @@ namespace SunamoCollectionsGeneric._sunamo.SunamoData.Data;
 internal class FromToCollectionsGeneric : FromToTSHCollectionsGeneric<long>
 {
     internal static FromToCollectionsGeneric Empty = new(true);
+
     internal FromToCollectionsGeneric()
     {
     }
+
     /// <summary>
     ///     Use Empty contstant outside of class
     /// </summary>
@@ -19,6 +20,7 @@ internal class FromToCollectionsGeneric : FromToTSHCollectionsGeneric<long>
     {
         this.empty = empty;
     }
+
     /// <summary>
     ///     A3 true = DateTime
     ///     A3 False = None
@@ -26,7 +28,8 @@ internal class FromToCollectionsGeneric : FromToTSHCollectionsGeneric<long>
     /// <param name="from"></param>
     /// <param name="to"></param>
     /// <param name="ftUse"></param>
-    internal FromToCollectionsGeneric(long from, long to, FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime)
+    internal FromToCollectionsGeneric(long from, long to,
+        FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime)
     {
         this.from = from;
         this.to = to;

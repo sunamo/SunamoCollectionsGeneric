@@ -2,9 +2,9 @@ namespace SunamoCollectionsGeneric.Collections;
 
 public class SafeStringCollection
 {
-    public List<string> safeStringCollection = new List<string>();
-    private List<char> _unallowedChars = null;
-    private char _replaceFor;
+    private readonly char _replaceFor;
+    private readonly List<char> _unallowedChars;
+    public List<string> safeStringCollection = new();
 
     public SafeStringCollection(List<char> unallowedChars, char replaceFor)
     {
@@ -14,15 +14,12 @@ public class SafeStringCollection
 
     public void Add(string s)
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
         foreach (var item in s)
         {
-            char letter = item;
+            var letter = item;
 
-            if (_unallowedChars.Contains(item))
-            {
-                letter = _replaceFor;
-            }
+            if (_unallowedChars.Contains(item)) letter = _replaceFor;
 
             stringBuilder.Append(letter);
         }
