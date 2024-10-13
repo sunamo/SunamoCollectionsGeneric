@@ -110,8 +110,8 @@ public class CAG
             result[i] = new T[value.GetLength(1)];
         // Jagged array filling
         for (var i = 0; i < value.GetLength(0); ++i)
-        for (var j = 0; j < value.GetLength(1); ++j)
-            result[i][j] = value[i, j];
+            for (var j = 0; j < value.GetLength(1); ++j)
+                result[i][j] = value[i, j];
         return result;
     }
 
@@ -479,4 +479,11 @@ public class CAG
     }
 
     #endregion
+
+
+
+
+
+
+
 }
