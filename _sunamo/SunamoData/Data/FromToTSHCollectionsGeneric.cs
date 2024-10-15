@@ -10,7 +10,7 @@ internal class FromToTSHCollectionsGeneric<T>
     internal FromToTSHCollectionsGeneric()
     {
         var t = typeof(T);
-        if (t == Types.tInt) ftUse = FromToUseCollectionsGeneric.None;
+        if (t == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
     }
 
     /// <summary>

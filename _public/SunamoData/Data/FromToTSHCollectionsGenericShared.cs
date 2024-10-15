@@ -10,7 +10,7 @@ public class FromToTSHCollectionsGenericShared<T>
     public FromToTSHCollectionsGenericShared()
     {
         var t = typeof(T);
-        if (t == Types.tInt) ftUse = FromToUseCollectionsGeneric.None;
+        if (t == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
     }
 
 
