@@ -20,3 +20,4 @@ global using System.Runtime.CompilerServices;
 global using SunamoCollectionsGeneric._public.SunamoEnums.Enums;
 global using System.Reflection;
 global using System.Net;
+global using System.Diagnostics.CodeAnalysis;
