@@ -33,9 +33,7 @@ public class L<T> : List<T>
         set
         {
 #if DEBUG
-            if (value.ToString().Contains(Consts.dirUp5))
-            {
-            }
+
 #endif
             changed = true;
             base[i] = value;

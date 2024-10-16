@@ -12,7 +12,7 @@ global using System.ComponentModel;
 global using System.Collections.Immutable;
 global using SunamoCollectionsGeneric.Collections;
 global using SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
-global using SunamoCollectionsGeneric._sunamo.SunamoValues;
+global using SunamoCollectionsGeneric;
 global using SunamoCollectionsGeneric._public.SunamoData.Data;
 global using SunamoCollectionsGeneric._public.SunamoInterfaces.Interfaces;
 global using SunamoCollectionsGeneric._sunamo.SunamoExceptions;

@@ -5,7 +5,7 @@ public class Joiner<T>
     private readonly string joinWith;
     private readonly List<T> list;
 
-    public Joiner(int capacity = int.MinValue) : this(AllStrings.cs)
+    public Joiner(int capacity = int.MinValue) : this(",")
     {
     }
 

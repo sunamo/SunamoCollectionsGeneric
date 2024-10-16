@@ -69,7 +69,7 @@ public class DictionarySort<T, U>
             if (!pridane.Contains(item.Key))
                 if (item.Value.Equals(item2))
                     return item.Key;
-            //////////ObjectHelper.ci.VratTR(item.Key) + AllStrings.swda + ObjectHelper.ci.VratTR(item.Value));
+            //////////ObjectHelper.ci.VratTR(item.Key) + "-" + ObjectHelper.ci.VratTR(item.Value));
         }
 
         foreach (var item in l)
