@@ -130,9 +130,9 @@ public class CyclingCollection<T> //: IStatusBroadcaster
     {
         var sb = new StringBuilder();
         sb.Append(ActualIndex + 1);
-        if (_MakesSpaces) sb.Append("");
+        if (_MakesSpaces) sb.Append(" ");
         sb.Append("/");
-        if (_MakesSpaces) sb.Append("");
+        if (_MakesSpaces) sb.Append(" ");
         sb.Append(c.Count.ToString());
         return sb.ToString();
     }
