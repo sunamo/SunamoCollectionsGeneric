@@ -33,7 +33,8 @@ public class CAG
         else
         {
             Debugger.Break();
-            throw new IndexOutOfRangeException($"{listName} contains {list.Count} only elements but app want to use index {index}");
+            var nameList = listName == "" ? "unnamed" : listName;
+            throw new IndexOutOfRangeException($"{nameList} contains {list.Count} only elements but app want to use index {index}");
         }
     }
 
