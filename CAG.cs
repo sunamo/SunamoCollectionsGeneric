@@ -24,9 +24,17 @@ public class CAG
         return default;
     }
 
-    public static T GetIndexOrBreak<T>(int index, IList<T> list)
+    public static T GetIndexOrBreak<T>(int index, IList<T> list, string listName)
     {
-        return list[index];
+        if (list.Count >index)
+        {
+            return list[index];
+        }
+        else
+        {
+            Debugger.Break();
+            throw new IndexOutOfRangeException($"{listName} contains {list.Count} only elements but app want to use index {index}");
+        }
     }
 
     /// <summary>
