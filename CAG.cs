@@ -24,6 +24,11 @@ public class CAG
         return default;
     }
 
+    public static T GetIndexOrBreak<T>(int index, IList<T> list)
+    {
+        return list[index];
+    }
+
     /// <summary>
     ///     V prvním indexu jsou řádky, v druhém sloupce
     /// </summary>
