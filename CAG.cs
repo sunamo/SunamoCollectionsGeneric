@@ -24,7 +24,7 @@ public class CAG
         return default;
     }
 
-    public static T GetIndexOrBreak<T>(int index, IList<T> list, string listName)
+    public static T GetIndexOrBreak<T>(int index, IList<T> list, string listName = "", T? returnWhenIndexNotExists = default(T))
     {
         if (list.Count >index)
         {
@@ -32,9 +32,16 @@ public class CAG
         }
         else
         {
-            Debugger.Break();
-            var nameList = listName == "" ? "unnamed" : listName;
-            throw new IndexOutOfRangeException($"{nameList} contains {list.Count} only elements but app want to use index {index}");
+            if (EqualityComparer<T>.Default.Equals(returnWhenIndexNotExists, default(T)))
+            {
+                Debugger.Break();
+                var nameList = listName == "" ? "unnamed" : listName;
+                throw new IndexOutOfRangeException($"{nameList} contains {list.Count} only elements but app want to use index {index}");
+            }
+            else
+            {
+                return returnWhenIndexNotExists;
+            }
         }
     }
 
