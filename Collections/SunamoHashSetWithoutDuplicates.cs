@@ -12,7 +12,7 @@ public class SunamoHashSetWithoutDuplicates<T>
     public SunamoHashSetWithoutDuplicates(int duplCount)
     {
         // Cant create with duplCount coz is not in .NET standard
-        c = new HashSet<T>();
+        c = new HashSet<T>(duplCount);
     }
 
     public List<T> AddRange(IList<T> e, ProgressStateCAG clpb)

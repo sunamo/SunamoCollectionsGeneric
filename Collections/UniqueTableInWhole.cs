@@ -29,10 +29,6 @@ public class UniqueTableInWhole
         _rows = new string[r, c];
     }
 
-    public bool IsRowsInColumnUnique(int columnIndex)
-    {
-        return false;
-    }
 
     private bool IsColumnUnique(int columnIndex, int rowsCount)
     {
