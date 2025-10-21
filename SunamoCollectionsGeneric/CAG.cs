@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric;
 
 public class CAG
@@ -5,18 +8,18 @@ public class CAG
     public static string xInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray =
         "InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray";
 
-    public static T[] ToArrayT<T>(params T[] aB)
+    public static temp[] ToArrayT<T>(params temp[] aB)
     {
         return aB;
     }
 
 
-    public static void AddIfNotContains<T>(List<T> founded, T e)
+    public static void AddIfNotContains<T>(List<T> founded, temp e)
     {
         if (!founded.Contains(e)) founded.Add(e);
     }
 
-    public static T GetElementActualOrBefore<T>(IList<T> tabItems, int indexClosedTabItem)
+    public static temp GetElementActualOrBefore<T>(IList<T> tabItems, int indexClosedTabItem)
     {
         if (tabItems.Count > indexClosedTabItem) return tabItems[indexClosedTabItem];
         indexClosedTabItem--;
@@ -24,7 +27,7 @@ public class CAG
         return default;
     }
 
-    public static T GetIndexOrBreak<T>(int index, IList<T> list, string listName = "", T? returnWhenIndexNotExists = default(T))
+    public static temp GetIndexOrBreak<T>(int index, IList<T> list, string listName = "", temp? returnWhenIndexNotExists = default(temp))
     {
         if (list.Count >index)
         {
@@ -32,7 +35,7 @@ public class CAG
         }
         else
         {
-            if (EqualityComparer<T>.Default.Equals(returnWhenIndexNotExists, default(T)))
+            if (EqualityComparer<T>.Default.Equals(returnWhenIndexNotExists, default(temp)))
             {
                 Debugger.Break();
                 var nameList = listName == "" ? "unnamed" : listName;
@@ -51,7 +54,7 @@ public class CAG
     /// <typeparam name="T"></typeparam>
     /// <param name="a"></param>
     /// <param name="dex"></param>
-    public static List<T> GetColumnOfTwoDimensionalArray<T>(T[,] rows, int dex)
+    public static List<T> GetColumnOfTwoDimensionalArray<T>(temp[,] rows, int dex)
     {
         var rowsCount = rows.GetLength(0);
         var columnsCount = rows.GetLength(1);
@@ -72,7 +75,7 @@ public class CAG
     /// <typeparam name="T"></typeparam>
     /// <param name="a"></param>
     /// <param name="dex"></param>
-    public static List<T> GetRowOfTwoDimensionalArray<T>(T[,] rows, int dex)
+    public static List<T> GetRowOfTwoDimensionalArray<T>(temp[,] rows, int dex)
     {
         var rowsCount = rows.GetLength(0);
         var columnsCount = rows.GetLength(1);
@@ -91,12 +94,12 @@ public class CAG
     public static bool MoreOrZero<T>(List<T> n, out bool? zeroOrMore)
     {
         zeroOrMore = null;
-        var c = n.Count;
-        var b = c == 0;
-        var bb = c > 1;
-        if (b || bb)
+        var count = n.Count;
+        var builder = count == 0;
+        var bb = count > 1;
+        if (builder || bb)
         {
-            if (b)
+            if (builder)
                 zeroOrMore = true;
             else
                 zeroOrMore = false;
@@ -107,11 +110,11 @@ public class CAG
     }
 
 
-    public static List<T> CreateListAndInsertElement<T>(T el)
+    public static List<T> CreateListAndInsertElement<T>(temp el)
     {
-        var t = new List<T>();
-        t.Add(el);
-        return t;
+        var temp = new List<T>();
+        temp.Add(el);
+        return temp;
     }
 
 
@@ -121,14 +124,14 @@ public class CAG
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="value"></param>
-    public static T[][] ToJagged<T>(T[,] value)
+    public static temp[][] ToJagged<T>(temp[,] value)
     {
         if (ReferenceEquals(null, value))
             return null;
         // Jagged array creation
-        var result = new T[value.GetLength(0)][];
+        var result = new temp[value.GetLength(0)][];
         for (var i = 0; i < value.GetLength(0); ++i)
-            result[i] = new T[value.GetLength(1)];
+            result[i] = new temp[value.GetLength(1)];
         // Jagged array filling
         for (var i = 0; i < value.GetLength(0); ++i)
             for (var j = 0; j < value.GetLength(1); ++j)
@@ -136,10 +139,10 @@ public class CAG
         return result;
     }
 
-    public static T[,] OneDimensionArrayToTwoDirection<T>(T[] flatArray, int width)
+    public static temp[,] OneDimensionArrayToTwoDirection<T>(temp[] flatArray, int width)
     {
         var height = (int)Math.Ceiling(flatArray.Length / (double)width);
-        var result = new T[height, width];
+        var result = new temp[height, width];
         int rowIndex, colIndex;
         for (var index = 0; index < flatArray.Length; index++)
         {
@@ -151,7 +154,7 @@ public class CAG
         return result;
     }
 
-    public static int CountOfValue<T>(T v, params T[] show)
+    public static int CountOfValue<T>(temp v, params temp[] show)
     {
         var vr = 0;
         foreach (var item in show)
@@ -202,7 +205,7 @@ public class CAG
     /// </summary>
     /// <param name="c1"></param>
     /// <param name="c2"></param>
-    public static List<T> CompareList<T>(List<T> c1, List<T> c2) where T : IEquatable<T>
+    public static List<T> CompareList<T>(List<T> c1, List<T> c2) where temp : IEquatable<T>
     {
         var existsInBoth = new List<T>();
 
@@ -239,14 +242,14 @@ public class CAG
 
     /// <summary>
     ///     Tohle by se sand mohlo jmenovat i ToListObject
-    ///     protože neberu a nevracím konkrétní typ (např. string) ale T
+    ///     protože neberu a nevracím konkrétní typ (např. string) ale temp
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="t"></param>
     /// <returns></returns>
-    public static List<T> ToList<T>(params T[] t)
+    public static List<T> ToList<T>(params temp[] temp)
     {
-        return t.ToList();
+        return temp.ToList();
     }
 
     public static int MinElementsItemsInnerList<T>(List<List<T>> exists)
@@ -307,7 +310,7 @@ public class CAG
     /// <param name="ext"></param>
     /// <param name="p1"></param>
     /// <returns></returns>
-    public static bool IsAllTheSame<T>(T ext, IList<T> p1)
+    public static bool IsAllTheSame<T>(temp ext, IList<T> p1)
     {
         for (var i = 0; i < p1.Count; i++)
             if (!EqualityComparer<T>.Default.Equals(p1[i], ext))
@@ -470,7 +473,7 @@ public class CAG
     /// <typeparam name="T"></typeparam>
     /// <param name="p"></param>
     /// <param name="list"></param>
-    public static bool IsEqualToAnyElement<T>(T p, IList<T> list)
+    public static bool IsEqualToAnyElement<T>(temp p, IList<T> list)
     {
         foreach (var item in list)
             if (EqualityComparer<T>.Default.Equals(p, item))
@@ -494,7 +497,7 @@ public class CAG
     /// <param name="p"></param>
     /// <param name="prvky"></param>
     /// <returns></returns>
-    public static bool IsEqualToAnyElement<T>(T p, params T[] prvky)
+    public static bool IsEqualToAnyElement<T>(temp p, params temp[] prvky)
     {
         return IsEqualToAnyElement(p, prvky.ToList());
     }

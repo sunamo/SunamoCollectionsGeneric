@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric.Collections;
 
 /// <summary>
@@ -128,13 +131,13 @@ public class CyclingCollection<T> //: IStatusBroadcaster
 
     public override string ToString()
     {
-        var sb = new StringBuilder();
-        sb.Append(ActualIndex + 1);
-        if (_MakesSpaces) sb.Append(" ");
-        sb.Append("/");
-        if (_MakesSpaces) sb.Append(" ");
-        sb.Append(c.Count.ToString());
-        return sb.ToString();
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Append(ActualIndex + 1);
+        if (_MakesSpaces) stringBuilder.Append(" ");
+        stringBuilder.Append("/");
+        if (_MakesSpaces) stringBuilder.Append(" ");
+        stringBuilder.Append(c.Count.ToString());
+        return stringBuilder.ToString();
     }
 
     public void ReplaceOnce(T p, T nove)
@@ -295,9 +298,9 @@ public class CyclingCollection<T> //: IStatusBroadcaster
 
     public event Action<string> NewStatus;
 
-    public void OnNewStatus(string s, params string[] p)
+    public void OnNewStatus(string text, params string[] p)
     {
-        if (NewStatus != null) NewStatus(string.Format(s, p));
+        if (NewStatus != null) NewStatus(string.Format(text, p));
     }
 
     #endregion

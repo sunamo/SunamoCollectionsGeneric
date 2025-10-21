@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric.Collections;
 
 public class SunamoHashSetWithoutDuplicates<T>
@@ -17,7 +20,7 @@ public class SunamoHashSetWithoutDuplicates<T>
 
     public List<T> AddRange(IList<T> e, ProgressStateCAG clpb)
     {
-        var d = new List<T>();
+        var data = new List<T>();
         foreach (var item in e)
         {
             if (clpb.isRegistered) clpb.OnAnotherSong();
@@ -25,9 +28,9 @@ public class SunamoHashSetWithoutDuplicates<T>
             if (!c.Contains(item))
                 c.Add(item);
             else
-                d.Add(item);
+                data.Add(item);
         }
 
-        return d;
+        return data;
     }
 }

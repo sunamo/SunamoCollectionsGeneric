@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
 
 /// <summary>
@@ -7,21 +10,21 @@ internal class TextOutputGenerator //: ITextOutputGenerator
 {
     private static readonly string s_znakNadpisu = "*";
 
-    // při převádění na nugety jsem to změnil na ITextBuilder sb = TextBuilder.Create();
+    // při převádění na nugety jsem to změnil na ITextBuilder stringBuilder = TextBuilder.Create();
     // ale asi to byla blbost, teď mám v _sunamo Create() která je ale null místo abych použil ctor
     // takže vracím nazpět.
-    //internal TextBuilder sb = new TextBuilder();
-    internal StringBuilder sb = new();
+    //internal TextBuilder stringBuilder = new TextBuilder();
+    internal StringBuilder stringBuilder = new();
 
     //internal string prependEveryNoWhite
     //{
-    //    get => sb.prependEveryNoWhite;
-    //    set => sb.prependEveryNoWhite = value;
+    //    get => stringBuilder.prependEveryNoWhite;
+    //    set => stringBuilder.prependEveryNoWhite = value;
     //}
 
     public override string ToString()
     {
-        var ts = sb.ToString();
+        var ts = stringBuilder.ToString();
         return ts;
     }
 
@@ -45,13 +48,13 @@ internal class TextOutputGenerator //: ITextOutputGenerator
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal void Append(string text)
     {
-        sb.Append(text);
+        stringBuilder.Append(text);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal void AppendLine(string text)
     {
-        sb.AppendLine(text);
+        stringBuilder.AppendLine(text);
     }
 
 
@@ -72,11 +75,11 @@ internal class TextOutputGenerator //: ITextOutputGenerator
     internal void List<Value>(IList<Value> files1, string deli = "\r\n", string whenNoEntries = "")
     {
         if (files1.Count() == 0)
-            sb.AppendLine(whenNoEntries);
+            stringBuilder.AppendLine(whenNoEntries);
         else
             foreach (var item in files1)
                 Append(item + deli);
-        //sb.AppendLine();
+        //stringBuilder.AppendLine();
     }
 
     
@@ -103,9 +106,9 @@ internal class TextOutputGenerator //: ITextOutputGenerator
             //header = (Header)((IList<char>)CA.JoinIList<char>(header, " (" + files1.Count() + ")"));
         }
 
-        if (a.headerWrappedEmptyLines) sb.AppendLine();
-        sb.AppendLine(header + ":");
-        if (a.headerWrappedEmptyLines) sb.AppendLine();
+        if (a.headerWrappedEmptyLines) stringBuilder.AppendLine();
+        stringBuilder.AppendLine(header + ":");
+        if (a.headerWrappedEmptyLines) stringBuilder.AppendLine();
         List(files1, a.delimiter, a.whenNoEntries);
     }
 

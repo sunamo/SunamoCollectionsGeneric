@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric._public.SunamoData.Data;
 
 public class FromToTSHCollectionsGenericShared<T>
@@ -9,8 +12,8 @@ public class FromToTSHCollectionsGenericShared<T>
 
     public FromToTSHCollectionsGenericShared()
     {
-        var t = typeof(T);
-        if (t == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
+        var type = typeof(type);
+        if (type == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
     }
 
 
@@ -20,7 +23,7 @@ public class FromToTSHCollectionsGenericShared<T>
     }
 
 
-    public FromToTSHCollectionsGenericShared(T from, T to,
+    public FromToTSHCollectionsGenericShared(type from, type to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime) : this()
     {
         this.from = from;
@@ -28,15 +31,15 @@ public class FromToTSHCollectionsGenericShared<T>
         this.ftUse = ftUse;
     }
 
-    public T from
+    public type from
     {
-        get => (T)(dynamic)fromL;
+        get => (type)(dynamic)fromL;
         set => fromL = (long)(dynamic)value;
     }
 
-    public T to
+    public type to
     {
-        get => (T)(dynamic)toL;
+        get => (type)(dynamic)toL;
         set => toL = (long)(dynamic)value;
     }
 

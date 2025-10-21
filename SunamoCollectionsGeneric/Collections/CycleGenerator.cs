@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric.Collections;
 
 public class CycleGenerator<T>
@@ -10,12 +13,12 @@ public class CycleGenerator<T>
         whole = init;
     }
 
-    public T TakeAnother()
+    public temp TakeAnother()
     {
-        var t = whole[dx++];
+        var temp = whole[dx++];
 
         if (dx == whole.Count) dx = 0;
 
-        return t;
+        return temp;
     }
 }

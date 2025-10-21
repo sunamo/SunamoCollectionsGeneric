@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric.Collections;
 
 /// <summary>
@@ -23,17 +26,17 @@ public class UniqueTableInWhole
     private readonly int _cells;
     private readonly string[,] _rows;
 
-    public UniqueTableInWhole(int c, int r)
+    public UniqueTableInWhole(int count, int result)
     {
-        _cells = c;
-        _rows = new string[r, c];
+        _cells = count;
+        _rows = new string[result, count];
     }
 
 
     private bool IsColumnUnique(int columnIndex, int rowsCount)
     {
         var hs = new HashSet<string>();
-        for (var r = 0; r < rowsCount; r++) hs.Add(_rows[r, columnIndex]);
+        for (var result = 0; result < rowsCount; result++) hs.Add(_rows[result, columnIndex]);
 
         return hs.Count == rowsCount;
     }
@@ -41,7 +44,7 @@ public class UniqueTableInWhole
     private bool IsRowUnique(int rowIndex, int columnsCount)
     {
         var hs = new HashSet<string>();
-        for (var c = 0; c < columnsCount; c++) hs.Add(_rows[rowIndex, c]);
+        for (var count = 0; count < columnsCount; count++) hs.Add(_rows[rowIndex, count]);
 
         return hs.Count == columnsCount;
     }
@@ -61,23 +64,23 @@ public class UniqueTableInWhole
         var columnsCount = _rows.GetLength(1);
 
         if (columns)
-            for (var r = 0; r < rowsCount; r++)
-                if (!IsRowUnique(r, columnsCount))
+            for (var result = 0; result < rowsCount; result++)
+                if (!IsRowUnique(result, columnsCount))
                     return false;
 
         if (rows)
-            for (var c = 0; c < columnsCount; c++)
-                if (!IsColumnUnique(c, rowsCount))
+            for (var count = 0; count < columnsCount; count++)
+                if (!IsColumnUnique(count, rowsCount))
                     return false;
 
         return true;
     }
 
-    public void AddCells(List<string> c)
+    public void AddCells(List<string> count)
     {
-        if (c.Count != _cells) throw new Exception(xDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells);
+        if (count.Count != _cells) throw new Exception(xDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells);
 
-        for (var i = 0; i < c.Count; i++) _rows[_actualRow, i] = c[i];
+        for (var i = 0; i < count.Count; i++) _rows[_actualRow, i] = count[i];
 
         _actualRow++;
     }

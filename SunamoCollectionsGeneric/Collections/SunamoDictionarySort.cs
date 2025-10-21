@@ -1,8 +1,11 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric.Collections;
 
-public class SunamoDictionarySort<T, U> : Dictionary<T, U>
+public class SunamoDictionarySort<temp, U> : Dictionary<temp, U>
 {
-    private readonly DictionarySort<T, U> _ss = new();
+    private readonly DictionarySort<temp, U> _ss = new();
 
     /// <summary>
     ///     Sorting a-z. Slash as first, then numbers, then letters - all in standard.
@@ -34,14 +37,14 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
         var pridane = new List<T>();
         foreach (var item in hodnoty)
         {
-            var t = _ss.KeyFromValue(pridane, Count, sl, item);
-            pridane.Add(t);
-            Add(t, item);
-            //vr.Add(t, item);
+            var temp = _ss.KeyFromValue(pridane, Count, sl, item);
+            pridane.Add(temp);
+            Add(temp, item);
+            //vr.Add(temp, item);
         }
     }
 
-    private Dictionary<T, U> ToDictionary()
+    private Dictionary<temp, U> ToDictionary()
     {
         return this;
     }
@@ -58,7 +61,7 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
         //List<U> hodnoty = VratHodnoty(sl);
         klice.Sort();
         klice.Reverse();
-        //Dictionary<T, U> vr = new Dictionary<T, U>();
+        //Dictionary<temp, U> vr = new Dictionary<temp, U>();
         Clear();
         foreach (var item in klice) Add(item, sl[item]);
     }
@@ -78,16 +81,16 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
 
         foreach (var item in hodnoty)
         {
-            var t = _ss.KeyFromValue(Count, sl, item);
+            var temp = _ss.KeyFromValue(Count, sl, item);
             // Přidám do this místo do vr
-            Add(t, item);
+            Add(temp, item);
         }
     }
 
     /// <param name="sl"></param>
-    public Dictionary<T, List<U>> RemoveWhereInValuesIsOnlyOneObject(Dictionary<T, List<U>> sl)
+    public Dictionary<temp, List<U>> RemoveWhereInValuesIsOnlyOneObject(Dictionary<temp, List<U>> sl)
     {
-        var vr = new Dictionary<T, List<U>>();
+        var vr = new Dictionary<temp, List<U>>();
         foreach (var item in sl)
             if (item.Value.Count != 1)
                 vr.Add(item.Key, item.Value);

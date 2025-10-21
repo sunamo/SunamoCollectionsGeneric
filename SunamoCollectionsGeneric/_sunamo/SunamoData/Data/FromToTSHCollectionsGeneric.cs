@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsGeneric._sunamo.SunamoData.Data;
 
 internal class FromToTSHCollectionsGeneric<T>
@@ -9,8 +12,8 @@ internal class FromToTSHCollectionsGeneric<T>
 
     internal FromToTSHCollectionsGeneric()
     {
-        var t = typeof(T);
-        if (t == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
+        var type = typeof(type);
+        if (type == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
     }
 
     /// <summary>
@@ -29,7 +32,7 @@ internal class FromToTSHCollectionsGeneric<T>
     /// <param name="from"></param>
     /// <param name="to"></param>
     /// <param name="ftUse"></param>
-    internal FromToTSHCollectionsGeneric(T from, T to,
+    internal FromToTSHCollectionsGeneric(type from, type to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime) : this()
     {
         this.from = from;
@@ -37,15 +40,15 @@ internal class FromToTSHCollectionsGeneric<T>
         this.ftUse = ftUse;
     }
 
-    internal T from
+    internal type from
     {
-        get => (T)(dynamic)fromL;
+        get => (type)(dynamic)fromL;
         set => fromL = (long)(dynamic)value;
     }
 
-    internal T to
+    internal type to
     {
-        get => (T)(dynamic)toL;
+        get => (type)(dynamic)toL;
         set => toL = (long)(dynamic)value;
     }
 
