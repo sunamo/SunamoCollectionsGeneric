@@ -3,9 +3,9 @@
 
 namespace SunamoCollectionsGeneric.Collections;
 
-public class DictionarySort<temp, U>
+public class DictionarySort<T, U>
 {
-    public List<U> ReturnValues(Dictionary<temp, U> sl)
+    public List<U> ReturnValues(Dictionary<T, U> sl)
     {
         var vr = new List<U>();
         foreach (var item in sl) vr.Add(item.Value);
@@ -13,7 +13,7 @@ public class DictionarySort<temp, U>
         return vr;
     }
 
-    public List<T> ReturnKeys(Dictionary<temp, U> sl)
+    public List<T> ReturnKeys(Dictionary<T, U> sl)
     {
         var vr = new List<T>();
         foreach (var item in sl) vr.Add(item.Key);
@@ -26,12 +26,12 @@ public class DictionarySort<temp, U>
     ///     Sorted a->z, in
     /// </summary>
     /// <param name="sl"></param>
-    public Dictionary<temp, U> SortByKeysDesc(Dictionary<temp, U> sl)
+    public Dictionary<T, U> SortByKeysDesc(Dictionary<T, U> sl)
     {
         var klice = ReturnKeys(sl);
         //List<U> hodnoty = VratHodnoty(sl);
         klice.Sort();
-        var vr = new Dictionary<temp, U>();
+        var vr = new Dictionary<T, U>();
         foreach (var item in klice) vr.Add(item, sl[item]);
 
         return vr;
@@ -41,25 +41,25 @@ public class DictionarySort<temp, U>
     ///     sezareno a->z, lomítko první, pak čísla, pak písmena - vše standardně. Porovnává se tak bez volání Reverse
     /// </summary>
     /// <param name="sl"></param>
-    public Dictionary<temp, U> SortByValuesDesc(Dictionary<temp, U> sl)
+    public Dictionary<T, U> SortByValuesDesc(Dictionary<T, U> sl)
     {
         var klice = ReturnKeys(sl);
         var hodnoty = ReturnValues(sl);
         hodnoty.Sort();
-        var vr = new Dictionary<temp, U>();
+        var vr = new Dictionary<T, U>();
         foreach (var item in hodnoty)
         {
-            var temp = KeyFromValue(vr.Count, sl, item);
-            vr.Add(temp, item);
+            var key = KeyFromValue(vr.Count, sl, item);
+            vr.Add(key, item);
         }
 
         return vr;
     }
 
-    public temp KeyFromValue(List<T> pridane, int p, Dictionary<temp, U> sl, object item2)
+    public T KeyFromValue(List<T> pridane, int p, Dictionary<T, U> sl, object item2)
     {
         var i = -1;
-        var list = new List<KeyValuePair<temp, U>>();
+        var list = new List<KeyValuePair<T, U>>();
         foreach (var item in sl)
         {
             i++;
@@ -87,21 +87,21 @@ public class DictionarySort<temp, U>
     ///     sezareno z->a, pak čísla od největších k nejmenším, lomítka až poté. Volá se reverse
     /// </summary>
     /// <param name="sl"></param>
-    public Dictionary<temp, U> SortByKeysAsc(Dictionary<temp, U> sl)
+    public Dictionary<T, U> SortByKeysAsc(Dictionary<T, U> sl)
     {
         var klice = ReturnKeys(sl);
         //List<U> hodnoty = VratHodnoty(sl);
         klice.Sort();
         klice.Reverse();
-        var vr = new Dictionary<temp, U>();
+        var vr = new Dictionary<T, U>();
         foreach (var item in klice) vr.Add(item, sl[item]);
 
         return vr;
     }
 
-    public Dictionary<temp, List<U>> RemoveWhereIsInValueOnly1Object(Dictionary<temp, List<U>> sl)
+    public Dictionary<T, List<U>> RemoveWhereIsInValueOnly1Object(Dictionary<T, List<U>> sl)
     {
-        var vr = new Dictionary<temp, List<U>>();
+        var vr = new Dictionary<T, List<U>>();
         foreach (var item in sl)
             if (item.Value.Count != 1)
                 vr.Add(item.Key, item.Value);
@@ -109,7 +109,7 @@ public class DictionarySort<temp, U>
         return vr;
     }
 
-    public temp KeyFromValue(Dictionary<temp, U> sl, U item2)
+    public T KeyFromValue(Dictionary<T, U> sl, U item2)
     {
         foreach (var item in sl)
             if (item.Value.Equals(item2))
@@ -119,10 +119,10 @@ public class DictionarySort<temp, U>
     }
 
 
-    public temp KeyFromValue(int ïndexFromWhichSearch, Dictionary<temp, U> sl, object item2)
+    public T KeyFromValue(int ïndexFromWhichSearch, Dictionary<T, U> sl, object item2)
     {
         var i = -1;
-        var list = new List<KeyValuePair<temp, U>>();
+        var list = new List<KeyValuePair<T, U>>();
         foreach (var item in sl)
         {
             i++;

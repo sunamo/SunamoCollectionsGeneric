@@ -3,9 +3,9 @@
 
 namespace SunamoCollectionsGeneric.Collections;
 
-public class SunamoDictionarySort<temp, U> : Dictionary<temp, U>
+public class SunamoDictionarySort<T, U> : Dictionary<T, U>
 {
-    private readonly DictionarySort<temp, U> _ss = new();
+    private readonly DictionarySort<T, U> _ss = new();
 
     /// <summary>
     ///     Sorting a-z. Slash as first, then numbers, then letters - all in standard.
@@ -37,14 +37,14 @@ public class SunamoDictionarySort<temp, U> : Dictionary<temp, U>
         var pridane = new List<T>();
         foreach (var item in hodnoty)
         {
-            var temp = _ss.KeyFromValue(pridane, Count, sl, item);
-            pridane.Add(temp);
-            Add(temp, item);
+            var key = _ss.KeyFromValue(pridane, Count, sl, item);
+            pridane.Add(key);
+            Add(key, item);
             //vr.Add(temp, item);
         }
     }
 
-    private Dictionary<temp, U> ToDictionary()
+    private Dictionary<T, U> ToDictionary()
     {
         return this;
     }
@@ -81,16 +81,16 @@ public class SunamoDictionarySort<temp, U> : Dictionary<temp, U>
 
         foreach (var item in hodnoty)
         {
-            var temp = _ss.KeyFromValue(Count, sl, item);
+            var key = _ss.KeyFromValue(Count, sl, item);
             // Přidám do this místo do vr
-            Add(temp, item);
+            Add(key, item);
         }
     }
 
     /// <param name="sl"></param>
-    public Dictionary<temp, List<U>> RemoveWhereInValuesIsOnlyOneObject(Dictionary<temp, List<U>> sl)
+    public Dictionary<T, List<U>> RemoveWhereInValuesIsOnlyOneObject(Dictionary<T, List<U>> sl)
     {
-        var vr = new Dictionary<temp, List<U>>();
+        var vr = new Dictionary<T, List<U>>();
         foreach (var item in sl)
             if (item.Value.Count != 1)
                 vr.Add(item.Key, item.Value);

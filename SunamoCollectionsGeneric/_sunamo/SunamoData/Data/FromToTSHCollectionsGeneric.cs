@@ -12,7 +12,7 @@ internal class FromToTSHCollectionsGeneric<T>
 
     internal FromToTSHCollectionsGeneric()
     {
-        var type = typeof(type);
+        var type = typeof(T);
         if (type == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
     }
 
@@ -32,7 +32,7 @@ internal class FromToTSHCollectionsGeneric<T>
     /// <param name="from"></param>
     /// <param name="to"></param>
     /// <param name="ftUse"></param>
-    internal FromToTSHCollectionsGeneric(type from, type to,
+    internal FromToTSHCollectionsGeneric(T from, T to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime) : this()
     {
         this.from = from;
@@ -40,15 +40,15 @@ internal class FromToTSHCollectionsGeneric<T>
         this.ftUse = ftUse;
     }
 
-    internal type from
+    internal T from
     {
-        get => (type)(dynamic)fromL;
+        get => (T)(dynamic)fromL;
         set => fromL = (long)(dynamic)value;
     }
 
-    internal type to
+    internal T to
     {
-        get => (type)(dynamic)toL;
+        get => (T)(dynamic)toL;
         set => toL = (long)(dynamic)value;
     }
 

@@ -13,12 +13,12 @@ public class CycleGenerator<T>
         whole = init;
     }
 
-    public temp TakeAnother()
+    public T TakeAnother()
     {
-        var temp = whole[dx++];
+        var result = whole[dx++];
 
         if (dx == whole.Count) dx = 0;
 
-        return temp;
+        return result;
     }
 }
