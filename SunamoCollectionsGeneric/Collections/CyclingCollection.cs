@@ -1,15 +1,12 @@
 // EN: Variable names have been checked and replaced with self-descriptive names
 // CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-
 namespace SunamoCollectionsGeneric.Collections;
-
 /// <summary>
 /// </summary>
-public class CyclingCollection<T> //: IStatusBroadcaster
+public partial class CyclingCollection<T>
 {
     public static string xUnableToLoadElementAddSomeAndTryAgain = "UnableToLoadElementAddSomeAndTryAgain";
     public bool back;
-
     public CyclingCollection(bool Cycling)
     {
         this.Cycling = Cycling;
@@ -35,7 +32,8 @@ public class CyclingCollection<T> //: IStatusBroadcaster
     {
         get
         {
-            if (c.Count == 0) return default;
+            if (c.Count == 0)
+                return default;
             return c[index];
         }
     }
@@ -119,8 +117,8 @@ public class CyclingCollection<T> //: IStatusBroadcaster
     {
         if (ir < 0)
             ir = c.Count - 1;
-        else if (ir >= c.Count) ir = 0;
-
+        else if (ir >= c.Count)
+            ir = 0;
         return ir;
     }
 
@@ -133,9 +131,11 @@ public class CyclingCollection<T> //: IStatusBroadcaster
     {
         var stringBuilder = new StringBuilder();
         stringBuilder.Append(ActualIndex + 1);
-        if (_MakesSpaces) stringBuilder.Append(" ");
+        if (_MakesSpaces)
+            stringBuilder.Append(" ");
         stringBuilder.Append("/");
-        if (_MakesSpaces) stringBuilder.Append(" ");
+        if (_MakesSpaces)
+            stringBuilder.Append(" ");
         stringBuilder.Append(c.Count.ToString());
         return stringBuilder.ToString();
     }
@@ -149,30 +149,31 @@ public class CyclingCollection<T> //: IStatusBroadcaster
 
     private static string ReplaceOnce(string input, string what, string zaco)
     {
-        if (what == "") return input;
-
+        if (what == "")
+            return input;
         var pos = input.IndexOf(what);
-        if (pos == -1) return input;
+        if (pos == -1)
+            return input;
         return input.Substring(0, pos) + zaco + input.Substring(pos + what.Length);
     }
 
-    #region DPP
-
     public List<T> c = new();
     private int _index;
-
     private int index
     {
         get
         {
             if (_index < 0)
                 _index = 0;
-            else if (_index > c.Count - 1) _index = c.Count - 1;
+            else if (_index > c.Count - 1)
+                _index = c.Count - 1;
             return _index;
         }
+
         set
         {
-            if (value < 0) value = 0;
+            if (value < 0)
+                value = 0;
             _index = value;
         }
     }
@@ -181,16 +182,9 @@ public class CyclingCollection<T> //: IStatusBroadcaster
     ///     Whether make space in formatting actual showing
     /// </summary>
     private bool _MakesSpaces;
-
     public event Action Change;
-
     private EventArgs _ea = EventArgs.Empty;
     public bool Cycling = true;
-
-    #endregion
-
-    #region Simply moving about 1
-
     public T Before()
     {
         back = true;
@@ -200,13 +194,13 @@ public class CyclingCollection<T> //: IStatusBroadcaster
                 index = c.Count - 1;
             else
                 index--;
-
-            //OnChange();
+        //OnChange();
         }
         else
         {
-            if (index != 0) index--;
-            //OnChange();
+            if (index != 0)
+                index--;
+        //OnChange();
         }
 
         OnChange();
@@ -222,28 +216,25 @@ public class CyclingCollection<T> //: IStatusBroadcaster
                 index = 0;
             else
                 index++;
-            //OnChange();
+        //OnChange();
         }
         else
         {
-            if (index != c.Count - 1) index++;
-            //OnChange();
+            if (index != c.Count - 1)
+                index++;
+        //OnChange();
         }
 
         OnChange();
         return GetIretation;
     }
 
-    #endregion
-
-    #region Moving about X elements
-
     public T Before(int pocet)
     {
-        if (pocet > c.Count) return GetIretation;
+        if (pocet > c.Count)
+            return GetIretation;
         index -= pocet;
         var dex = index;
-
         if (dex == 0)
         {
         }
@@ -262,46 +253,4 @@ public class CyclingCollection<T> //: IStatusBroadcaster
         OnChange();
         return GetIretation;
     }
-
-    public T Next(int pocet)
-    {
-        if (pocet > c.Count) return GetIretation;
-        index += pocet;
-        var dex = index;
-        if (dex == 0)
-        {
-        }
-        else if (dex > c.Count)
-        {
-            // Zjistim o kolik a tolik posunu i v novem
-            var vNovem = dex - c.Count;
-            index = vNovem;
-        }
-        else
-        {
-            //
-            index = dex;
-        }
-
-        OnChange();
-        return GetIretation;
-    }
-
-    #endregion
-
-    #region IStatusBroadcaster Members
-
-    public void OnChange()
-    {
-        if (Change != null) Change();
-    }
-
-    public event Action<string> NewStatus;
-
-    public void OnNewStatus(string text, params string[] p)
-    {
-        if (NewStatus != null) NewStatus(string.Format(text, p));
-    }
-
-    #endregion
 }
