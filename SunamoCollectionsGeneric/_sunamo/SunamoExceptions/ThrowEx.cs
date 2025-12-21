@@ -1,6 +1,7 @@
+namespace SunamoCollectionsGeneric._sunamo.SunamoExceptions;
+
 // EN: Variable names have been checked and replaced with self-descriptive names
 // CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-namespace SunamoCollectionsGeneric._sunamo.SunamoExceptions;
 internal partial class ThrowEx
 {
     internal static bool ArgumentOutOfRangeException(string argName, string message = "")
