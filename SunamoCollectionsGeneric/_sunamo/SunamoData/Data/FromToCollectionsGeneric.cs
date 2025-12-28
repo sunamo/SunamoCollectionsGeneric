@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric._sunamo.SunamoData.Data;
 
 /// <summary>
@@ -18,7 +19,7 @@ internal class FromToCollectionsGeneric : FromToTSHCollectionsGeneric<long>
     /// <param name="empty"></param>
     private FromToCollectionsGeneric(bool empty)
     {
-        this.empty = empty;
+        this.IsEmpty = empty;
     }
 
     /// <summary>
@@ -31,8 +32,8 @@ internal class FromToCollectionsGeneric : FromToTSHCollectionsGeneric<long>
     internal FromToCollectionsGeneric(long from, long to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime)
     {
-        this.from = from;
-        this.to = to;
-        this.ftUse = ftUse;
+        this.From = from;
+        this.To = to;
+        this.FtUse = ftUse;
     }
 }

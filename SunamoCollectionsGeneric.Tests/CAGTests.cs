@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Tests;
 
 public class CAGTests

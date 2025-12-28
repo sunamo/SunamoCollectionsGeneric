@@ -1,80 +1,83 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 public class DictionarySort<T, U>
 {
-    public List<U> ReturnValues(Dictionary<T, U> sl)
+    public List<U> ReturnValues(Dictionary<T, U> dictionary)
     {
-        var vr = new List<U>();
-        foreach (var item in sl) vr.Add(item.Value);
+        var result = new List<U>();
+        foreach (var item in dictionary) result.Add(item.Value);
 
-        return vr;
+        return result;
     }
 
-    public List<T> ReturnKeys(Dictionary<T, U> sl)
+    public List<T> ReturnKeys(Dictionary<T, U> dictionary)
     {
-        var vr = new List<T>();
-        foreach (var item in sl) vr.Add(item.Key);
+        var result = new List<T>();
+        foreach (var item in dictionary) result.Add(item.Key);
 
-        return vr;
+        return result;
     }
 
     /// <summary>
     ///     sezareno a->z, lomítko první, pak čísla, pak písmena - vše standardně. Porovnává se tak bez volání Reverse
     ///     Sorted a->z, in
     /// </summary>
-    /// <param name="sl"></param>
-    public Dictionary<T, U> SortByKeysDesc(Dictionary<T, U> sl)
+    /// <param name="dictionary"></param>
+    public Dictionary<T, U> SortByKeysDesc(Dictionary<T, U> dictionary)
     {
-        var klice = ReturnKeys(sl);
-        //List<U> hodnoty = VratHodnoty(sl);
-        klice.Sort();
-        var vr = new Dictionary<T, U>();
-        foreach (var item in klice) vr.Add(item, sl[item]);
+        var keys = ReturnKeys(dictionary);
+        //List<U> values = VratHodnoty(dictionary);
+        keys.Sort();
+        var result = new Dictionary<T, U>();
+        foreach (var item in keys) result.Add(item, dictionary[item]);
 
-        return vr;
+        return result;
     }
 
     /// <summary>
     ///     sezareno a->z, lomítko první, pak čísla, pak písmena - vše standardně. Porovnává se tak bez volání Reverse
     /// </summary>
-    /// <param name="sl"></param>
-    public Dictionary<T, U> SortByValuesDesc(Dictionary<T, U> sl)
+    /// <param name="dictionary"></param>
+    public Dictionary<T, U> SortByValuesDesc(Dictionary<T, U> dictionary)
     {
-        var klice = ReturnKeys(sl);
-        var hodnoty = ReturnValues(sl);
-        hodnoty.Sort();
-        var vr = new Dictionary<T, U>();
-        foreach (var item in hodnoty)
+        var keys = ReturnKeys(dictionary);
+        var values = ReturnValues(dictionary);
+        values.Sort();
+        var result = new Dictionary<T, U>();
+        foreach (var item in values)
         {
-            var key = KeyFromValue(vr.Count, sl, item);
-            vr.Add(key, item);
+            var key = KeyFromValue(result.Count, dictionary, item);
+            result.Add(key, item);
         }
 
-        return vr;
+        return result;
     }
 
-    public T KeyFromValue(List<T> pridane, int p, Dictionary<T, U> sl, object item2)
+    public T KeyFromValue(List<T> addedKeys, int startIndex, Dictionary<T, U> dictionary, object searchValue)
     {
         var i = -1;
         var list = new List<KeyValuePair<T, U>>();
-        foreach (var item in sl)
+        foreach (var item in dictionary)
         {
             i++;
-            if (i < p)
+            if (i < startIndex)
             {
                 list.Add(item);
                 continue;
             }
 
-            if (!pridane.Contains(item.Key))
-                if (item.Value.Equals(item2))
+            if (!addedKeys.Contains(item.Key))
+                if (item.Value.Equals(searchValue))
                     return item.Key;
             //////////ObjectHelper.ci.VratTR(item.Key) + "-" + ObjectHelper.ci.VratTR(item.Value));
         }
 
         foreach (var item in list)
-            if (!pridane.Contains(item.Key))
-                if (item.Value.Equals(item2))
+            if (!addedKeys.Contains(item.Key))
+                if (item.Value.Equals(searchValue))
                     return item.Key;
 
         return default;
@@ -83,58 +86,58 @@ public class DictionarySort<T, U>
     /// <summary>
     ///     sezareno z->a, pak čísla od největších k nejmenším, lomítka až poté. Volá se reverse
     /// </summary>
-    /// <param name="sl"></param>
-    public Dictionary<T, U> SortByKeysAsc(Dictionary<T, U> sl)
+    /// <param name="dictionary"></param>
+    public Dictionary<T, U> SortByKeysAsc(Dictionary<T, U> dictionary)
     {
-        var klice = ReturnKeys(sl);
-        //List<U> hodnoty = VratHodnoty(sl);
-        klice.Sort();
-        klice.Reverse();
-        var vr = new Dictionary<T, U>();
-        foreach (var item in klice) vr.Add(item, sl[item]);
+        var keys = ReturnKeys(dictionary);
+        //List<U> values = VratHodnoty(dictionary);
+        keys.Sort();
+        keys.Reverse();
+        var result = new Dictionary<T, U>();
+        foreach (var item in keys) result.Add(item, dictionary[item]);
 
-        return vr;
+        return result;
     }
 
-    public Dictionary<T, List<U>> RemoveWhereIsInValueOnly1Object(Dictionary<T, List<U>> sl)
+    public Dictionary<T, List<U>> RemoveWhereIsInValueOnly1Object(Dictionary<T, List<U>> dictionary)
     {
-        var vr = new Dictionary<T, List<U>>();
-        foreach (var item in sl)
+        var result = new Dictionary<T, List<U>>();
+        foreach (var item in dictionary)
             if (item.Value.Count != 1)
-                vr.Add(item.Key, item.Value);
+                result.Add(item.Key, item.Value);
 
-        return vr;
+        return result;
     }
 
-    public T KeyFromValue(Dictionary<T, U> sl, U item2)
+    public T KeyFromValue(Dictionary<T, U> dictionary, U searchValue)
     {
-        foreach (var item in sl)
-            if (item.Value.Equals(item2))
+        foreach (var item in dictionary)
+            if (item.Value.Equals(searchValue))
                 return item.Key;
 
         return default;
     }
 
 
-    public T KeyFromValue(int ïndexFromWhichSearch, Dictionary<T, U> sl, object item2)
+    public T KeyFromValue(int indexFromWhichSearch, Dictionary<T, U> dictionary, object searchValue)
     {
         var i = -1;
         var list = new List<KeyValuePair<T, U>>();
-        foreach (var item in sl)
+        foreach (var item in dictionary)
         {
             i++;
-            if (i < ïndexFromWhichSearch)
+            if (i < indexFromWhichSearch)
             {
                 list.Add(item);
                 continue;
             }
 
-            if (item.Value.Equals(item2)) return item.Key;
+            if (item.Value.Equals(searchValue)) return item.Key;
         }
 
         // Lépe jsem to tu nedokázal vymyslet :-(
         foreach (var item in list)
-            if (item.Value.Equals(item2))
+            if (item.Value.Equals(searchValue))
                 return item.Key;
 
         return default;

@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric._public.SunamoData.Data;
 
 public class FromToCollectionsGenericShared : FromToTSHCollectionsGenericShared<long>
@@ -11,15 +12,15 @@ public class FromToCollectionsGenericShared : FromToTSHCollectionsGenericShared<
 
     private FromToCollectionsGenericShared(bool empty)
     {
-        this.empty = empty;
+        this.IsEmpty = empty;
     }
 
 
     public FromToCollectionsGenericShared(long from, long to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime)
     {
-        this.from = from;
-        this.to = to;
-        this.ftUse = ftUse;
+        this.From = from;
+        this.To = to;
+        this.FtUse = ftUse;
     }
 }

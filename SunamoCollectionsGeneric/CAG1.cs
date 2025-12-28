@@ -1,29 +1,30 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric;
 
 // EN: Variable names have been checked and replaced with self-descriptive names
 // CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 public partial class CAG
 {
-    public static int MaxElementsItemsInnerList<T>(List<List<T>> exists)
+    public static int MaxElementsItemsInnerList<T>(List<List<T>> lists)
     {
         var max = 0;
-        foreach (var item in exists)
+        foreach (var item in lists)
             if (item.Count > max)
                 max = item.Count;
         return max;
     }
 
-    public static List<List<T>> TrimInnersToCount<T>(List<List<T>> exists, int lowest)
+    public static List<List<T>> TrimInnersToCount<T>(List<List<T>> lists, int targetCount)
     {
-        for (var i = 0; i < exists.Count; i++)
-            exists[i] = exists[i].Take(lowest).ToList();
-        return exists;
+        for (var i = 0; i < lists.Count; i++)
+            lists[i] = lists[i].Take(targetCount).ToList();
+        return lists;
     }
 
-    public static int LowestCount<T>(List<List<T>> exists)
+    public static int LowestCount<T>(List<List<T>> lists)
     {
         var min = int.MaxValue;
-        foreach (var item in exists)
+        foreach (var item in lists)
             if (min > item.Count)
                 min = item.Count;
         return min;
@@ -45,10 +46,10 @@ public partial class CAG
     /// <param name = "ext"></param>
     /// <param name = "p1"></param>
     /// <returns></returns>
-    public static bool IsAllTheSame<T>(T ext, IList<T> p1)
+    public static bool IsAllTheSame<T>(T element, IList<T> list)
     {
-        for (var i = 0; i < p1.Count; i++)
-            if (!EqualityComparer<T>.Default.Equals(p1[i], ext))
+        for (var i = 0; i < list.Count; i++)
+            if (!EqualityComparer<T>.Default.Equals(list[i], element))
                 return false;
         return true;
     }
@@ -58,14 +59,14 @@ public partial class CAG
     ///     A2 = more duplicities = more items
     /// </summary>
     /// <typeparam name = "T"></typeparam>
-    /// <param name = "clipboardL"></param>
+    /// <param name = "list"></param>
     /// <param name = "alreadyProcessed"></param>
     /// <returns></returns>
-    public static L<T> GetDuplicities<T>(List<T> clipboardL, out List<T> alreadyProcessed)
+    public static L<T> GetDuplicities<T>(List<T> list, out List<T> alreadyProcessed)
     {
-        alreadyProcessed = new List<T>(clipboardL.Count);
+        alreadyProcessed = new List<T>(list.Count);
         var duplicated = new List<T>();
-        foreach (var item in clipboardL)
+        foreach (var item in list)
             if (alreadyProcessed.Contains(item))
                 duplicated.Add(item);
             else
@@ -78,32 +79,32 @@ public partial class CAG
     ///     Get every duplicated item once
     /// </summary>
     /// <typeparam name = "T"></typeparam>
-    /// <param name = "clipboardL"></param>
+    /// <param name = "list"></param>
     /// <returns></returns>
-    public static List<T> GetDuplicities<T>(List<T> clipboardL)
+    public static List<T> GetDuplicities<T>(List<T> list)
     {
         List<T> alreadyProcessed;
-        return GetDuplicities(clipboardL, out alreadyProcessed);
+        return GetDuplicities(list, out alreadyProcessed);
     }
 
     /// <summary>
     ///     Return equal ranges of in A1
     /// </summary>
-    /// <param name = "contentOneSpace"></param>
-    /// <param name = "r"></param>
-    public static List<FromToCollectionsGenericShared> EqualRanges<T>(List<T> contentOneSpace, List<T> r)
+    /// <param name = "list"></param>
+    /// <param name = "searchPattern"></param>
+    public static List<FromToCollectionsGenericShared> EqualRanges<T>(List<T> list, List<T> searchPattern)
     {
         var result = new List<FromToCollectionsGenericShared>();
         int? dx = null;
-        var r_first = r[0];
+        var r_first = searchPattern[0];
         var startAt = 0;
         var valueToCompare = 0;
-        for (var i = 0; i < contentOneSpace.Count; i++)
+        for (var i = 0; i < list.Count; i++)
         {
-            var _contentOneSpace = contentOneSpace[i];
+            var currentElement = list[i];
             if (!dx.HasValue)
             {
-                if (EqualityComparer<T>.Default.Equals(_contentOneSpace, r_first))
+                if (EqualityComparer<T>.Default.Equals(currentElement, r_first))
                 {
                     dx = i + 1; // +2;
                     startAt = i;
@@ -112,9 +113,9 @@ public partial class CAG
             else
             {
                 valueToCompare = dx.Value - startAt;
-                if (r.Count > valueToCompare)
+                if (searchPattern.Count > valueToCompare)
                 {
-                    if (EqualityComparer<T>.Default.Equals(_contentOneSpace, r[valueToCompare]))
+                    if (EqualityComparer<T>.Default.Equals(currentElement, searchPattern[valueToCompare]))
                     {
                         dx++;
                     }
@@ -127,7 +128,7 @@ public partial class CAG
                 else
                 {
                     var dx2 = (int)dx;
-                    result.Add(new FromToCollectionsGenericShared(dx2 - r.Count + 1, dx2, FromToUseCollectionsGeneric.None));
+                    result.Add(new FromToCollectionsGenericShared(dx2 - searchPattern.Count + 1, dx2, FromToUseCollectionsGeneric.None));
                     dx = null;
                 }
             }
@@ -135,8 +136,8 @@ public partial class CAG
 
         foreach (var item in result)
         {
-            item.from--;
-            item.to--;
+            item.From--;
+            item.To--;
         }
 
         return result;
@@ -147,11 +148,11 @@ public partial class CAG
     /// Remove duplicities from A1
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <param name="idKesek"></param>
-    public static List<T> RemoveDuplicitiesList<T>(IList<T> idKesek)
+    /// <param name="list"></param>
+    public static List<T> RemoveDuplicitiesList<T>(IList<T> list)
     {
         List<T> foundedDuplicities;
-        return RemoveDuplicitiesList(idKesek, out foundedDuplicities);
+        return RemoveDuplicitiesList(list, out foundedDuplicities);
     }
 
     /// <summary>
@@ -161,27 +162,27 @@ public partial class CAG
     ///     In A2 is every duplicities (maybe the same more times)
     /// </summary>
     /// <typeparam name = "T"></typeparam>
-    /// <param name = "idKesek"></param>
+    /// <param name = "list"></param>
     /// <param name = "foundedDuplicities"></param>
-    public static List<T> RemoveDuplicitiesList<T>(IList<T> idKesek, out List<T> foundedDuplicities)
+    public static List<T> RemoveDuplicitiesList<T>(IList<T> list, out List<T> foundedDuplicities)
     {
         foundedDuplicities = new List<T>();
-        var h = new List<T>();
-        for (var i = idKesek.Count - 1; i >= 0; i--)
+        var uniqueItems = new List<T>();
+        for (var i = list.Count - 1; i >= 0; i--)
         {
-            var item = idKesek[i];
-            if (!h.Contains(item))
+            var item = list[i];
+            if (!uniqueItems.Contains(item))
             {
-                h.Add(item);
+                uniqueItems.Add(item);
             }
             else
             {
-                idKesek.RemoveAt(i);
+                list.RemoveAt(i);
                 foundedDuplicities.Add(item);
             }
         }
 
-        return h;
+        return uniqueItems;
     }
 
     /// <summary>
@@ -197,12 +198,12 @@ public partial class CAG
     ///             ReturnWhichContainsIndexes() - takes two list or element and list. return List<int>
     /// </summary>
     /// <typeparam name = "T"></typeparam>
-    /// <param name = "p"></param>
+    /// <param name = "element"></param>
     /// <param name = "list"></param>
-    public static bool IsEqualToAnyElement<T>(T p, IList<T> list)
+    public static bool IsEqualToAnyElement<T>(T element, IList<T> list)
     {
         foreach (var item in list)
-            if (EqualityComparer<T>.Default.Equals(p, item))
+            if (EqualityComparer<T>.Default.Equals(element, item))
                 return true;
         return false;
     }
@@ -220,11 +221,11 @@ public partial class CAG
     ///             CA.ReturnWhichContainsIndexes() - takes two list or element and list. return List<int>
     /// </summary>
     /// <typeparam name = "T"></typeparam>
-    /// <param name = "p"></param>
-    /// <param name = "prvky"></param>
+    /// <param name = "element"></param>
+    /// <param name = "items"></param>
     /// <returns></returns>
-    public static bool IsEqualToAnyElement<T>(T p, params T[] prvky)
+    public static bool IsEqualToAnyElement<T>(T element, params T[] items)
     {
-        return IsEqualToAnyElement(p, prvky.ToList());
+        return IsEqualToAnyElement(element, items.ToList());
     }
 }

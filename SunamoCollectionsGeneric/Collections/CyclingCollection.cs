@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
 // EN: Variable names have been checked and replaced with self-descriptive names
@@ -6,11 +7,11 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 public partial class CyclingCollection<T>
 {
-    public static string xUnableToLoadElementAddSomeAndTryAgain = "UnableToLoadElementAddSomeAndTryAgain";
-    public bool back;
-    public CyclingCollection(bool Cycling)
+    public static string XUnableToLoadElementAddSomeAndTryAgain = "UnableToLoadElementAddSomeAndTryAgain";
+    public bool IsGoingBack { get; set; }
+    public CyclingCollection(bool isCycling)
     {
-        this.Cycling = Cycling;
+        this.IsCycling = isCycling;
     }
 
     public CyclingCollection()
@@ -33,9 +34,9 @@ public partial class CyclingCollection<T>
     {
         get
         {
-            if (c.Count == 0)
+            if (Items.Count == 0)
                 return default;
-            return c[index];
+            return Items[index];
         }
     }
 
@@ -46,54 +47,54 @@ public partial class CyclingCollection<T>
     {
         get
         {
-            T t2 = default;
-            var dex = Math.Abs(index);
-            if (c.Count > dex && c.Count >= dex)
+            T result = default;
+            var absoluteIndex = Math.Abs(index);
+            if (Items.Count > absoluteIndex && Items.Count >= absoluteIndex)
             {
-                t2 = c[dex];
+                result = Items[absoluteIndex];
             }
             else
             {
-                dex = Math.Abs(++index);
-                if (c.Count > dex && c.Count >= dex)
+                absoluteIndex = Math.Abs(++index);
+                if (Items.Count > absoluteIndex && Items.Count >= absoluteIndex)
                 {
-                    t2 = c[dex];
+                    result = Items[absoluteIndex];
                 }
                 else
                 {
                     index--;
-                    dex = Math.Abs(--index);
-                    if (c.Count > dex && c.Count >= dex)
+                    absoluteIndex = Math.Abs(--index);
+                    if (Items.Count > absoluteIndex && Items.Count >= absoluteIndex)
                     {
-                        t2 = c[dex];
+                        result = Items[absoluteIndex];
                     }
                     else
                     {
-                        if (c.Count > 0)
-                            t2 = c[0];
+                        if (Items.Count > 0)
+                            result = Items[0];
                         else
-                            OnNewStatus(xUnableToLoadElementAddSomeAndTryAgain);
+                            OnNewStatus(XUnableToLoadElementAddSomeAndTryAgain);
                     }
                 }
             }
 
-            return t2;
+            return result;
         }
     }
 
-    public void Add(T t)
+    public void Add(T item)
     {
-        c.Add(t);
+        Items.Add(item);
         _index++;
         OnChange();
     }
 
-    public void AddRange(IList<T> k)
+    public void AddRange(IList<T> items)
     {
-        //t.AddRange(k);
-        foreach (var item in k)
+        //t.AddRange(items);
+        foreach (var item in items)
         {
-            c.Add(item);
+            Items.Add(item);
             _index++;
         }
 
@@ -102,30 +103,30 @@ public partial class CyclingCollection<T>
 
     public void Clear()
     {
-        c.Clear();
+        Items.Clear();
         _index = 0;
         OnChange();
     }
 
-    public T SetIretation(int ir)
+    public T SetIretation(int newIndex)
     {
-        index = ValidateIndex(ir);
+        index = ValidateIndex(newIndex);
         OnChange();
         return GetIretation;
     }
 
-    private int ValidateIndex(int ir)
+    private int ValidateIndex(int newIndex)
     {
-        if (ir < 0)
-            ir = c.Count - 1;
-        else if (ir >= c.Count)
-            ir = 0;
-        return ir;
+        if (newIndex < 0)
+            newIndex = Items.Count - 1;
+        else if (newIndex >= Items.Count)
+            newIndex = 0;
+        return newIndex;
     }
 
-    public void SetIretationWithoutEvent(int p)
+    public void SetIretationWithoutEvent(int newIndex)
     {
-        index = p;
+        index = newIndex;
     }
 
     public override string ToString()
@@ -137,28 +138,18 @@ public partial class CyclingCollection<T>
         stringBuilder.Append("/");
         if (_MakesSpaces)
             stringBuilder.Append(" ");
-        stringBuilder.Append(c.Count.ToString());
+        stringBuilder.Append(Items.Count.ToString());
         return stringBuilder.ToString();
     }
 
-    public void ReplaceOnce(T p, T nove)
+    public void ReplaceOnce(T oldItem, T newItem)
     {
-        var dex = c.IndexOf(p);
-        c.RemoveAt(dex);
-        c.Insert(dex, nove);
+        var itemIndex = Items.IndexOf(oldItem);
+        Items.RemoveAt(itemIndex);
+        Items.Insert(itemIndex, newItem);
     }
 
-    private static string ReplaceOnce(string input, string what, string zaco)
-    {
-        if (what == "")
-            return input;
-        var pos = input.IndexOf(what);
-        if (pos == -1)
-            return input;
-        return input.Substring(0, pos) + zaco + input.Substring(pos + what.Length);
-    }
-
-    public List<T> c = new();
+    public List<T> Items { get; set; } = new();
     private int _index;
     private int index
     {
@@ -166,8 +157,8 @@ public partial class CyclingCollection<T>
         {
             if (_index < 0)
                 _index = 0;
-            else if (_index > c.Count - 1)
-                _index = c.Count - 1;
+            else if (_index > Items.Count - 1)
+                _index = Items.Count - 1;
             return _index;
         }
 
@@ -185,14 +176,14 @@ public partial class CyclingCollection<T>
     private bool _MakesSpaces;
     public event Action Change;
     private EventArgs _ea = EventArgs.Empty;
-    public bool Cycling = true;
+    public bool IsCycling { get; set; } = true;
     public T Before()
     {
-        back = true;
-        if (Cycling)
+        IsGoingBack = true;
+        if (IsCycling)
         {
             if (index == 0)
-                index = c.Count - 1;
+                index = Items.Count - 1;
             else
                 index--;
         //OnChange();
@@ -210,10 +201,10 @@ public partial class CyclingCollection<T>
 
     public T Next()
     {
-        back = false;
-        if (Cycling)
+        IsGoingBack = false;
+        if (IsCycling)
         {
-            if (index == c.Count - 1)
+            if (index == Items.Count - 1)
                 index = 0;
             else
                 index++;
@@ -221,7 +212,7 @@ public partial class CyclingCollection<T>
         }
         else
         {
-            if (index != c.Count - 1)
+            if (index != Items.Count - 1)
                 index++;
         //OnChange();
         }
@@ -230,25 +221,25 @@ public partial class CyclingCollection<T>
         return GetIretation;
     }
 
-    public T Before(int pocet)
+    public T Before(int count)
     {
-        if (pocet > c.Count)
+        if (count > Items.Count)
             return GetIretation;
-        index -= pocet;
-        var dex = index;
-        if (dex == 0)
+        index -= count;
+        var currentIndex = index;
+        if (currentIndex == 0)
         {
         }
-        else if (dex < 0)
+        else if (currentIndex < 0)
         {
-            var odecist = Math.Abs(dex);
-            var vNovem = c.Count - odecist;
-            index = vNovem;
+            var amountToSubtract = Math.Abs(currentIndex);
+            var newIndex = Items.Count - amountToSubtract;
+            index = newIndex;
         }
         else
         {
-            //index-= pocet;
-            index = dex;
+            //index-= count;
+            index = currentIndex;
         }
 
         OnChange();

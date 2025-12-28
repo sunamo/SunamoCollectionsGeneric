@@ -1,5 +1,8 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 /// <summary>
 ///     Must be IEnumerable, not IList
 /// </summary>
@@ -7,38 +10,38 @@ namespace SunamoCollectionsGeneric.Collections;
 /// <typeparam name="U"></typeparam>
 public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
 {
-    private static Type type = typeof(D<T, U>);
+    private static Type DictionaryType = typeof(D<T, U>);
 
-    public Action callWhenIsZeroElements;
-    private readonly Dictionary<T, U> d = new();
+    public Action CallWhenIsZeroElements { get; set; }
+    private readonly Dictionary<T, U> dictionary = new();
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return d.GetEnumerator();
+        return dictionary.GetEnumerator();
     }
 
     public U this[T key]
     {
         get
         {
-            if (callWhenIsZeroElements != null)
+            if (CallWhenIsZeroElements != null)
                 if (Count == 0)
-                    callWhenIsZeroElements.Invoke();
-            return d[key];
+                    CallWhenIsZeroElements.Invoke();
+            return dictionary[key];
         }
         set
         {
             ContainsV(value);
 
-            d[key] = value;
+            dictionary[key] = value;
         }
     }
 
-    public ICollection<T> Keys => d.Keys;
+    public ICollection<T> Keys => dictionary.Keys;
 
-    public ICollection<U> Values => d.Values;
+    public ICollection<U> Values => dictionary.Values;
 
-    public int Count => d.Count;
+    public int Count => dictionary.Count;
 
     public bool IsReadOnly => false;
 
@@ -46,13 +49,13 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
     {
         ContainsV(value);
 
-        d.Add(key, value);
+        dictionary.Add(key, value);
     }
 
     public void Add(KeyValuePair<T, U> item)
     {
         ContainsV(item.Value);
-        d.Add(item.Key, item.Value);
+        dictionary.Add(item.Key, item.Value);
     }
 
     public void Clear()
@@ -61,17 +64,17 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
         OnRemove();
 #endif
 
-        d.Clear();
+        dictionary.Clear();
     }
 
     public bool Contains(KeyValuePair<T, U> item)
     {
-        return d.Contains(item);
+        return dictionary.Contains(item);
     }
 
     public bool ContainsKey(T key)
     {
-        return d.ContainsKey(key);
+        return dictionary.ContainsKey(key);
     }
 
     public void CopyTo(KeyValuePair<T, U>[] array, int arrayIndex)
@@ -82,7 +85,7 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
 
     public IEnumerator<KeyValuePair<T, U>> GetEnumerator()
     {
-        return d.GetEnumerator();
+        return dictionary.GetEnumerator();
     }
 
     public bool Remove(T key)
@@ -90,7 +93,7 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
 #if DEBUG
         OnRemove();
 #endif
-        return d.Remove(key);
+        return dictionary.Remove(key);
     }
 
     public bool Remove(KeyValuePair<T, U> item)
@@ -98,18 +101,18 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
 #if DEBUG
         OnRemove();
 #endif
-        return d.Remove(item.Key);
+        return dictionary.Remove(item.Key);
     }
 
     public bool TryGetValue(T key, out U value)
     {
-        return d.TryGetValue(key, out value);
+        return dictionary.TryGetValue(key, out value);
     }
 
-    private void ContainsV(U v)
+    private void ContainsV(U value)
     {
 #if DEBUG
-        if (v.ToString().Contains(checkForContains))
+        if (value.ToString().Contains(checkForContains))
         {
         }
 #endif

@@ -1,10 +1,13 @@
+// variables names: ok
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoCollectionsGeneric.Collections;
 
 public class SafeStringCollection
 {
     private readonly char _replaceFor;
     private readonly List<char> _unallowedChars;
-    public List<string> safeStringCollection = new();
+    public List<string> Items = new();
 
     public SafeStringCollection(List<char> unallowedChars, char replaceFor)
     {
@@ -12,18 +15,18 @@ public class SafeStringCollection
         _replaceFor = replaceFor;
     }
 
-    public void Add(string s)
+    public void Add(string text)
     {
         var stringBuilder = new StringBuilder();
-        foreach (var item in s)
+        foreach (var item in text)
         {
-            var letter = item;
+            var character = item;
 
-            if (_unallowedChars.Contains(item)) letter = _replaceFor;
+            if (_unallowedChars.Contains(item)) character = _replaceFor;
 
-            stringBuilder.Append(letter);
+            stringBuilder.Append(character);
         }
 
-        safeStringCollection.Add(stringBuilder.ToString());
+        Items.Add(stringBuilder.ToString());
     }
 }

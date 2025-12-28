@@ -1,20 +1,23 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 public class DictionaryWithList<T, U> : IDictionary<T, U>
 {
-    private static Type type = typeof(DictionaryWithList<T, U>);
-    public Action callWhenIsZeroElements;
-    private readonly List<KeyValuePair<T, U>> tu = new();
+    private static Type DictionaryWithListType = typeof(DictionaryWithList<T, U>);
+    public Action CallWhenIsZeroElements { get; set; }
+    private readonly List<KeyValuePair<T, U>> items = new();
 
     public U this[T key]
     {
         get
         {
-            if (callWhenIsZeroElements != null)
+            if (CallWhenIsZeroElements != null)
                 if (Count == 0)
-                    callWhenIsZeroElements.Invoke();
+                    CallWhenIsZeroElements.Invoke();
 
-            foreach (var item in tu)
+            foreach (var item in items)
                 if (EqualityComparer<T>.Default.Equals(item.Key, key))
                     return item.Value;
 
@@ -22,10 +25,10 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
         }
         set
         {
-            for (var i = 0; i < tu.Count; i++)
-                if (EqualityComparer<T>.Default.Equals(tu[i].Key, key))
+            for (var i = 0; i < items.Count; i++)
+                if (EqualityComparer<T>.Default.Equals(items[i].Key, key))
                 {
-                    tu[i] = new KeyValuePair<T, U>(tu[i].Key, value);
+                    items[i] = new KeyValuePair<T, U>(items[i].Key, value);
                     return;
                 }
 
@@ -37,9 +40,9 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     {
         get
         {
-            var u = new List<T>(tu.Count);
-            foreach (var item in tu) u.Add(item.Key);
-            return u;
+            var result = new List<T>(items.Count);
+            foreach (var item in items) result.Add(item.Key);
+            return result;
         }
     }
 
@@ -47,29 +50,29 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     {
         get
         {
-            var u = new List<U>(tu.Count);
-            foreach (var item in tu) u.Add(item.Value);
-            return u;
+            var result = new List<U>(items.Count);
+            foreach (var item in items) result.Add(item.Value);
+            return result;
         }
     }
 
-    public int Count => tu.Count;
+    public int Count => items.Count;
 
     public bool IsReadOnly => false;
 
     public void Add(T key, U value)
     {
-        tu.Add(new KeyValuePair<T, U>(key, value));
+        items.Add(new KeyValuePair<T, U>(key, value));
     }
 
     public void Add(KeyValuePair<T, U> item)
     {
-        tu.Add(item);
+        items.Add(item);
     }
 
     public void Clear()
     {
-        tu.Clear();
+        items.Clear();
     }
 
     public bool Contains(KeyValuePair<T, U> item)
@@ -79,7 +82,7 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
 
     public bool ContainsKey(T key)
     {
-        foreach (var item in tu) return true;
+        foreach (var item in items) return true;
         return false;
     }
 
@@ -91,15 +94,15 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
 
     public IEnumerator<KeyValuePair<T, U>> GetEnumerator()
     {
-        return tu.GetEnumerator();
+        return items.GetEnumerator();
     }
 
     public bool Remove(T key)
     {
-        for (var i = 0; i < tu.Count; i++)
-            if (EqualityComparer<T>.Default.Equals(tu[i].Key, key))
+        for (var i = 0; i < items.Count; i++)
+            if (EqualityComparer<T>.Default.Equals(items[i].Key, key))
             {
-                tu.RemoveAt(i);
+                items.RemoveAt(i);
                 return true;
             }
 
@@ -114,10 +117,10 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     public bool TryGetValue(T key, out U value)
     {
         value = default;
-        for (var i = 0; i < tu.Count; i++)
-            if (EqualityComparer<T>.Default.Equals(tu[i].Key, key))
+        for (var i = 0; i < items.Count; i++)
+            if (EqualityComparer<T>.Default.Equals(items[i].Key, key))
             {
-                value = tu[i].Value;
+                value = items[i].Value;
                 return true;
             }
 
@@ -126,6 +129,6 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return tu.GetEnumerator();
+        return items.GetEnumerator();
     }
 }

@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
 public class SunamoDictionarySort<T, U> : Dictionary<T, U>
@@ -13,10 +14,10 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     {
         var sl = this.ToDictionary(entry => entry.Key,
             entry => entry.Value);
-        var klice = _ss.ReturnKeys(sl);
-        klice.Sort();
+        var keys = _ss.ReturnKeys(sl);
+        keys.Sort();
         Clear();
-        foreach (var item in klice) Add(item, sl[item]);
+        foreach (var item in keys) Add(item, sl[item]);
     }
 
     /// <summary>
@@ -26,16 +27,16 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     {
         var sl = this.ToDictionary(entry => entry.Key,
             entry => entry.Value);
-        var klice = _ss.ReturnKeys(sl);
-        var hodnoty = _ss.ReturnValues(sl);
-        hodnoty.Sort();
+        var keys = _ss.ReturnKeys(sl);
+        var values = _ss.ReturnValues(sl);
+        values.Sort();
         Clear();
 
-        var pridane = new List<T>();
-        foreach (var item in hodnoty)
+        var addedKeys = new List<T>();
+        foreach (var item in values)
         {
-            var key = _ss.KeyFromValue(pridane, Count, sl, item);
-            pridane.Add(key);
+            var key = _ss.KeyFromValue(addedKeys, Count, sl, item);
+            addedKeys.Add(key);
             Add(key, item);
             //vr.Add(temp, item);
         }
@@ -54,13 +55,13 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     {
         var sl = this.ToDictionary(entry => entry.Key,
             entry => entry.Value);
-        var klice = _ss.ReturnKeys(this);
-        //List<U> hodnoty = VratHodnoty(sl);
-        klice.Sort();
-        klice.Reverse();
+        var keys = _ss.ReturnKeys(this);
+        //List<U> values = VratHodnoty(sl);
+        keys.Sort();
+        keys.Reverse();
         //Dictionary<temp, U> vr = new Dictionary<temp, U>();
         Clear();
-        foreach (var item in klice) Add(item, sl[item]);
+        foreach (var item in keys) Add(item, sl[item]);
     }
 
     /// <summary>
@@ -70,13 +71,13 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     {
         var sl = this.ToDictionary(entry => entry.Key,
             entry => entry.Value);
-        var klice = _ss.ReturnKeys(sl);
-        var hodnoty = _ss.ReturnValues(sl);
-        hodnoty.Sort();
-        hodnoty.Reverse();
+        var keys = _ss.ReturnKeys(sl);
+        var values = _ss.ReturnValues(sl);
+        values.Sort();
+        values.Reverse();
         Clear();
 
-        foreach (var item in hodnoty)
+        foreach (var item in values)
         {
             var key = _ss.KeyFromValue(Count, sl, item);
             // Přidám do this místo do vr
@@ -87,10 +88,10 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
     /// <param name="sl"></param>
     public Dictionary<T, List<U>> RemoveWhereInValuesIsOnlyOneObject(Dictionary<T, List<U>> sl)
     {
-        var vr = new Dictionary<T, List<U>>();
+        var result = new Dictionary<T, List<U>>();
         foreach (var item in sl)
             if (item.Value.Count != 1)
-                vr.Add(item.Key, item.Value);
-        return vr;
+                result.Add(item.Key, item.Value);
+        return result;
     }
 }

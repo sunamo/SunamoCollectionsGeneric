@@ -1,30 +1,33 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 public class SunamoDictionary<T, U> : Dictionary<T, U>
 {
-    public int CountOfValueNot(U u)
+    public int CountOfValueNot(U value)
     {
-        var vr = 0;
+        var count = 0;
         foreach (var item in this)
-            if (!EqualityComparer<U>.Default.Equals(item.Value, u))
-                vr++;
-        return vr;
+            if (!EqualityComparer<U>.Default.Equals(item.Value, value))
+                count++;
+        return count;
     }
 
-    public bool AnyValue(U u)
+    public bool AnyValue(U value)
     {
         foreach (var item in this)
-            if (EqualityComparer<U>.Default.Equals(item.Value, u))
+            if (EqualityComparer<U>.Default.Equals(item.Value, value))
                 return true;
         return false;
     }
 
-    public int CountOfValue(U u)
+    public int CountOfValue(U value)
     {
-        var vr = 0;
+        var count = 0;
         foreach (var item in this)
-            if (EqualityComparer<U>.Default.Equals(item.Value, u))
-                vr++;
-        return vr;
+            if (EqualityComparer<U>.Default.Equals(item.Value, value))
+                count++;
+        return count;
     }
 }

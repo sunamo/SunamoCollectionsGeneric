@@ -1,13 +1,16 @@
+// variables names: ok
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoCollectionsGeneric.Collections;
 
 public class ResolvedDictionary<T, U>
 {
-    public Dictionary<T, U> dict = new();
+    public Dictionary<T, U> Dictionary = new();
 
-    public U Get(T idArtist, Func<T, U> nameOfArtist)
+    public U Get(T key, Func<T, U> resolver)
     {
-        if (dict.ContainsKey(idArtist)) return dict[idArtist];
+        if (Dictionary.ContainsKey(key)) return Dictionary[key];
 
-        return nameOfArtist.Invoke(idArtist);
+        return resolver.Invoke(key);
     }
 }

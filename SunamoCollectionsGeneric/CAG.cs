@@ -4,25 +4,25 @@ namespace SunamoCollectionsGeneric;
 // CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 public partial class CAG
 {
-    public static string xInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray = "InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray";
-    public static T[] ToArrayT<T>(params T[] aB)
+    public static string XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray = "InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray";
+    public static T[] ToArrayT<T>(params T[] items)
     {
-        return aB;
+        return items;
     }
 
-    public static void AddIfNotContains<T>(List<T> founded, T e)
+    public static void AddIfNotContains<T>(List<T> list, T element)
     {
-        if (!founded.Contains(e))
-            founded.Add(e);
+        if (!list.Contains(element))
+            list.Add(element);
     }
 
-    public static T GetElementActualOrBefore<T>(IList<T> tabItems, int indexClosedTabItem)
+    public static T GetElementActualOrBefore<T>(IList<T> items, int index)
     {
-        if (tabItems.Count > indexClosedTabItem)
-            return tabItems[indexClosedTabItem];
-        indexClosedTabItem--;
-        if (tabItems.Count > indexClosedTabItem)
-            return tabItems[indexClosedTabItem];
+        if (items.Count > index)
+            return items[index];
+        index--;
+        if (items.Count > index)
+            return items[index];
         return default;
     }
 
@@ -52,20 +52,20 @@ public partial class CAG
     /// </summary>
     /// <typeparam name = "T"></typeparam>
     /// <param name = "a"></param>
-    /// <param name = "dex"></param>
-    public static List<T> GetColumnOfTwoDimensionalArray<T>(T[, ] rows, int dex)
+    /// <param name = "columnIndex"></param>
+    public static List<T> GetColumnOfTwoDimensionalArray<T>(T[, ] rows, int columnIndex)
     {
         var rowsCount = rows.GetLength(0);
         var columnsCount = rows.GetLength(1);
-        var vr = new List<T>(rowsCount);
-        if (dex < columnsCount)
+        var result = new List<T>(rowsCount);
+        if (columnIndex < columnsCount)
         {
             for (var i = 0; i < rowsCount; i++)
-                vr.Add(rows[i, dex]);
-            return vr;
+                result.Add(rows[i, columnIndex]);
+            return result;
         }
 
-        throw new Exception(xInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray + ";");
+        throw new Exception(XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray + ";");
         return null;
     }
 
@@ -74,32 +74,32 @@ public partial class CAG
     /// </summary>
     /// <typeparam name = "T"></typeparam>
     /// <param name = "a"></param>
-    /// <param name = "dex"></param>
-    public static List<T> GetRowOfTwoDimensionalArray<T>(T[, ] rows, int dex)
+    /// <param name = "rowIndex"></param>
+    public static List<T> GetRowOfTwoDimensionalArray<T>(T[, ] rows, int rowIndex)
     {
         var rowsCount = rows.GetLength(0);
         var columnsCount = rows.GetLength(1);
-        var vr = new List<T>(columnsCount);
-        if (dex < rowsCount)
+        var result = new List<T>(columnsCount);
+        if (rowIndex < rowsCount)
         {
             for (var i = 0; i < columnsCount; i++)
-                vr.Add(rows[dex, i]);
-            return vr;
+                result.Add(rows[rowIndex, i]);
+            return result;
         }
 
-        ThrowEx.ArgumentOutOfRangeException(xInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray + ";");
+        ThrowEx.ArgumentOutOfRangeException(XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray + ";");
         return null;
     }
 
-    public static bool MoreOrZero<T>(List<T> n, out bool? zeroOrMore)
+    public static bool MoreOrZero<T>(List<T> list, out bool? zeroOrMore)
     {
         zeroOrMore = null;
-        var count = n.Count;
-        var builder = count == 0;
-        var bb = count > 1;
-        if (builder || bb)
+        var count = list.Count;
+        var isEmpty = count == 0;
+        var hasMultiple = count > 1;
+        if (isEmpty || hasMultiple)
         {
-            if (builder)
+            if (isEmpty)
                 zeroOrMore = true;
             else
                 zeroOrMore = false;
@@ -109,10 +109,10 @@ public partial class CAG
         return false;
     }
 
-    public static List<T> CreateListAndInsertElement<T>(T el)
+    public static List<T> CreateListAndInsertElement<T>(T element)
     {
         var list = new List<T>();
-        list.Add(el);
+        list.Add(element);
         return list;
     }
 
@@ -152,40 +152,40 @@ public partial class CAG
         return result;
     }
 
-    public static int CountOfValue<T>(T v, params T[] show)
+    public static int CountOfValue<T>(T value, params T[] items)
     {
-        var vr = 0;
-        foreach (var item in show)
-            if (EqualityComparer<T>.Default.Equals(item, v))
-                vr++;
-        return vr;
+        var count = 0;
+        foreach (var item in items)
+            if (EqualityComparer<T>.Default.Equals(item, value))
+                count++;
+        return count;
     }
 
-    public static string CompareListSanitizeStringOutput(List<string> l1, List<string> l2, Func<List<string>, Tuple<List<string>, List<string>>> typeScriptHelperGetNamesAndTypes = null, bool tsInterface = false)
+    public static string CompareListSanitizeStringOutput(List<string> firstList, List<string> secondList, Func<List<string>, Tuple<List<string>, List<string>>> typeScriptHelperGetNamesAndTypes = null, bool isTsInterface = false)
     {
-        if (tsInterface && typeScriptHelperGetNamesAndTypes != null)
+        if (isTsInterface && typeScriptHelperGetNamesAndTypes != null)
         {
-            var t2 = typeScriptHelperGetNamesAndTypes(l1);
-            l1 = t2.Item1;
-            t2 = typeScriptHelperGetNamesAndTypes(l2);
-            l2 = t2.Item1;
+            var tupleResult = typeScriptHelperGetNamesAndTypes(firstList);
+            firstList = tupleResult.Item1;
+            tupleResult = typeScriptHelperGetNamesAndTypes(secondList);
+            secondList = tupleResult.Item1;
         }
 
-        l1 = l1.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
-        l2 = l2.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
-        //CAChangeContent.ChangeContent0(null, l1, SHReplace.ReplaceWhiteSpacesWithoutSpaces);
-        //CAChangeContent.ChangeContent0(null, l2, SHReplace.ReplaceWhiteSpacesWithoutSpaces);
-        for (var i = 0; i < l1.Count; i++)
-            l1[i] = l1[i].Replace("  ", " ");
-        //CAChangeContent.ChangeContent0(null, l1, SHReplace.ReplaceAllDoubleSpaceToSingle);
-        //CAChangeContent.ChangeContent0(null, l2, SHReplace.ReplaceAllDoubleSpaceToSingle);
-        var abl = CompareList(l1, l2);
+        firstList = firstList.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
+        secondList = secondList.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
+        //CAChangeContent.ChangeContent0(null, firstList, SHReplace.ReplaceWhiteSpacesWithoutSpaces);
+        //CAChangeContent.ChangeContent0(null, secondList, SHReplace.ReplaceWhiteSpacesWithoutSpaces);
+        for (var i = 0; i < firstList.Count; i++)
+            firstList[i] = firstList[i].Replace("  ", " ");
+        //CAChangeContent.ChangeContent0(null, firstList, SHReplace.ReplaceAllDoubleSpaceToSingle);
+        //CAChangeContent.ChangeContent0(null, secondList, SHReplace.ReplaceAllDoubleSpaceToSingle);
+        var existsInBoth = CompareList(firstList, secondList);
         var textOutputGenerator = new TextOutputGenerator();
-        textOutputGenerator.List(l1, "Only in 1:");
+        textOutputGenerator.List(firstList, "Only in 1:");
         textOutputGenerator.AppendLine("");
-        textOutputGenerator.List(l2, "Only in 2:");
+        textOutputGenerator.List(secondList, "Only in 2:");
         textOutputGenerator.AppendLine("");
-        textOutputGenerator.List(abl, "Both:");
+        textOutputGenerator.List(existsInBoth, "Both:");
         var result = textOutputGenerator.ToString();
         return result;
     }
@@ -194,34 +194,34 @@ public partial class CAG
     ///     Return what exists in both
     ///     Modify both A1 and A2 - keep only which is only in one
     /// </summary>
-    /// <param name = "c1"></param>
-    /// <param name = "c2"></param>
-    public static List<T> CompareList<T>(List<T> c1, List<T> c2)
+    /// <param name = "firstList"></param>
+    /// <param name = "secondList"></param>
+    public static List<T> CompareList<T>(List<T> firstList, List<T> secondList)
         where T : IEquatable<T>
     {
         var existsInBoth = new List<T>();
-        var dex = -1;
-        for (var i = c2.Count - 1; i >= 0; i--)
+        var index = -1;
+        for (var i = secondList.Count - 1; i >= 0; i--)
         {
-            var item = c2[i];
-            dex = c1.IndexOf(item);
-            if (dex != -1)
+            var item = secondList[i];
+            index = firstList.IndexOf(item);
+            if (index != -1)
             {
                 existsInBoth.Add(item);
-                c2.RemoveAt(i);
-                c1.RemoveAt(dex);
+                secondList.RemoveAt(i);
+                firstList.RemoveAt(index);
             }
         }
 
-        for (var i = c1.Count - 1; i >= 0; i--)
+        for (var i = firstList.Count - 1; i >= 0; i--)
         {
-            var item = c1[i];
-            dex = c2.IndexOf(item);
-            if (dex != -1)
+            var item = firstList[i];
+            index = secondList.IndexOf(item);
+            if (index != -1)
             {
                 existsInBoth.Add(item);
-                c1.RemoveAt(i);
-                c2.RemoveAt(dex);
+                firstList.RemoveAt(i);
+                secondList.RemoveAt(index);
             }
         }
 
@@ -240,10 +240,10 @@ public partial class CAG
         return items.ToList();
     }
 
-    public static int MinElementsItemsInnerList<T>(List<List<T>> exists)
+    public static int MinElementsItemsInnerList<T>(List<List<T>> lists)
     {
         var min = int.MaxValue;
-        foreach (var item in exists)
+        foreach (var item in lists)
             if (item.Count < min)
                 min = item.Count;
         return min;

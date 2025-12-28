@@ -2,18 +2,18 @@ namespace SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
 
 internal class TextOutputGeneratorArgs
 {
-    internal string delimiter = Environment.NewLine;
-    internal bool headerWrappedEmptyLines = true;
-    internal bool insertCount;
-    internal string whenNoEntries = "No entries";
+    internal string Delimiter { get; set; } = Environment.NewLine;
+    internal bool IsHeaderWrappedEmptyLines { get; set; } = true;
+    internal bool ShouldInsertCount { get; set; }
+    internal string WhenNoEntries { get; set; } = "No entries";
 
     internal TextOutputGeneratorArgs()
     {
     }
 
-    internal TextOutputGeneratorArgs(bool headerWrappedEmptyLines, bool insertCount)
+    internal TextOutputGeneratorArgs(bool isHeaderWrappedEmptyLines, bool shouldInsertCount)
     {
-        this.headerWrappedEmptyLines = headerWrappedEmptyLines;
-        this.insertCount = insertCount;
+        this.IsHeaderWrappedEmptyLines = isHeaderWrappedEmptyLines;
+        this.ShouldInsertCount = shouldInsertCount;
     }
 }

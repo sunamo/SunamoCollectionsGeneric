@@ -2,24 +2,24 @@ namespace SunamoCollectionsGeneric._sunamo.SunamoData.Data;
 
 internal class FromToTSHCollectionsGeneric<T>
 {
-    internal bool empty;
+    internal bool IsEmpty { get; set; }
     protected long fromL;
-    internal FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime;
+    internal FromToUseCollectionsGeneric FtUse { get; set; } = FromToUseCollectionsGeneric.DateTime;
     protected long toL;
 
     internal FromToTSHCollectionsGeneric()
     {
         var type = typeof(T);
-        if (type == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
+        if (type == typeof(int)) FtUse = FromToUseCollectionsGeneric.None;
     }
 
     /// <summary>
     ///     Use Empty contstant outside of class
     /// </summary>
-    /// <param name="empty"></param>
-    private FromToTSHCollectionsGeneric(bool empty) : this()
+    /// <param name="isEmpty"></param>
+    private FromToTSHCollectionsGeneric(bool isEmpty) : this()
     {
-        this.empty = empty;
+        this.IsEmpty = isEmpty;
     }
 
     /// <summary>
@@ -32,18 +32,18 @@ internal class FromToTSHCollectionsGeneric<T>
     internal FromToTSHCollectionsGeneric(T from, T to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime) : this()
     {
-        this.from = from;
-        this.to = to;
-        this.ftUse = ftUse;
+        this.From = from;
+        this.To = to;
+        this.FtUse = ftUse;
     }
 
-    internal T from
+    internal T From
     {
         get => (T)(dynamic)fromL;
         set => fromL = (long)(dynamic)value;
     }
 
-    internal T to
+    internal T To
     {
         get => (T)(dynamic)toL;
         set => toL = (long)(dynamic)value;

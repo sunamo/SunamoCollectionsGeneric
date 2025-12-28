@@ -2,39 +2,39 @@ namespace SunamoCollectionsGeneric._public.SunamoData.Data;
 
 public class FromToTSHCollectionsGenericShared<T>
 {
-    public bool empty;
+    public bool IsEmpty { get; set; }
     protected long fromL;
-    public FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime;
+    public FromToUseCollectionsGeneric FtUse { get; set; } = FromToUseCollectionsGeneric.DateTime;
     protected long toL;
 
     public FromToTSHCollectionsGenericShared()
     {
         var type = typeof(T);
-        if (type == typeof(int)) ftUse = FromToUseCollectionsGeneric.None;
+        if (type == typeof(int)) FtUse = FromToUseCollectionsGeneric.None;
     }
 
 
-    private FromToTSHCollectionsGenericShared(bool empty) : this()
+    private FromToTSHCollectionsGenericShared(bool isEmpty) : this()
     {
-        this.empty = empty;
+        this.IsEmpty = isEmpty;
     }
 
 
     public FromToTSHCollectionsGenericShared(T from, T to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime) : this()
     {
-        this.from = from;
-        this.to = to;
-        this.ftUse = ftUse;
+        this.From = from;
+        this.To = to;
+        this.FtUse = ftUse;
     }
 
-    public T from
+    public T From
     {
         get => (T)(dynamic)fromL;
         set => fromL = (long)(dynamic)value;
     }
 
-    public T to
+    public T To
     {
         get => (T)(dynamic)toL;
         set => toL = (long)(dynamic)value;

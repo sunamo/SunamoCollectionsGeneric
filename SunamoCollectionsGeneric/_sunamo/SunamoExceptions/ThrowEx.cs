@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric._sunamo.SunamoExceptions;
 
 // EN: Variable names have been checked and replaced with self-descriptive names
@@ -17,12 +18,12 @@ internal partial class ThrowEx
         return f;
     }
 
-    static string FullNameOfExecutedCode(object type, string methodName, bool fromThrowEx = false)
+    static string FullNameOfExecutedCode(object type, string methodName, bool isFromThrowEx = false)
     {
         if (methodName == null)
         {
             int depth = 2;
-            if (fromThrowEx)
+            if (isFromThrowEx)
             {
                 depth++;
             }
@@ -51,12 +52,12 @@ internal partial class ThrowEx
         return string.Concat(typeFullName, ".", methodName);
     }
 
-    internal static bool ThrowIsNotNull(string? exception, bool reallyThrow = true)
+    internal static bool ThrowIsNotNull(string? exception, bool isReallyThrowing = true)
     {
         if (exception != null)
         {
             Debugger.Break();
-            if (reallyThrow)
+            if (isReallyThrowing)
             {
                 throw new Exception(exception);
             }
@@ -69,9 +70,9 @@ internal partial class ThrowEx
 
 
 
-    internal static bool ThrowIsNotNull(Func<string, string?> f)
+    internal static bool ThrowIsNotNull(Func<string, string?> exceptionFactory)
     {
-        string? exc = f(FullNameOfExecutedCode());
+        string? exc = exceptionFactory(FullNameOfExecutedCode());
         return ThrowIsNotNull(exc);
     }
     #endregion

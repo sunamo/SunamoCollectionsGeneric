@@ -1,3 +1,6 @@
+// variables names: ok
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
 
 /// <summary>
@@ -5,13 +8,13 @@ namespace SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
 /// </summary>
 internal class TextOutputGenerator //: ITextOutputGenerator
 {
-    private static readonly string s_znakNadpisu = "*";
+    private static readonly string s_headerCharacter = "*";
 
-    // při převádění na nugety jsem to změnil na ITextBuilder stringBuilder = TextBuilder.Create();
+    // při převádění na nugety jsem to změnil na ITextBuilder Builder = TextBuilder.Create();
     // ale asi to byla blbost, teď mám v _sunamo Create() která je ale null místo abych použil ctor
     // takže vracím nazpět.
-    //internal TextBuilder stringBuilder = new TextBuilder();
-    internal StringBuilder stringBuilder = new();
+    //internal TextBuilder Builder = new TextBuilder();
+    internal StringBuilder Builder = new();
 
     //internal string prependEveryNoWhite
     //{
@@ -21,7 +24,7 @@ internal class TextOutputGenerator //: ITextOutputGenerator
 
     public override string ToString()
     {
-        var ts = stringBuilder.ToString();
+        var ts = Builder.ToString();
         return ts;
     }
 
@@ -45,13 +48,13 @@ internal class TextOutputGenerator //: ITextOutputGenerator
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal void Append(string text)
     {
-        stringBuilder.Append(text);
+        Builder.Append(text);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal void AppendLine(string text)
     {
-        stringBuilder.AppendLine(text);
+        Builder.AppendLine(text);
     }
 
 
@@ -68,45 +71,45 @@ internal class TextOutputGenerator //: ITextOutputGenerator
 
 
 
-    
-    internal void List<Value>(IList<Value> files1, string deli = "\r\n", string whenNoEntries = "")
+
+    internal void List<TValue>(IList<TValue> items, string delimiter = "\r\n", string whenNoEntries = "")
     {
-        if (files1.Count() == 0)
-            stringBuilder.AppendLine(whenNoEntries);
+        if (items.Count() == 0)
+            Builder.AppendLine(whenNoEntries);
         else
-            foreach (var item in files1)
-                Append(item + deli);
-        //stringBuilder.AppendLine();
+            foreach (var item in items)
+                Append(item + delimiter);
+        //Builder.AppendLine();
     }
 
-    
-    internal void List(IList<string> files1, string header)
+
+    internal void List(IList<string> items, string header)
     {
-        List(files1, header, new TextOutputGeneratorArgs { headerWrappedEmptyLines = true, insertCount = false });
+        List(items, header, new TextOutputGeneratorArgs { IsHeaderWrappedEmptyLines = true, ShouldInsertCount = false });
     }
 
 
     /// <summary>
     ///     Use DictionaryHelper.CategoryParser
     /// </summary>
-    /// <typeparam name="Header"></typeparam>
-    /// <typeparam name="Value"></typeparam>
-    /// <param name="files1"></param>
+    /// <typeparam name="THeader"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
+    /// <param name="items"></param>
     /// <param name="header"></param>
-    /// <param name="a"></param>
-    internal void List<Header, Value>(IList<Value> files1, Header header, TextOutputGeneratorArgs a)
-        where Header : IEnumerable<char>
+    /// <param name="args"></param>
+    internal void List<THeader, TValue>(IList<TValue> items, THeader header, TextOutputGeneratorArgs args)
+        where THeader : IEnumerable<char>
     {
-        if (a.insertCount)
+        if (args.ShouldInsertCount)
         {
             //throw new Exception("later");
-            //header = (Header)((IList<char>)CA.JoinIList<char>(header, " (" + files1.Count() + ")"));
+            //header = (THeader)((IList<char>)CA.JoinIList<char>(header, " (" + items.Count() + ")"));
         }
 
-        if (a.headerWrappedEmptyLines) stringBuilder.AppendLine();
-        stringBuilder.AppendLine(header + ":");
-        if (a.headerWrappedEmptyLines) stringBuilder.AppendLine();
-        List(files1, a.delimiter, a.whenNoEntries);
+        if (args.IsHeaderWrappedEmptyLines) Builder.AppendLine();
+        Builder.AppendLine(header + ":");
+        if (args.IsHeaderWrappedEmptyLines) Builder.AppendLine();
+        List(items, args.Delimiter, args.WhenNoEntries);
     }
 
     #endregion

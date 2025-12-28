@@ -1,5 +1,8 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 public class Joiner<T>
 {
     private readonly string joinWith;
@@ -21,8 +24,8 @@ public class Joiner<T>
         return string.Join(joinWith, list);
     }
 
-    public void Add(T appName)
+    public void Add(T item)
     {
-        list.Add(appName);
+        list.Add(item);
     }
 }

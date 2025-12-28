@@ -1,97 +1,100 @@
+// variables names: ok
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoCollectionsGeneric.Collections.OverrideAddOrImpIList;
 
 public class RefreshingList<T> : IList<T>
 {
-    private List<T> l;
+    private List<T> _list;
     private readonly List<T> sourceToRefresh;
 
 
     public RefreshingList(List<T> sourceToRefresh, int count)
     {
         this.sourceToRefresh = sourceToRefresh;
-        l = new List<T>(count);
+        _list = new List<T>(count);
     }
 
-    public RefreshingList(List<T> sourceToRefresh, IList<T> asA1)
+    public RefreshingList(List<T> sourceToRefresh, IList<T> items)
     {
         this.sourceToRefresh = sourceToRefresh;
-        l = new List<T>(asA1);
+        _list = new List<T>(items);
     }
 
     public T this[int index]
     {
-        get => l[index];
-        set => l[index] = value;
+        get => _list[index];
+        set => _list[index] = value;
     }
 
-    public int Count => l.Count;
+    public int Count => _list.Count;
 
     public bool IsReadOnly => false;
 
     public void Add(T item)
     {
-        l.Add(item);
+        _list.Add(item);
     }
 
     public void Clear()
     {
-        l.Clear();
+        _list.Clear();
     }
 
     public bool Contains(T item)
     {
-        return l.Contains(item);
+        return _list.Contains(item);
     }
 
     public void CopyTo(T[] array, int arrayIndex)
     {
-        l.CopyTo(array, arrayIndex);
+        _list.CopyTo(array, arrayIndex);
     }
 
     public IEnumerator<T> GetEnumerator()
     {
-        return l.GetEnumerator();
+        return _list.GetEnumerator();
     }
 
     public int IndexOf(T item)
     {
-        return l.IndexOf(item);
+        return _list.IndexOf(item);
     }
 
     public void Insert(int index, T item)
     {
-        l.Insert(index, item);
+        _list.Insert(index, item);
     }
 
     public bool Remove(T item)
     {
-        var vr = l.Remove(item);
+        var wasRemoved = _list.Remove(item);
         RefreshIfEmpty();
-        return vr;
+        return wasRemoved;
     }
 
     public void RemoveAt(int index)
     {
-        l.RemoveAt(index);
+        _list.RemoveAt(index);
         RefreshIfEmpty();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return l.GetEnumerator();
+        return _list.GetEnumerator();
     }
 
     #region Is not in any interface
 
     public void Sort()
     {
-        l.Sort();
+        _list.Sort();
     }
 
     #endregion
 
     private void RefreshIfEmpty()
     {
-        if (l.Count == 0) l = sourceToRefresh.ToList();
+        if (_list.Count == 0) _list = sourceToRefresh.ToList();
     }
 }

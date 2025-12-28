@@ -1,16 +1,17 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric._public.SunamoInterfaces.Interfaces;
 
 public class ProgressStateCAG
 {
-    public int n;
-    public bool isRegistered { get; set; }
+    public int Count { get; set; }
+    public bool IsRegistered { get; set; }
 
-    public void Init(Action<int> OverallSongs, Action<int> AnotherSong, Action WriteProgressBarEnd)
+    public void Init(Action<int> overallSongs, Action<int> anotherSong, Action writeProgressBarEnd)
     {
-        isRegistered = true;
-        this.AnotherSong += AnotherSong;
-        this.OverallSongs += OverallSongs;
-        this.WriteProgressBarEnd += WriteProgressBarEnd;
+        IsRegistered = true;
+        this.AnotherSong += anotherSong;
+        this.OverallSongs += overallSongs;
+        this.WriteProgressBarEnd += writeProgressBarEnd;
     }
 
     public event Action<int> AnotherSong;
@@ -19,19 +20,19 @@ public class ProgressStateCAG
 
     public void OnAnotherSong()
     {
-        n++;
-        OnAnotherSong(n);
+        Count++;
+        OnAnotherSong(Count);
     }
 
-    public void OnAnotherSong(int n)
+    public void OnAnotherSong(int count)
     {
-        AnotherSong(n);
+        AnotherSong(count);
     }
 
-    public void OnOverallSongs(int n2)
+    public void OnOverallSongs(int totalCount)
     {
-        n = 0;
-        OverallSongs(n2);
+        Count = 0;
+        OverallSongs(totalCount);
     }
 
     public void OnWriteProgressBarEnd()

@@ -1,10 +1,13 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric;
 
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 public class CAGConsts
 {
-    public static T[] ToArrayT<T>(params T[] aB)
+    public static T[] ToArrayT<T>(params T[] items)
     {
-        return aB;
+        return items;
     }
 
     /// <summary>
@@ -12,10 +15,10 @@ public class CAGConsts
     ///     Těch pár řádků mě snad nezabije.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <param name="t"></param>
+    /// <param name="items"></param>
     /// <returns></returns>
-    public static List<T> ToList<T>(params T[] t)
+    public static List<T> ToList<T>(params T[] items)
     {
-        return t.ToList();
+        return items.ToList();
     }
 }

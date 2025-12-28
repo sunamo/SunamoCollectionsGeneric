@@ -1,20 +1,23 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 public class CycleGenerator<T>
 {
-    private int dx;
-    private readonly List<T> whole = new();
+    private int currentIndex;
+    private readonly List<T> items = new();
 
-    public CycleGenerator(List<T> init)
+    public CycleGenerator(List<T> items)
     {
-        whole = init;
+        this.items = items;
     }
 
     public T TakeAnother()
     {
-        var result = whole[dx++];
+        var result = items[currentIndex++];
 
-        if (dx == whole.Count) dx = 0;
+        if (currentIndex == items.Count) currentIndex = 0;
 
         return result;
     }

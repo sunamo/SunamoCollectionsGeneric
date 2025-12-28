@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
 // EN: Variable names have been checked and replaced with self-descriptive names
@@ -6,25 +7,25 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 public partial class CyclingCollection<T>
 {
-    public T Next(int pocet)
+    public T Next(int count)
     {
-        if (pocet > c.Count)
+        if (count > Items.Count)
             return GetIretation;
-        index += pocet;
-        var dex = index;
-        if (dex == 0)
+        index += count;
+        var currentIndex = index;
+        if (currentIndex == 0)
         {
         }
-        else if (dex > c.Count)
+        else if (currentIndex > Items.Count)
         {
             // Zjistim o kolik a tolik posunu i v novem
-            var vNovem = dex - c.Count;
-            index = vNovem;
+            var newIndex = currentIndex - Items.Count;
+            index = newIndex;
         }
         else
         {
             //
-            index = dex;
+            index = currentIndex;
         }
 
         OnChange();
