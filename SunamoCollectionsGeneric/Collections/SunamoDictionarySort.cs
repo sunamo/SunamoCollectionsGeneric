@@ -1,4 +1,3 @@
-// variables names: ok
 namespace SunamoCollectionsGeneric.Collections;
 
 public class SunamoDictionarySort<T, U> : Dictionary<T, U>

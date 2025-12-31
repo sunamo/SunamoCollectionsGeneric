@@ -1,4 +1,3 @@
-// variables names: ok
 namespace SunamoCollectionsGeneric._public.SunamoInterfaces.Interfaces;
 
 public class ProgressStateCAG

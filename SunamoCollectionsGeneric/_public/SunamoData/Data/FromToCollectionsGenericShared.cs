@@ -1,4 +1,3 @@
-// variables names: ok
 namespace SunamoCollectionsGeneric._public.SunamoData.Data;
 
 public class FromToCollectionsGenericShared : FromToTSHCollectionsGenericShared<long>
