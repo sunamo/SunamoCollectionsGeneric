@@ -1,21 +1,45 @@
 namespace SunamoCollectionsGeneric;
 
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+/// <summary>
+/// Collection helper class providing utility methods for working with generic collections
+/// </summary>
 public partial class CAG
 {
+    /// <summary>
+    /// Error message for invalid row index in GetRowOfTwoDimensionalArray method
+    /// </summary>
     public static string XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray = "InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray";
+
+    /// <summary>
+    /// Converts variable arguments to an array
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="items">The items to convert to an array</param>
+    /// <returns>An array containing the provided items</returns>
     public static T[] ToArrayT<T>(params T[] items)
     {
         return items;
     }
 
+    /// <summary>
+    /// Adds an element to the list only if it doesn't already contain it
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="list">The list to add to</param>
+    /// <param name="element">The element to add</param>
     public static void AddIfNotContains<T>(List<T> list, T element)
     {
         if (!list.Contains(element))
             list.Add(element);
     }
 
+    /// <summary>
+    /// Gets the element at the specified index, or the element before it if index is out of bounds
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="items">The list to get element from</param>
+    /// <param name="index">The index to retrieve</param>
+    /// <returns>The element at index or the previous element, or default if not found</returns>
     public static T GetElementActualOrBefore<T>(IList<T> items, int index)
     {
         if (items.Count > index)
@@ -26,6 +50,15 @@ public partial class CAG
         return default;
     }
 
+    /// <summary>
+    /// Gets the element at the specified index, breaking into debugger or throwing exception if index is out of bounds
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="index">The index to retrieve</param>
+    /// <param name="list">The list to get element from</param>
+    /// <param name="listName">Optional name of the list for error messages</param>
+    /// <param name="returnWhenIndexNotExists">Optional value to return instead of throwing exception</param>
+    /// <returns>The element at the specified index</returns>
     public static T GetIndexOrBreak<T>(int index, IList<T> list, string listName = "", T? returnWhenIndexNotExists = default(T))
     {
         if (list.Count > index)
@@ -48,11 +81,12 @@ public partial class CAG
     }
 
     /// <summary>
-    ///     V prvním indexu jsou řádky, v druhém sloupce
+    /// In the first index are rows, in the second are columns.
     /// </summary>
-    /// <typeparam name = "T"></typeparam>
-    /// <param name = "a"></param>
-    /// <param name = "columnIndex"></param>
+    /// <typeparam name="T">The type of elements in the array.</typeparam>
+    /// <param name="rows">The two-dimensional array.</param>
+    /// <param name="columnIndex">The index of the column to extract.</param>
+    /// <returns>A list containing all elements from the specified column.</returns>
     public static List<T> GetColumnOfTwoDimensionalArray<T>(T[, ] rows, int columnIndex)
     {
         var rowsCount = rows.GetLength(0);
@@ -70,11 +104,12 @@ public partial class CAG
     }
 
     /// <summary>
-    ///     V prvním indexu jsou řádky, v druhém sloupce
+    /// In the first index are rows, in the second are columns.
     /// </summary>
-    /// <typeparam name = "T"></typeparam>
-    /// <param name = "a"></param>
-    /// <param name = "rowIndex"></param>
+    /// <typeparam name="T">The type of elements in the array.</typeparam>
+    /// <param name="rows">The two-dimensional array.</param>
+    /// <param name="rowIndex">The index of the row to extract.</param>
+    /// <returns>A list containing all elements from the specified row.</returns>
     public static List<T> GetRowOfTwoDimensionalArray<T>(T[, ] rows, int rowIndex)
     {
         var rowsCount = rows.GetLength(0);
@@ -91,6 +126,13 @@ public partial class CAG
         return null;
     }
 
+    /// <summary>
+    /// Checks if the list has zero or more than one element
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="list">The list to check</param>
+    /// <param name="zeroOrMore">True if list is empty, false if list has more than one element, null if list has exactly one element</param>
+    /// <returns>True if list is empty or has more than one element, false if list has exactly one element</returns>
     public static bool MoreOrZero<T>(List<T> list, out bool? zeroOrMore)
     {
         zeroOrMore = null;
@@ -109,6 +151,12 @@ public partial class CAG
         return false;
     }
 
+    /// <summary>
+    /// Creates a new list and inserts the specified element into it
+    /// </summary>
+    /// <typeparam name="T">The type of element</typeparam>
+    /// <param name="element">The element to insert</param>
+    /// <returns>A list containing the single element</returns>
     public static List<T> CreateListAndInsertElement<T>(T element)
     {
         var list = new List<T>();
@@ -117,11 +165,12 @@ public partial class CAG
     }
 
     /// <summary>
-    ///     jagged = zubaty
-    ///     Change from array where every element have two spec of location to ordinary array with inner array
+    /// Converts a two-dimensional array to a jagged array (array of arrays).
+    /// Changes from an array where every element has two specifications of location to an ordinary array with inner arrays.
     /// </summary>
-    /// <typeparam name = "T"></typeparam>
-    /// <param name = "value"></param>
+    /// <typeparam name="T">The type of elements in the array.</typeparam>
+    /// <param name="value">The two-dimensional array to convert.</param>
+    /// <returns>A jagged array representation of the input.</returns>
     public static T[][] ToJagged<T>(T[, ] value)
     {
         if (ReferenceEquals(null, value))
@@ -137,6 +186,13 @@ public partial class CAG
         return result;
     }
 
+    /// <summary>
+    /// Converts a one-dimensional array to a two-dimensional array with the specified width
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="flatArray">The one-dimensional array to convert</param>
+    /// <param name="width">The width of the resulting two-dimensional array</param>
+    /// <returns>A two-dimensional array</returns>
     public static T[, ] OneDimensionArrayToTwoDirection<T>(T[] flatArray, int width)
     {
         var height = (int)Math.Ceiling(flatArray.Length / (double)width);
@@ -152,6 +208,13 @@ public partial class CAG
         return result;
     }
 
+    /// <summary>
+    /// Counts how many times a specific value appears in the provided items
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="value">The value to count</param>
+    /// <param name="items">The items to search in</param>
+    /// <returns>The number of occurrences of the value</returns>
     public static int CountOfValue<T>(T value, params T[] items)
     {
         var count = 0;
@@ -161,6 +224,14 @@ public partial class CAG
         return count;
     }
 
+    /// <summary>
+    /// Compares two lists and returns a formatted string showing differences and common elements
+    /// </summary>
+    /// <param name="firstList">The first list to compare</param>
+    /// <param name="secondList">The second list to compare</param>
+    /// <param name="typeScriptHelperGetNamesAndTypes">Optional TypeScript helper function for parsing interfaces</param>
+    /// <param name="isTsInterface">Whether the lists contain TypeScript interface definitions</param>
+    /// <returns>A formatted string showing elements only in first list, only in second list, and in both</returns>
     public static string CompareListSanitizeStringOutput(List<string> firstList, List<string> secondList, Func<List<string>, Tuple<List<string>, List<string>>> typeScriptHelperGetNamesAndTypes = null, bool isTsInterface = false)
     {
         if (isTsInterface && typeScriptHelperGetNamesAndTypes != null)
@@ -229,17 +300,23 @@ public partial class CAG
     }
 
     /// <summary>
-    ///     Tohle by se sand mohlo jmenovat i ToListObject
-    ///     protože neberu a nevracím konkrétní typ (např. string) ale temp
+    /// Converts a variable number of parameters into a list.
+    /// This could also be named ToListObject because it doesn't take or return a specific type (e.g., string) but a generic type.
     /// </summary>
-    /// <typeparam name = "T"></typeparam>
-    /// <param name = "t"></param>
-    /// <returns></returns>
+    /// <typeparam name="T">The type of elements.</typeparam>
+    /// <param name="items">The items to convert to a list.</param>
+    /// <returns>A list containing the provided items.</returns>
     public static List<T> ToList<T>(params T[] items)
     {
         return items.ToList();
     }
 
+    /// <summary>
+    /// Finds the minimum number of elements among all inner lists
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="lists">The list of lists to examine</param>
+    /// <returns>The count of the smallest inner list</returns>
     public static int MinElementsItemsInnerList<T>(List<List<T>> lists)
     {
         var min = int.MaxValue;

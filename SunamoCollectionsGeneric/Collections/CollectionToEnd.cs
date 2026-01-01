@@ -1,11 +1,15 @@
-// variables names: ok
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoCollectionsGeneric.Collections;
 
-// Toto nikdy nedelej, je zde cycling collection, kde maaea nastavit Cycling
+/// <summary>
+/// A collection that iterates to the end without cycling back to the beginning
+/// </summary>
+/// <typeparam name="T">The type of elements in the collection</typeparam>
+// Never do this here, there is a cycling collection where Cycling needs to be set
 public class CollectionToEnd<T> : CyclingCollection<T>
 {
+    /// <summary>
+    /// Initializes a new instance of the CollectionToEnd class with cycling disabled
+    /// </summary>
     public CollectionToEnd() : base(false)
     {
     }

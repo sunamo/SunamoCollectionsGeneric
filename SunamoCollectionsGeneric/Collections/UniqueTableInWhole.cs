@@ -1,20 +1,22 @@
 namespace SunamoCollectionsGeneric.Collections;
 
 /// <summary>
-///     Add one row with all columns
-///     Similar class with two dimension array is ValuesTableGrid
-///     <T>
-///         Can be:
-///         Every column of row unique
-///         Ëvery row of column unique
-///         Every column as whole different
-///         Ëvery rows as whole different
+/// Represents a unique table where each row contains all columns.
+/// Similar class with two dimension array is ValuesTableGrid.
+/// Can be: Every column of row unique, Every row of column unique,
+/// Every column as whole different, Every rows as whole different.
 /// </summary>
 public class UniqueTableInWhole
 {
+    /// <summary>
+    /// Error message for when both column and row uniqueness arguments are false
+    /// </summary>
     public static string XBothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse =
         "BothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse";
 
+    /// <summary>
+    /// Error message for when input elements count differs from expected column count
+    /// </summary>
     public static string XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells =
         "DifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells";
 
@@ -22,6 +24,11 @@ public class UniqueTableInWhole
     private readonly int _cells;
     private readonly string[,] _rows;
 
+    /// <summary>
+    /// Initializes a new instance with the specified dimensions
+    /// </summary>
+    /// <param name="columnCount">The number of columns in the table</param>
+    /// <param name="rowCount">The number of rows in the table</param>
     public UniqueTableInWhole(int columnCount, int rowCount)
     {
         _cells = columnCount;
@@ -72,6 +79,10 @@ public class UniqueTableInWhole
         return true;
     }
 
+    /// <summary>
+    /// Adds a row of cells to the table
+    /// </summary>
+    /// <param name="cells">The cells to add as a new row</param>
     public void AddCells(List<string> cells)
     {
         if (cells.Count != _cells) throw new Exception(XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells);

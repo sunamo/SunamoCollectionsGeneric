@@ -1,8 +1,9 @@
-// variables names: ok
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoCollectionsGeneric.Collections;
 
+/// <summary>
+/// Generic list class (L3 variant)
+/// </summary>
+/// <typeparam name="T">The type of elements in the list</typeparam>
 public class L3<T>
 {
 }

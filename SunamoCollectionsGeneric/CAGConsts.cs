@@ -1,21 +1,28 @@
 namespace SunamoCollectionsGeneric;
 
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+/// <summary>
+/// Collection helper constants and utility methods for generic collections
+/// </summary>
 public class CAGConsts
 {
+    /// <summary>
+    /// Converts variable arguments to an array
+    /// </summary>
+    /// <typeparam name="T">The type of elements</typeparam>
+    /// <param name="items">The items to convert to an array</param>
+    /// <returns>An array containing the provided items</returns>
     public static T[] ToArrayT<T>(params T[] items)
     {
         return items;
     }
 
     /// <summary>
-    ///     Tady to musí být, SunamoValues nemůže dědit od SunamoCollectionGeneric - vzniklo by Cycle detected
-    ///     Těch pár řádků mě snad nezabije.
+    /// This must be here - SunamoValues cannot inherit from SunamoCollectionGeneric as it would create a cycle.
+    /// A few lines of code won't hurt.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="items"></param>
-    /// <returns></returns>
+    /// <typeparam name="T">The type of elements.</typeparam>
+    /// <param name="items">The items to convert to a list.</param>
+    /// <returns>A list containing the provided items.</returns>
     public static List<T> ToList<T>(params T[] items)
     {
         return items.ToList();

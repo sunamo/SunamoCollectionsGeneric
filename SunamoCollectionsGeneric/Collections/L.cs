@@ -1,52 +1,72 @@
 namespace SunamoCollectionsGeneric.Collections;
 
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 /// <summary>
-///     Can be derived because new keyword
-///     For completely derived from IList, use RefreshingList
+/// Can be derived because of the new keyword.
+/// For completely derived from IList, use RefreshingList.
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">The type of elements in the list.</typeparam>
 public class L<T> : List<T>
 {
+    /// <summary>
+    /// Gets or sets whether the list has been modified
+    /// </summary>
     public bool IsChanged { get; set; }
+
+    /// <summary>
+    /// Gets or sets the default value to return when accessing an index out of bounds
+    /// </summary>
     public T DefaultValue { get; set; } = default;
 
+    /// <summary>
+    /// Initializes a new instance of the L class
+    /// </summary>
     public L()
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance with elements from an existing collection
+    /// </summary>
+    /// <param name="collection">The collection to copy elements from</param>
     public L(IList<T> collection) : base(collection)
     {
     }
 
+    /// <summary>
+    /// Initializes a new instance with the specified capacity
+    /// </summary>
+    /// <param name="capacity">The initial capacity</param>
     public L(int capacity) : base(capacity)
     {
     }
 
+    /// <summary>
+    /// Gets the number of elements in the list (alias for Count)
+    /// </summary>
     public int Length => Count;
 
     /// <summary>
-    ///     Before use is needed set up DefaultValue
+    /// Gets or sets the element at the specified index. Before use, DefaultValue needs to be set up.
     /// </summary>
-    /// <param name="i"></param>
-    public new T this[int i]
+    /// <param name="index">The zero-based index of the element to get or set.</param>
+    public new T this[int index]
     {
         set
         {
-#if DEBUG
-
-#endif
             IsChanged = true;
-            base[i] = value;
+            base[index] = value;
         }
         get
         {
-            if (Length > i) return base[i];
+            if (Length > index) return base[index];
             return DefaultValue;
         }
     }
 
+    /// <summary>
+    /// Returns this instance as an L list
+    /// </summary>
+    /// <returns>This instance</returns>
     public L<T> ToList()
     {
         return this;

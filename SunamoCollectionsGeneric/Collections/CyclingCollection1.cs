@@ -1,11 +1,15 @@
 namespace SunamoCollectionsGeneric.Collections;
 
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 /// <summary>
+/// Partial class continuation for CyclingCollection
 /// </summary>
 public partial class CyclingCollection<T>
 {
+    /// <summary>
+    /// Moves forward by the specified number of items
+    /// </summary>
+    /// <param name="count">The number of items to move forward</param>
+    /// <returns>The item at the new position</returns>
     public T Next(int count)
     {
         if (count > Items.Count)
@@ -17,7 +21,7 @@ public partial class CyclingCollection<T>
         }
         else if (currentIndex > Items.Count)
         {
-            // Zjistim o kolik a tolik posunu i v novem
+            // Calculate how much to shift in the new cycle
             var newIndex = currentIndex - Items.Count;
             index = newIndex;
         }
@@ -31,13 +35,25 @@ public partial class CyclingCollection<T>
         return GetIretation;
     }
 
+    /// <summary>
+    /// Triggers the Change event
+    /// </summary>
     public void OnChange()
     {
         if (Change != null)
             Change();
     }
 
+    /// <summary>
+    /// Event raised when a new status message is generated
+    /// </summary>
     public event Action<string> NewStatus;
+
+    /// <summary>
+    /// Triggers the NewStatus event with a formatted message
+    /// </summary>
+    /// <param name="text">The format string</param>
+    /// <param name="p">The format parameters</param>
     public void OnNewStatus(string text, params string[] p)
     {
         if (NewStatus != null)
