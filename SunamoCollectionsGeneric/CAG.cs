@@ -14,11 +14,11 @@ public partial class CAG
     /// Converts variable arguments to an array
     /// </summary>
     /// <typeparam name="T">The type of elements</typeparam>
-    /// <param name="items">The items to convert to an array</param>
+    /// <param name="array">The items to convert to an array</param>
     /// <returns>An array containing the provided items</returns>
-    public static T[] ToArrayT<T>(params T[] items)
+    public static T[] ToArrayT<T>(params T[] array)
     {
-        return items;
+        return array;
     }
 
     /// <summary>
@@ -37,16 +37,16 @@ public partial class CAG
     /// Gets the element at the specified index, or the element before it if index is out of bounds
     /// </summary>
     /// <typeparam name="T">The type of elements</typeparam>
-    /// <param name="items">The list to get element from</param>
+    /// <param name="list">The list to get element from</param>
     /// <param name="index">The index to retrieve</param>
     /// <returns>The element at index or the previous element, or default if not found</returns>
-    public static T GetElementActualOrBefore<T>(IList<T> items, int index)
+    public static T GetElementActualOrBefore<T>(IList<T> list, int index)
     {
-        if (items.Count > index)
-            return items[index];
+        if (list.Count > index)
+            return list[index];
         index--;
-        if (items.Count > index)
-            return items[index];
+        if (list.Count > index)
+            return list[index];
         return default;
     }
 
@@ -169,20 +169,20 @@ public partial class CAG
     /// Changes from an array where every element has two specifications of location to an ordinary array with inner arrays.
     /// </summary>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
-    /// <param name="value">The two-dimensional array to convert.</param>
+    /// <param name="array">The two-dimensional array to convert.</param>
     /// <returns>A jagged array representation of the input.</returns>
-    public static T[][] ToJagged<T>(T[, ] value)
+    public static T[][] ToJagged<T>(T[, ] array)
     {
-        if (ReferenceEquals(null, value))
+        if (ReferenceEquals(null, array))
             return null;
         // Jagged array creation
-        var result = new T[value.GetLength(0)][];
-        for (var i = 0; i < value.GetLength(0); ++i)
-            result[i] = new T[value.GetLength(1)];
+        var result = new T[array.GetLength(0)][];
+        for (var i = 0; i < array.GetLength(0); ++i)
+            result[i] = new T[array.GetLength(1)];
         // Jagged array filling
-        for (var i = 0; i < value.GetLength(0); ++i)
-            for (var j = 0; j < value.GetLength(1); ++j)
-                result[i][j] = value[i, j];
+        for (var i = 0; i < array.GetLength(0); ++i)
+            for (var j = 0; j < array.GetLength(1); ++j)
+                result[i][j] = array[i, j];
         return result;
     }
 
@@ -304,11 +304,11 @@ public partial class CAG
     /// This could also be named ToListObject because it doesn't take or return a specific type (e.g., string) but a generic type.
     /// </summary>
     /// <typeparam name="T">The type of elements.</typeparam>
-    /// <param name="items">The items to convert to a list.</param>
+    /// <param name="array">The items to convert to a list.</param>
     /// <returns>A list containing the provided items.</returns>
-    public static List<T> ToList<T>(params T[] items)
+    public static List<T> ToList<T>(params T[] array)
     {
-        return items.ToList();
+        return array.ToList();
     }
 
     /// <summary>
