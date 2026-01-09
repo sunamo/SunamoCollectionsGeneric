@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
 
 internal class TextOutputGeneratorArgs

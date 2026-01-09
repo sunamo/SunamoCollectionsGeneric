@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric._public.SunamoData.Data;
 
 /// <summary>

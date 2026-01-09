@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsGeneric._sunamo.SunamoData.Data;
 
 internal class FromToTSHCollectionsGeneric<T>
