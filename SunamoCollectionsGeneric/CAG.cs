@@ -47,7 +47,7 @@ public partial class CAG
         index--;
         if (list.Count > index)
             return list[index];
-        return default;
+        return default!;
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ public partial class CAG
             }
             else
             {
-                return returnWhenIndexNotExists;
+                return returnWhenIndexNotExists!;
             }
         }
     }
@@ -100,7 +100,6 @@ public partial class CAG
         }
 
         throw new Exception(XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray + ";");
-        return null;
     }
 
     /// <summary>
@@ -123,7 +122,7 @@ public partial class CAG
         }
 
         ThrowEx.ArgumentOutOfRangeException(XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray + ";");
-        return null;
+        return null!;
     }
 
     /// <summary>
@@ -174,7 +173,7 @@ public partial class CAG
     public static T[][] ToJagged<T>(T[, ] array)
     {
         if (ReferenceEquals(null, array))
-            return null;
+            return null!;
         // Jagged array creation
         var result = new T[array.GetLength(0)][];
         for (var i = 0; i < array.GetLength(0); ++i)
@@ -232,7 +231,7 @@ public partial class CAG
     /// <param name="typeScriptHelperGetNamesAndTypes">Optional TypeScript helper function for parsing interfaces</param>
     /// <param name="isTsInterface">Whether the lists contain TypeScript interface definitions</param>
     /// <returns>A formatted string showing elements only in first list, only in second list, and in both</returns>
-    public static string CompareListSanitizeStringOutput(List<string> firstList, List<string> secondList, Func<List<string>, Tuple<List<string>, List<string>>> typeScriptHelperGetNamesAndTypes = null, bool isTsInterface = false)
+    public static string CompareListSanitizeStringOutput(List<string> firstList, List<string> secondList, Func<List<string>, Tuple<List<string>, List<string>>>? typeScriptHelperGetNamesAndTypes = null, bool isTsInterface = false)
     {
         if (isTsInterface && typeScriptHelperGetNamesAndTypes != null)
         {

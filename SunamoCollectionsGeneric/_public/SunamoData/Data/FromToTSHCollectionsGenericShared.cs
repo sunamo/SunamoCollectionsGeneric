@@ -59,8 +59,8 @@ public class FromToTSHCollectionsGenericShared<T>
     /// </summary>
     public T From
     {
-        get => (T)(dynamic)fromL;
-        set => fromL = (long)(dynamic)value;
+        get => (T)(dynamic)fromL!;
+        set => fromL = (long)(dynamic)value!;
     }
 
     /// <summary>
@@ -68,8 +68,8 @@ public class FromToTSHCollectionsGenericShared<T>
     /// </summary>
     public T To
     {
-        get => (T)(dynamic)toL;
-        set => toL = (long)(dynamic)value;
+        get => (T)(dynamic)toL!;
+        set => toL = (long)(dynamic)value!;
     }
 
     /// <summary>

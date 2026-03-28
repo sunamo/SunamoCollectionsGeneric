@@ -10,7 +10,7 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     /// <summary>
     /// Gets or sets an action to call when the collection has zero elements during indexer access
     /// </summary>
-    public Action CallWhenIsZeroElements { get; set; }
+    public Action? CallWhenIsZeroElements { get; set; }
     private readonly List<KeyValuePair<T, U>> items = new();
 
     /// <summary>
@@ -30,7 +30,7 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
                 if (EqualityComparer<T>.Default.Equals(item.Key, key))
                     return item.Value;
 
-            return default;
+            return default!;
         }
         set
         {
@@ -186,7 +186,7 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     /// <returns>True if the dictionary contains an element with the specified key; otherwise, false</returns>
     public bool TryGetValue(T key, out U value)
     {
-        value = default;
+        value = default!;
         for (var i = 0; i < items.Count; i++)
             if (EqualityComparer<T>.Default.Equals(items[i].Key, key))
             {

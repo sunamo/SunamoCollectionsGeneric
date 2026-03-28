@@ -5,7 +5,7 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 /// <typeparam name="T">The type of keys</typeparam>
 /// <typeparam name="U">The type of values</typeparam>
-public class SunamoDictionarySort<T, U> : Dictionary<T, U>
+public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
 {
     private readonly DictionarySort<T, U> dictionarySort = new();
 
@@ -38,9 +38,9 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
         var addedKeys = new List<T>();
         foreach (var item in values)
         {
-            var key = dictionarySort.KeyFromValue(addedKeys, Count, sl, item);
+            var key = dictionarySort.KeyFromValue(addedKeys, Count, sl, item!);
             addedKeys.Add(key);
-            Add(key, item);
+            Add(key!, item);
             //vr.Add(temp, item);
         }
     }
@@ -79,8 +79,7 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U>
 
         foreach (var item in values)
         {
-            var key = dictionarySort.KeyFromValue(Count, sl, item);
-            // Add to this instead of vr
+            var key = dictionarySort.KeyFromValue(Count, sl, item!);
             if (key != null)
                 Add(key, item);
         }

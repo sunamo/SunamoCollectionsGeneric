@@ -58,7 +58,7 @@ public partial class CyclingCollection<T>
         get
         {
             if (Items.Count == 0)
-                return default;
+                return default!;
             return Items[index];
         }
     }
@@ -70,7 +70,7 @@ public partial class CyclingCollection<T>
     {
         get
         {
-            T result = default;
+            T result = default!;
             var absoluteIndex = Math.Abs(index);
             if (Items.Count > absoluteIndex && Items.Count >= absoluteIndex)
             {
@@ -233,7 +233,7 @@ public partial class CyclingCollection<T>
     /// <summary>
     /// Event raised when the collection state changes
     /// </summary>
-    public event Action Change;
+    public event Action? Change;
 
     /// <summary>
     /// Gets or sets whether the collection cycles back to the beginning when reaching the end

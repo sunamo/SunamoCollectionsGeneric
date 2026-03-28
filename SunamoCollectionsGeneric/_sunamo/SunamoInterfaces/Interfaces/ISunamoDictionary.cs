@@ -1,6 +1,6 @@
 namespace SunamoCollectionsGeneric._sunamo.SunamoInterfaces.Interfaces;
 
-internal interface ISunamoDictionary<T, U>
+internal interface ISunamoDictionary<T, U> where T : notnull
 {
     U this[T key] { get; set; }
     ICollection<T> Keys { get; }

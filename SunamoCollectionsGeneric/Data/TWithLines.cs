@@ -9,10 +9,10 @@ public class TWithLines<T>
     /// <summary>
     /// Gets or sets the list of text lines associated with the value
     /// </summary>
-    public L<string> Lines { get; set; } = null;
+    public L<string>? Lines { get; set; } = null;
 
     /// <summary>
     /// Gets or sets the main value
     /// </summary>
-    public T Value { get; set; } = default;
+    public T Value { get; set; } = default!;
 }

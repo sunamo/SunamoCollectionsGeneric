@@ -6,12 +6,12 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 /// <typeparam name="T">The type of keys in the dictionary.</typeparam>
 /// <typeparam name="U">The type of values in the dictionary.</typeparam>
-public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
+public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> where T : notnull
 {
     /// <summary>
     /// Gets or sets an action to call when attempting to access an empty dictionary
     /// </summary>
-    public Action CallWhenIsZeroElements { get; set; }
+    public Action? CallWhenIsZeroElements { get; set; }
     private readonly Dictionary<T, U> dictionary = new();
 
     /// <summary>
@@ -173,13 +173,13 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U>
     /// <returns>True if the dictionary contains an element with the specified key; otherwise, false</returns>
     public bool TryGetValue(T key, out U value)
     {
-        return dictionary.TryGetValue(key, out value);
+        return dictionary.TryGetValue(key, out value!);
     }
 
     private void ContainsV(U value)
     {
 #if DEBUG
-        if (value.ToString().Contains(checkForContains))
+        if (value?.ToString()?.Contains(checkForContains) == true)
         {
         }
 #endif

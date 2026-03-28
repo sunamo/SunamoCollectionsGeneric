@@ -5,7 +5,7 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 /// <typeparam name="T">The type of keys</typeparam>
 /// <typeparam name="U">The type of values</typeparam>
-public class ResolvedDictionary<T, U>
+public class ResolvedDictionary<T, U> where T : notnull
 {
     /// <summary>
     /// Gets or sets the underlying dictionary

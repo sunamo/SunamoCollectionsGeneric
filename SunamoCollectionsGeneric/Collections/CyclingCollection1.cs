@@ -47,7 +47,7 @@ public partial class CyclingCollection<T>
     /// <summary>
     /// Event raised when a new status message is generated
     /// </summary>
-    public event Action<string> NewStatus;
+    public event Action<string>? NewStatus;
 
     /// <summary>
     /// Triggers the NewStatus event with a formatted message

@@ -26,7 +26,7 @@ public class TextWriterList : TextWriter
     /// Writes a line terminator to the text string or stream
     /// </summary>
     /// <param name="value">The string to write</param>
-    public override void WriteLine(string value)
+    public override void WriteLine(string? value)
     {
         _list.Add(value);
     }

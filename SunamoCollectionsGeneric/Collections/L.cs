@@ -15,7 +15,7 @@ public class L<T> : List<T>
     /// <summary>
     /// Gets or sets the default value to return when accessing an index out of bounds
     /// </summary>
-    public T DefaultValue { get; set; } = default;
+    public T DefaultValue { get; set; } = default!;
 
     /// <summary>
     /// Initializes a new instance of the L class

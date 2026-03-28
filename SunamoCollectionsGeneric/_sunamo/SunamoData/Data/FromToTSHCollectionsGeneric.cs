@@ -39,14 +39,14 @@ internal class FromToTSHCollectionsGeneric<T>
 
     internal T From
     {
-        get => (T)(dynamic)fromL;
-        set => fromL = (long)(dynamic)value;
+        get => (T)(dynamic)fromL!;
+        set => fromL = (long)(dynamic)value!;
     }
 
     internal T To
     {
-        get => (T)(dynamic)toL;
-        set => toL = (long)(dynamic)value;
+        get => (T)(dynamic)toL!;
+        set => toL = (long)(dynamic)value!;
     }
 
     internal long FromL => fromL;

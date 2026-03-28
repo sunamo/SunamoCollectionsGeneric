@@ -12,6 +12,6 @@ public class ListWithElements<T> : L<T>
     /// <param name="count">The number of default elements to initialize</param>
     public ListWithElements(int count)
     {
-        for (var i = 0; i < count; i++) Add(default);
+        for (var i = 0; i < count; i++) Add(default!);
     }
 }

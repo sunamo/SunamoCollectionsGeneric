@@ -5,7 +5,7 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 /// <typeparam name="T">The type of keys</typeparam>
 /// <typeparam name="U">The type of values</typeparam>
-public class DictionarySort<T, U>
+public class DictionarySort<T, U> where T : notnull
 {
     /// <summary>
     /// Returns all values from the dictionary as a list
@@ -62,7 +62,7 @@ public class DictionarySort<T, U>
         var result = new Dictionary<T, U>();
         foreach (var item in values)
         {
-            var key = KeyFromValue(result.Count, dictionary, item);
+            var key = KeyFromValue(result.Count, dictionary, item!);
             result.Add(key, item);
         }
 
@@ -91,17 +91,17 @@ public class DictionarySort<T, U>
             }
 
             if (!addedKeys.Contains(item.Key))
-                if (item.Value.Equals(searchValue))
+                if (item.Value!.Equals(searchValue))
                     return item.Key;
             //////////ObjectHelper.ci.VratTR(item.Key) + "-" + ObjectHelper.ci.VratTR(item.Value));
         }
 
         foreach (var item in list)
             if (!addedKeys.Contains(item.Key))
-                if (item.Value.Equals(searchValue))
+                if (item.Value!.Equals(searchValue))
                     return item.Key;
 
-        return default;
+        return default!;
     }
 
     /// <summary>
@@ -145,10 +145,10 @@ public class DictionarySort<T, U>
     public T KeyFromValue(Dictionary<T, U> dictionary, U searchValue)
     {
         foreach (var item in dictionary)
-            if (item.Value.Equals(searchValue))
+            if (item.Value!.Equals(searchValue))
                 return item.Key;
 
-        return default;
+        return default!;
     }
 
     /// <summary>
@@ -171,14 +171,14 @@ public class DictionarySort<T, U>
                 continue;
             }
 
-            if (item.Value.Equals(searchValue)) return item.Key;
+            if (item.Value!.Equals(searchValue)) return item.Key;
         }
 
         // Could not figure out a better solution here
         foreach (var item in list)
-            if (item.Value.Equals(searchValue))
+            if (item.Value!.Equals(searchValue))
                 return item.Key;
 
-        return default;
+        return default!;
     }
 }

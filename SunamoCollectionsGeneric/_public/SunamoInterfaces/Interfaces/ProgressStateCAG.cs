@@ -32,17 +32,17 @@ public class ProgressStateCAG
     /// <summary>
     /// Event raised when another item is processed.
     /// </summary>
-    public event Action<int> AnotherItem;
+    public event Action<int>? AnotherItem;
 
     /// <summary>
     /// Event raised when the overall number of items is determined.
     /// </summary>
-    public event Action<int> OverallItems;
+    public event Action<int>? OverallItems;
 
     /// <summary>
     /// Event raised when progress bar should end.
     /// </summary>
-    public event Action WriteProgressBarEnd;
+    public event Action? WriteProgressBarEnd;
 
     /// <summary>
     /// Triggers the AnotherItem event with an auto-incremented count.
@@ -59,7 +59,7 @@ public class ProgressStateCAG
     /// <param name="count">The count of items processed.</param>
     public void OnAnotherItem(int count)
     {
-        AnotherItem(count);
+        AnotherItem?.Invoke(count);
     }
 
     /// <summary>
@@ -69,7 +69,7 @@ public class ProgressStateCAG
     public void OnOverallItems(int totalCount)
     {
         Count = 0;
-        OverallItems(totalCount);
+        OverallItems?.Invoke(totalCount);
     }
 
     /// <summary>
@@ -77,6 +77,6 @@ public class ProgressStateCAG
     /// </summary>
     public void OnWriteProgressBarEnd()
     {
-        WriteProgressBarEnd();
+        WriteProgressBarEnd?.Invoke();
     }
 }

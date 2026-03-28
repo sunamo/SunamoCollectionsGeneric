@@ -3,8 +3,7 @@
     <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <NoWarn>CS8632;CS0649;CS0169;CS0414;NU1701</NoWarn>
-    <Version>26.2.23.3</Version>
+    <Version>26.3.28.4</Version>
     <Description>Working with generic collections</Description>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
@@ -14,7 +13,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <PackageReleaseNotes>feat: fixing variables names</PackageReleaseNotes>
+    <PackageReleaseNotes>feat: Improved names of variables</PackageReleaseNotes>
     <IsPackable>true</IsPackable>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <IncludeSymbols>true</IncludeSymbols>
