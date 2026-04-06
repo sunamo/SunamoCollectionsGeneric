@@ -13,22 +13,11 @@ internal class FromToTSHCollectionsGeneric<T>
         if (type == typeof(int)) FtUse = FromToUseCollectionsGeneric.None;
     }
 
-    /// <summary>
-    ///     Use Empty contstant outside of class
-    /// </summary>
-    /// <param name="isEmpty"></param>
     private FromToTSHCollectionsGeneric(bool isEmpty) : this()
     {
         this.IsEmpty = isEmpty;
     }
 
-    /// <summary>
-    ///     A3 true = DateTime
-    ///     A3 False = None
-    /// </summary>
-    /// <param name="from"></param>
-    /// <param name="to"></param>
-    /// <param name="ftUse"></param>
     internal FromToTSHCollectionsGeneric(T from, T to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime) : this()
     {

@@ -1,7 +1,5 @@
 namespace SunamoCollectionsGeneric._sunamo.SunamoExceptions;
 
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 internal partial class ThrowEx
 {
     internal static bool ArgumentOutOfRangeException(string argName, string message = "")
@@ -12,9 +10,9 @@ internal partial class ThrowEx
     #region Other
     internal static string FullNameOfExecutedCode()
     {
-        Tuple<string, string, string> placeOfExc = Exceptions.PlaceOfException();
-        string f = FullNameOfExecutedCode(placeOfExc.Item1, placeOfExc.Item2, true);
-        return f;
+        Tuple<string, string, string> placeOfException = Exceptions.PlaceOfException();
+        string fullName = FullNameOfExecutedCode(placeOfException.Item1, placeOfException.Item2, true);
+        return fullName;
     }
 
     static string FullNameOfExecutedCode(object type, string methodName, bool isFromThrowEx = false)
@@ -30,13 +28,13 @@ internal partial class ThrowEx
             methodName = Exceptions.CallingMethod(depth);
         }
         string typeFullName;
-        if (type is Type type2)
+        if (type is Type specificType)
         {
-            typeFullName = type2.FullName ?? "Type cannot be get via type is Type type2";
+            typeFullName = specificType.FullName ?? "Type cannot be get via type is Type";
         }
         else if (type is MethodBase method)
         {
-            typeFullName = method.ReflectedType?.FullName ?? "Type cannot be get via type is MethodBase method";
+            typeFullName = method.ReflectedType?.FullName ?? "Type cannot be get via type is MethodBase";
             methodName = method.Name;
         }
         else if (type is string)
@@ -45,8 +43,8 @@ internal partial class ThrowEx
         }
         else
         {
-            Type t = type.GetType();
-            typeFullName = t.FullName ?? "Type cannot be get via type.GetType()";
+            Type objectType = type.GetType();
+            typeFullName = objectType.FullName ?? "Type cannot be get via type.GetType()";
         }
         return string.Concat(typeFullName, ".", methodName);
     }

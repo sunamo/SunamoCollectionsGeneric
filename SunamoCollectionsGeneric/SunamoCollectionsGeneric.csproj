@@ -3,7 +3,7 @@
     <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>26.3.28.4</Version>
+    <Version>26.4.6.5</Version>
     <Description>Working with generic collections</Description>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
@@ -12,8 +12,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <PackageReleaseNotes>feat: Improved names of variables</PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageReleaseNotes>feat: Added net10.0 to TargetFrameworks</PackageReleaseNotes>
     <IsPackable>true</IsPackable>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <IncludeSymbols>true</IncludeSymbols>

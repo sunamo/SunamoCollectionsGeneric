@@ -53,11 +53,13 @@ public class UniqueTableInWhole
     }
 
     /// <summary>
-    ///     If A1, must be all columns in all rows unique
-    ///     Ïf A2, must be all rows in all columns unique
+    /// Checks if the table is unique as rows or columns.
+    /// If isColumnsUnique is true, verifies all columns in all rows are unique.
+    /// If isRowsUnique is true, verifies all rows in all columns are unique.
     /// </summary>
-    /// <param name="isColumnsUnique"></param>
-    /// <param name="isRowsUnique"></param>
+    /// <param name="isColumnsUnique">Whether to check that each row has unique column values.</param>
+    /// <param name="isRowsUnique">Whether to check that each column has unique row values.</param>
+    /// <returns>True if the table satisfies the specified uniqueness constraints.</returns>
     public bool IsUniqueAsRowsOrColumns(bool isColumnsUnique, bool isRowsUnique)
     {
         if (!isColumnsUnique && !isRowsUnique)

@@ -39,8 +39,6 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
         }
         set
         {
-            ContainsV(value);
-
             dictionary[key] = value;
         }
     }
@@ -72,8 +70,6 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     /// <param name="value">The value to add</param>
     public void Add(T key, U value)
     {
-        ContainsV(value);
-
         dictionary.Add(key, value);
     }
 
@@ -83,7 +79,6 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     /// <param name="item">The key/value pair to add</param>
     public void Add(KeyValuePair<T, U> item)
     {
-        ContainsV(item.Value);
         dictionary.Add(item.Key, item.Value);
     }
 
@@ -176,17 +171,7 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
         return dictionary.TryGetValue(key, out value!);
     }
 
-    private void ContainsV(U value)
-    {
 #if DEBUG
-        if (value?.ToString()?.Contains(checkForContains) == true)
-        {
-        }
-#endif
-    }
-#if DEBUG
-    private const string checkForContains = "ccc_netcore31";
-
     private void OnRemove()
     {
         Debugger.Break();

@@ -1,6 +1,5 @@
 namespace SunamoCollectionsGeneric._sunamo.SunamoExceptions;
 
-// © www.sunamo.cz. All Rights Reserved.
 internal sealed partial class Exceptions
 {
     #region Other
@@ -10,23 +9,22 @@ internal sealed partial class Exceptions
     }
 
     internal static Tuple<string, string, string> PlaceOfException(
-bool fillAlsoFirstTwo = true)
+bool isFillAlsoFirstTwo = true)
     {
-        StackTrace st = new();
-        var stackTraceText = st.ToString();
+        StackTrace stackTrace = new();
+        var stackTraceText = stackTrace.ToString();
         var lines = stackTraceText.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
         lines.RemoveAt(0);
-        var i = 0;
         string type = string.Empty;
         string methodName = string.Empty;
-        for (; i < lines.Count; i++)
+        for (var i = 0; i < lines.Count; i++)
         {
             var item = lines[i];
-            if (fillAlsoFirstTwo)
+            if (isFillAlsoFirstTwo)
                 if (!item.StartsWith("   at ThrowEx"))
                 {
                     TypeAndMethodName(item, out type, out methodName);
-                    fillAlsoFirstTwo = false;
+                    isFillAlsoFirstTwo = false;
                 }
             if (item.StartsWith("at System."))
             {

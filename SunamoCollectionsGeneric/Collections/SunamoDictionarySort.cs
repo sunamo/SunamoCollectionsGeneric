@@ -41,7 +41,6 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
             var key = dictionarySort.KeyFromValue(addedKeys, Count, sl, item!);
             addedKeys.Add(key);
             Add(key!, item);
-            //vr.Add(temp, item);
         }
     }
 

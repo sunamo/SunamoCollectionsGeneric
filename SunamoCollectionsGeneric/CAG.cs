@@ -241,14 +241,10 @@ public partial class CAG
             secondList = tupleResult.Item1;
         }
 
-        firstList = firstList.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
-        secondList = secondList.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
-        //CAChangeContent.ChangeContent0(null, firstList, SHReplace.ReplaceWhiteSpacesWithoutSpaces);
-        //CAChangeContent.ChangeContent0(null, secondList, SHReplace.ReplaceWhiteSpacesWithoutSpaces);
+        firstList = firstList.Where(text => !string.IsNullOrWhiteSpace(text)).ToList();
+        secondList = secondList.Where(text => !string.IsNullOrWhiteSpace(text)).ToList();
         for (var i = 0; i < firstList.Count; i++)
             firstList[i] = firstList[i].Replace("  ", " ");
-        //CAChangeContent.ChangeContent0(null, firstList, SHReplace.ReplaceAllDoubleSpaceToSingle);
-        //CAChangeContent.ChangeContent0(null, secondList, SHReplace.ReplaceAllDoubleSpaceToSingle);
         var existsInBoth = CompareList(firstList, secondList);
         var textOutputGenerator = new TextOutputGenerator();
         textOutputGenerator.List(firstList, "Only in 1:");
@@ -261,11 +257,13 @@ public partial class CAG
     }
 
     /// <summary>
-    ///     Return what exists in both
-    ///     Modify both A1 and A2 - keep only which is only in one
+    /// Returns elements that exist in both lists.
+    /// Modifies both input lists to keep only elements unique to each.
     /// </summary>
-    /// <param name = "firstList"></param>
-    /// <param name = "secondList"></param>
+    /// <typeparam name="T">The type of elements.</typeparam>
+    /// <param name="firstList">The first list to compare.</param>
+    /// <param name="secondList">The second list to compare.</param>
+    /// <returns>A list of elements that exist in both input lists.</returns>
     public static List<T> CompareList<T>(List<T> firstList, List<T> secondList)
         where T : IEquatable<T>
     {

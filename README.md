@@ -1,37 +1,41 @@
 # SunamoCollectionsGeneric
 
-Working with generic collections
+Working with generic collections.
 
 ## Overview
 
-SunamoCollectionsGeneric is part of the Sunamo package ecosystem, providing modular, platform-independent utilities for .NET development.
+SunamoCollectionsGeneric is part of the Sunamo package ecosystem, providing modular, platform-independent utilities for .NET development. It offers a variety of collection types and helper methods for working with generic collections.
 
 ## Main Components
 
 ### Key Classes
 
-- **CAG**
-- **CAGConsts**
-- **BadGoodCollection**
-- **CollectionToEnd**
-- **CycleGenerator**
-- **CyclingCollection**
-- **D**
-- **DictionarySort**
-- **DictionaryWithList**
+- **CAG** - Collection helper class providing utility methods (compare, deduplicate, convert arrays)
+- **CAGConsts** - Constants and basic utility methods for collections
+- **BadGoodCollection** - Collection that categorizes items into Bad and Good lists
+- **CollectionToEnd** - Collection that appends items to the end
+- **CycleGenerator** - Generator that cycles through items, returning to start after reaching the end
+- **CyclingCollection** - Collection supporting forward/backward cycling navigation
+- **D** - Dictionary with debugging capabilities and enumerable support
+- **DictionarySort** - Helper for sorting dictionaries by keys or values
+- **DictionaryWithList** - Dictionary backed by a list for maintaining insertion order
+- **Joiner** - Helper for building strings by joining items with a separator
+- **L** - Extended List with change tracking and default value support
+- **ResolvedDictionary** - Dictionary that resolves values using a function when key is not found
+- **SafeStringCollection** - String collection that replaces unallowed characters
+- **SunamoDictionarySort** - Dictionary with built-in sorting capabilities
+- **SunamoHashSetWithoutDuplicates** - HashSet that tracks and reports duplicates
+- **UniqueTableInWhole** - Table with uniqueness constraints on rows/columns
 
 ### Key Methods
 
-- `CompareListSanitizeStringOutput()`
-- `TakeAnother()`
-- `Add()`
-- `AddRange()`
-- `Clear()`
-- `SetIretation()`
-- `SetIretationWithoutEvent()`
-- `Contains()`
-- `ContainsKey()`
-- `CopyTo()`
+- `CAG.CompareList()` - Compare two lists and find common/unique elements
+- `CAG.CompareListSanitizeStringOutput()` - Compare lists with formatted output
+- `CAG.RemoveDuplicitiesList()` - Remove duplicates from a list
+- `CAG.EqualRanges()` - Find matching ranges in a list
+- `CyclingCollection.Next()` / `Before()` - Navigate through collection
+- `CyclingCollection.SetIteration()` - Set current position
+- `DictionarySort.SortByKeysDesc()` / `SortByValuesDesc()` - Sort dictionaries
 
 ## Installation
 
@@ -39,22 +43,14 @@ SunamoCollectionsGeneric is part of the Sunamo package ecosystem, providing modu
 dotnet add package SunamoCollectionsGeneric
 ```
 
+## Target Frameworks
+
+`net10.0`, `net9.0`, `net8.0`
+
 ## Dependencies
 
-- **Microsoft.Extensions.Logging.Abstractions** (v9.0.3)
-
-## Package Information
-
-- **Package Name**: SunamoCollectionsGeneric
-- **Version**: 25.6.7.1
-- **Target Framework**: net9.0
-- **Category**: Platform-Independent NuGet Package
-- **Source Files**: 41
-
-## Related Packages
-
-This package is part of the Sunamo package ecosystem. For more information about related packages, visit the main repository.
+- **Microsoft.Extensions.Logging.Abstractions**
 
 ## License
 
-See the repository root for license information.
+MIT

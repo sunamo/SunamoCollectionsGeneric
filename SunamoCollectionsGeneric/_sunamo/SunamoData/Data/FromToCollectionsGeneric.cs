@@ -12,22 +12,11 @@ internal class FromToCollectionsGeneric : FromToTSHCollectionsGeneric<long>
     {
     }
 
-    /// <summary>
-    ///     Use Empty contstant outside of class
-    /// </summary>
-    /// <param name="empty"></param>
     private FromToCollectionsGeneric(bool empty)
     {
         this.IsEmpty = empty;
     }
 
-    /// <summary>
-    ///     A3 true = DateTime
-    ///     A3 False = None
-    /// </summary>
-    /// <param name="from"></param>
-    /// <param name="to"></param>
-    /// <param name="ftUse"></param>
     internal FromToCollectionsGeneric(long from, long to,
         FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime)
     {

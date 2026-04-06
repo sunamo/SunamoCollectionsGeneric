@@ -66,7 +66,7 @@ public partial class CyclingCollection<T>
     /// <summary>
     ///     If can't be obtained, try to get element previous or next.
     /// </summary>
-    public T GetIretation
+    public T GetIteration
     {
         get
         {
@@ -122,7 +122,6 @@ public partial class CyclingCollection<T>
     /// <param name="items">The items to add</param>
     public void AddRange(IList<T> items)
     {
-        //t.AddRange(items);
         foreach (var item in items)
         {
             Items.Add(item);
@@ -147,11 +146,11 @@ public partial class CyclingCollection<T>
     /// </summary>
     /// <param name="newIndex">The new index position</param>
     /// <returns>The item at the new index</returns>
-    public T SetIretation(int newIndex)
+    public T SetIteration(int newIndex)
     {
         index = ValidateIndex(newIndex);
         OnChange();
-        return GetIretation;
+        return GetIteration;
     }
 
     private int ValidateIndex(int newIndex)
@@ -167,7 +166,7 @@ public partial class CyclingCollection<T>
     /// Sets the iteration index without triggering the Change event
     /// </summary>
     /// <param name="newIndex">The new index position</param>
-    public void SetIretationWithoutEvent(int newIndex)
+    public void SetIterationWithoutEvent(int newIndex)
     {
         index = newIndex;
     }
@@ -253,17 +252,15 @@ public partial class CyclingCollection<T>
                 index = Items.Count - 1;
             else
                 index--;
-        //OnChange();
         }
         else
         {
             if (index != 0)
                 index--;
-        //OnChange();
         }
 
         OnChange();
-        return GetIretation;
+        return GetIteration;
     }
 
     /// <summary>
@@ -279,17 +276,15 @@ public partial class CyclingCollection<T>
                 index = 0;
             else
                 index++;
-        //OnChange();
         }
         else
         {
             if (index != Items.Count - 1)
                 index++;
-        //OnChange();
         }
 
         OnChange();
-        return GetIretation;
+        return GetIteration;
     }
 
     /// <summary>
@@ -300,25 +295,21 @@ public partial class CyclingCollection<T>
     public T Before(int count)
     {
         if (count > Items.Count)
-            return GetIretation;
+            return GetIteration;
         index -= count;
         var currentIndex = index;
-        if (currentIndex == 0)
-        {
-        }
-        else if (currentIndex < 0)
+        if (currentIndex < 0)
         {
             var amountToSubtract = Math.Abs(currentIndex);
             var newIndex = Items.Count - amountToSubtract;
             index = newIndex;
         }
-        else
+        else if (currentIndex > 0)
         {
-            //index-= count;
             index = currentIndex;
         }
 
         OnChange();
-        return GetIretation;
+        return GetIteration;
     }
 }

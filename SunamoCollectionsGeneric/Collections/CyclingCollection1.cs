@@ -13,26 +13,21 @@ public partial class CyclingCollection<T>
     public T Next(int count)
     {
         if (count > Items.Count)
-            return GetIretation;
+            return GetIteration;
         index += count;
         var currentIndex = index;
-        if (currentIndex == 0)
+        if (currentIndex > Items.Count)
         {
-        }
-        else if (currentIndex > Items.Count)
-        {
-            // Calculate how much to shift in the new cycle
             var newIndex = currentIndex - Items.Count;
             index = newIndex;
         }
-        else
+        else if (currentIndex > 0)
         {
-            //
             index = currentIndex;
         }
 
         OnChange();
-        return GetIretation;
+        return GetIteration;
     }
 
     /// <summary>
@@ -53,10 +48,10 @@ public partial class CyclingCollection<T>
     /// Triggers the NewStatus event with a formatted message
     /// </summary>
     /// <param name="text">The format string</param>
-    /// <param name="p">The format parameters</param>
-    public void OnNewStatus(string text, params string[] p)
+    /// <param name="parameters">The format parameters</param>
+    public void OnNewStatus(string text, params string[] parameters)
     {
         if (NewStatus != null)
-            NewStatus(string.Format(text, p));
+            NewStatus(string.Format(text, parameters));
     }
 }

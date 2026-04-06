@@ -65,13 +65,13 @@ public partial class CAG
     }
 
     /// <summary>
-    ///     Get every item once
-    ///     A2 = more duplicities = more items
+    /// Gets every duplicated item once.
+    /// More duplicates in the list result in more items in the output.
     /// </summary>
-    /// <typeparam name = "T"></typeparam>
-    /// <param name = "list"></param>
-    /// <param name = "alreadyProcessed"></param>
-    /// <returns></returns>
+    /// <typeparam name="T">The type of elements.</typeparam>
+    /// <param name="list">The list to search for duplicates.</param>
+    /// <param name="alreadyProcessed">Output list of all unique items encountered.</param>
+    /// <returns>A list of duplicated items, each appearing once.</returns>
     public static List<T> GetDuplicities<T>(List<T> list, out List<T> alreadyProcessed)
     {
         alreadyProcessed = new List<T>(list.Count);
@@ -86,11 +86,11 @@ public partial class CAG
     }
 
     /// <summary>
-    ///     Get every duplicated item once
+    /// Gets every duplicated item once.
     /// </summary>
-    /// <typeparam name = "T"></typeparam>
-    /// <param name = "list"></param>
-    /// <returns></returns>
+    /// <typeparam name="T">The type of elements.</typeparam>
+    /// <param name="list">The list to search for duplicates.</param>
+    /// <returns>A list of duplicated items, each appearing once.</returns>
     public static List<T> GetDuplicities<T>(List<T> list)
     {
         List<T> alreadyProcessed;
@@ -168,14 +168,14 @@ public partial class CAG
     }
 
     /// <summary>
-    ///     direct edit
-    ///     Remove duplicities from A1
-    ///     In return value is from every one instance
-    ///     In A2 is every duplicities (maybe the same more times)
+    /// Removes duplicates from the list (direct edit).
+    /// Returns a list of unique items.
+    /// The out parameter contains every duplicate (possibly repeated).
     /// </summary>
-    /// <typeparam name = "T"></typeparam>
-    /// <param name = "list"></param>
-    /// <param name = "foundedDuplicities"></param>
+    /// <typeparam name="T">The type of elements.</typeparam>
+    /// <param name="list">The list to remove duplicates from.</param>
+    /// <param name="foundedDuplicities">Output list of all duplicate items found.</param>
+    /// <returns>A list of unique items.</returns>
     public static List<T> RemoveDuplicitiesList<T>(IList<T> list, out List<T> foundedDuplicities)
     {
         foundedDuplicities = new List<T>();

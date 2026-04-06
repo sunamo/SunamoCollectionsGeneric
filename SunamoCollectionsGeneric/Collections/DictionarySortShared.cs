@@ -41,7 +41,6 @@ public class DictionarySort<T, U> where T : notnull
     public Dictionary<T, U> SortByKeysDesc(Dictionary<T, U> dictionary)
     {
         var keys = ReturnKeys(dictionary);
-        //List<U> values = VratHodnoty(dictionary);
         keys.Sort();
         var result = new Dictionary<T, U>();
         foreach (var item in keys) result.Add(item, dictionary[item]);
@@ -79,24 +78,23 @@ public class DictionarySort<T, U> where T : notnull
     /// <returns>The key associated with the search value, or default if not found</returns>
     public T KeyFromValue(List<T> addedKeys, int startIndex, Dictionary<T, U> dictionary, object searchValue)
     {
-        var i = -1;
-        var list = new List<KeyValuePair<T, U>>();
+        var currentIndex = -1;
+        var skippedEntries = new List<KeyValuePair<T, U>>();
         foreach (var item in dictionary)
         {
-            i++;
-            if (i < startIndex)
+            currentIndex++;
+            if (currentIndex < startIndex)
             {
-                list.Add(item);
+                skippedEntries.Add(item);
                 continue;
             }
 
             if (!addedKeys.Contains(item.Key))
                 if (item.Value!.Equals(searchValue))
                     return item.Key;
-            //////////ObjectHelper.ci.VratTR(item.Key) + "-" + ObjectHelper.ci.VratTR(item.Value));
         }
 
-        foreach (var item in list)
+        foreach (var item in skippedEntries)
             if (!addedKeys.Contains(item.Key))
                 if (item.Value!.Equals(searchValue))
                     return item.Key;
@@ -112,7 +110,6 @@ public class DictionarySort<T, U> where T : notnull
     public Dictionary<T, U> SortByKeysAsc(Dictionary<T, U> dictionary)
     {
         var keys = ReturnKeys(dictionary);
-        //List<U> values = VratHodnoty(dictionary);
         keys.Sort();
         keys.Reverse();
         var result = new Dictionary<T, U>();
@@ -160,22 +157,21 @@ public class DictionarySort<T, U> where T : notnull
     /// <returns>The key associated with the search value, or default if not found</returns>
     public T KeyFromValue(int indexFromWhichSearch, Dictionary<T, U> dictionary, object searchValue)
     {
-        var i = -1;
-        var list = new List<KeyValuePair<T, U>>();
+        var currentIndex = -1;
+        var skippedEntries = new List<KeyValuePair<T, U>>();
         foreach (var item in dictionary)
         {
-            i++;
-            if (i < indexFromWhichSearch)
+            currentIndex++;
+            if (currentIndex < indexFromWhichSearch)
             {
-                list.Add(item);
+                skippedEntries.Add(item);
                 continue;
             }
 
             if (item.Value!.Equals(searchValue)) return item.Key;
         }
 
-        // Could not figure out a better solution here
-        foreach (var item in list)
+        foreach (var item in skippedEntries)
             if (item.Value!.Equals(searchValue))
                 return item.Key;
 

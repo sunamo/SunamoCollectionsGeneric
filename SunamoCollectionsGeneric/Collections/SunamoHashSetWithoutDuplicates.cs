@@ -37,7 +37,7 @@ public class SunamoHashSetWithoutDuplicates<T>
     /// <returns>A list of duplicate elements that were already in the set</returns>
     public List<T> AddRange(IList<T> elements, ProgressStateCAG progressState)
     {
-        var data = new List<T>();
+        var duplicates = new List<T>();
         foreach (var item in elements)
         {
             if (progressState.IsRegistered) progressState.OnAnotherItem();
@@ -45,9 +45,9 @@ public class SunamoHashSetWithoutDuplicates<T>
             if (!Items.Contains(item))
                 Items.Add(item);
             else
-                data.Add(item);
+                duplicates.Add(item);
         }
 
-        return data;
+        return duplicates;
     }
 }
