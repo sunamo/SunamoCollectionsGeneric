@@ -122,7 +122,6 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     public void CopyTo(KeyValuePair<T, U>[] array, int arrayIndex)
     {
         ThrowEx.NotImplementedMethod();
-        //DictionaryHelper.CopyTo<T, U>(d, array, arrayIndex);
     }
 
     /// <summary>

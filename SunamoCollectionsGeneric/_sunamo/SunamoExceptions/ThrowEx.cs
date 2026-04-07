@@ -69,8 +69,8 @@ internal partial class ThrowEx
 
     internal static bool ThrowIsNotNull(Func<string, string?> exceptionFactory)
     {
-        string? exc = exceptionFactory(FullNameOfExecutedCode());
-        return ThrowIsNotNull(exc);
+        string? exception = exceptionFactory(FullNameOfExecutedCode());
+        return ThrowIsNotNull(exception);
     }
     #endregion
     #endregion

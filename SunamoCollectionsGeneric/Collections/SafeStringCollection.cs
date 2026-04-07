@@ -5,8 +5,8 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 public class SafeStringCollection
 {
-    private readonly char _replaceFor;
-    private readonly List<char> _unallowedChars;
+    private readonly char replaceFor;
+    private readonly List<char> unallowedChars;
 
     /// <summary>
     /// Gets or sets the list of sanitized string items
@@ -20,8 +20,8 @@ public class SafeStringCollection
     /// <param name="replaceFor">The character to replace unallowed characters with</param>
     public SafeStringCollection(List<char> unallowedChars, char replaceFor)
     {
-        _unallowedChars = unallowedChars;
-        _replaceFor = replaceFor;
+        this.unallowedChars = unallowedChars;
+        this.replaceFor = replaceFor;
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public class SafeStringCollection
         {
             var character = item;
 
-            if (_unallowedChars.Contains(item)) character = _replaceFor;
+            if (unallowedChars.Contains(item)) character = replaceFor;
 
             stringBuilder.Append(character);
         }

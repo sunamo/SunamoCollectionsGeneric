@@ -6,7 +6,7 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 public class TextWriterList : TextWriter
 {
-    private readonly IList _list;
+    private readonly IList list;
 
     /// <summary>
     /// Initializes a new instance that writes to the specified list
@@ -14,7 +14,7 @@ public class TextWriterList : TextWriter
     /// <param name="list">The list to write to</param>
     public TextWriterList(IList list)
     {
-        _list = list;
+        this.list = list;
     }
 
     /// <summary>
@@ -28,6 +28,6 @@ public class TextWriterList : TextWriter
     /// <param name="value">The string to write</param>
     public override void WriteLine(string? value)
     {
-        _list.Add(value);
+        list.Add(value);
     }
 }

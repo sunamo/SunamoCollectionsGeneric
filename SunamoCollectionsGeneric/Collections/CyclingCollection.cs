@@ -42,10 +42,10 @@ public partial class CyclingCollection<T>
     /// </summary>
     public bool MakesSpaces
     {
-        get => _MakesSpaces;
+        get => makesSpaces;
         set
         {
-            _MakesSpaces = value;
+            makesSpaces = value;
             OnChange();
         }
     }
@@ -112,7 +112,7 @@ public partial class CyclingCollection<T>
     public void Add(T item)
     {
         Items.Add(item);
-        _index++;
+        indexBackingField++;
         OnChange();
     }
 
@@ -125,7 +125,7 @@ public partial class CyclingCollection<T>
         foreach (var item in items)
         {
             Items.Add(item);
-            _index++;
+            indexBackingField++;
         }
 
         OnChange();
@@ -137,7 +137,7 @@ public partial class CyclingCollection<T>
     public void Clear()
     {
         Items.Clear();
-        _index = 0;
+        indexBackingField = 0;
         OnChange();
     }
 
@@ -179,10 +179,10 @@ public partial class CyclingCollection<T>
     {
         var stringBuilder = new StringBuilder();
         stringBuilder.Append(ActualIndex + 1);
-        if (_MakesSpaces)
+        if (makesSpaces)
             stringBuilder.Append(" ");
         stringBuilder.Append("/");
-        if (_MakesSpaces)
+        if (makesSpaces)
             stringBuilder.Append(" ");
         stringBuilder.Append(Items.Count.ToString());
         return stringBuilder.ToString();
@@ -204,30 +204,27 @@ public partial class CyclingCollection<T>
     /// Gets or sets the list of items in the collection
     /// </summary>
     public List<T> Items { get; set; } = new();
-    private int _index;
+    private int indexBackingField;
     private int index
     {
         get
         {
-            if (_index < 0)
-                _index = 0;
-            else if (_index > Items.Count - 1)
-                _index = Items.Count - 1;
-            return _index;
+            if (indexBackingField < 0)
+                indexBackingField = 0;
+            else if (indexBackingField > Items.Count - 1)
+                indexBackingField = Items.Count - 1;
+            return indexBackingField;
         }
 
         set
         {
             if (value < 0)
                 value = 0;
-            _index = value;
+            indexBackingField = value;
         }
     }
 
-    /// <summary>
-    /// Whether to make space in formatting the actual display.
-    /// </summary>
-    private bool _MakesSpaces;
+    private bool makesSpaces;
 
     /// <summary>
     /// Event raised when the collection state changes

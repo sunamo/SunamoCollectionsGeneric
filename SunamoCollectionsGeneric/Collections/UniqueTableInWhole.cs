@@ -20,9 +20,9 @@ public class UniqueTableInWhole
     public static string XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells =
         "DifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells";
 
-    private int _actualRow;
-    private readonly int _cells;
-    private readonly string[,] _rows;
+    private int actualRow;
+    private readonly int expectedColumnCount;
+    private readonly string[,] rows;
 
     /// <summary>
     /// Initializes a new instance with the specified dimensions
@@ -31,25 +31,25 @@ public class UniqueTableInWhole
     /// <param name="rowCount">The number of rows in the table</param>
     public UniqueTableInWhole(int columnCount, int rowCount)
     {
-        _cells = columnCount;
-        _rows = new string[rowCount, columnCount];
+        expectedColumnCount = columnCount;
+        rows = new string[rowCount, columnCount];
     }
 
 
     private bool IsColumnUnique(int columnIndex, int rowsCount)
     {
-        var hs = new HashSet<string>();
-        for (var rowIndex = 0; rowIndex < rowsCount; rowIndex++) hs.Add(_rows[rowIndex, columnIndex]);
+        var hashSet = new HashSet<string>();
+        for (var rowIndex = 0; rowIndex < rowsCount; rowIndex++) hashSet.Add(rows[rowIndex, columnIndex]);
 
-        return hs.Count == rowsCount;
+        return hashSet.Count == rowsCount;
     }
 
     private bool IsRowUnique(int rowIndex, int columnsCount)
     {
-        var hs = new HashSet<string>();
-        for (var columnIndex = 0; columnIndex < columnsCount; columnIndex++) hs.Add(_rows[rowIndex, columnIndex]);
+        var hashSet = new HashSet<string>();
+        for (var columnIndex = 0; columnIndex < columnsCount; columnIndex++) hashSet.Add(rows[rowIndex, columnIndex]);
 
-        return hs.Count == columnsCount;
+        return hashSet.Count == columnsCount;
     }
 
     /// <summary>
@@ -65,8 +65,8 @@ public class UniqueTableInWhole
         if (!isColumnsUnique && !isRowsUnique)
             throw new Exception(XBothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse + ".");
 
-        var rowsCount = _rows.GetLength(0);
-        var columnsCount = _rows.GetLength(1);
+        var rowsCount = rows.GetLength(0);
+        var columnsCount = rows.GetLength(1);
 
         if (isColumnsUnique)
             for (var rowIndex = 0; rowIndex < rowsCount; rowIndex++)
@@ -87,10 +87,10 @@ public class UniqueTableInWhole
     /// <param name="cells">The cells to add as a new row</param>
     public void AddCells(List<string> cells)
     {
-        if (cells.Count != _cells) throw new Exception(XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells);
+        if (cells.Count != expectedColumnCount) throw new Exception(XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells);
 
-        for (var i = 0; i < cells.Count; i++) _rows[_actualRow, i] = cells[i];
+        for (var i = 0; i < cells.Count; i++) rows[actualRow, i] = cells[i];
 
-        _actualRow++;
+        actualRow++;
     }
 }

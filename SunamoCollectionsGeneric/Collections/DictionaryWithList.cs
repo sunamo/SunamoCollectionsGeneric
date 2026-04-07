@@ -139,7 +139,6 @@ public class DictionaryWithList<T, U> : IDictionary<T, U>
     public void CopyTo(KeyValuePair<T, U>[] array, int arrayIndex)
     {
         ThrowEx.NotImplementedMethod();
-        //DictionaryHelper.CopyTo<T, U>(tu, array, arrayIndex);
     }
 
     /// <summary>

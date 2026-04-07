@@ -6,7 +6,7 @@ namespace SunamoCollectionsGeneric.Collections.OverrideAddOrImpIList;
 /// <typeparam name="T">The type of elements in the list</typeparam>
 public class RefreshingList<T> : IList<T>
 {
-    private List<T> _list;
+    private List<T> innerList;
     private readonly List<T> sourceToRefresh;
 
     /// <summary>
@@ -17,7 +17,7 @@ public class RefreshingList<T> : IList<T>
     public RefreshingList(List<T> sourceToRefresh, int count)
     {
         this.sourceToRefresh = sourceToRefresh;
-        _list = new List<T>(count);
+        innerList = new List<T>(count);
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public class RefreshingList<T> : IList<T>
     public RefreshingList(List<T> sourceToRefresh, IList<T> items)
     {
         this.sourceToRefresh = sourceToRefresh;
-        _list = new List<T>(items);
+        innerList = new List<T>(items);
     }
 
     /// <summary>
@@ -38,14 +38,14 @@ public class RefreshingList<T> : IList<T>
     /// <returns>The element at the specified index</returns>
     public T this[int index]
     {
-        get => _list[index];
-        set => _list[index] = value;
+        get => innerList[index];
+        set => innerList[index] = value;
     }
 
     /// <summary>
     /// Gets the number of elements contained in the list
     /// </summary>
-    public int Count => _list.Count;
+    public int Count => innerList.Count;
 
     /// <summary>
     /// Gets a value indicating whether the list is read-only
@@ -58,7 +58,7 @@ public class RefreshingList<T> : IList<T>
     /// <param name="item">The item to add</param>
     public void Add(T item)
     {
-        _list.Add(item);
+        innerList.Add(item);
     }
 
     /// <summary>
@@ -66,7 +66,7 @@ public class RefreshingList<T> : IList<T>
     /// </summary>
     public void Clear()
     {
-        _list.Clear();
+        innerList.Clear();
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public class RefreshingList<T> : IList<T>
     /// <returns>True if item is found; otherwise, false</returns>
     public bool Contains(T item)
     {
-        return _list.Contains(item);
+        return innerList.Contains(item);
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public class RefreshingList<T> : IList<T>
     /// <param name="arrayIndex">The zero-based index at which copying begins</param>
     public void CopyTo(T[] array, int arrayIndex)
     {
-        _list.CopyTo(array, arrayIndex);
+        innerList.CopyTo(array, arrayIndex);
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ public class RefreshingList<T> : IList<T>
     /// <returns>An enumerator for the list</returns>
     public IEnumerator<T> GetEnumerator()
     {
-        return _list.GetEnumerator();
+        return innerList.GetEnumerator();
     }
 
     /// <summary>
@@ -105,7 +105,7 @@ public class RefreshingList<T> : IList<T>
     /// <returns>The index of item if found; otherwise, -1</returns>
     public int IndexOf(T item)
     {
-        return _list.IndexOf(item);
+        return innerList.IndexOf(item);
     }
 
     /// <summary>
@@ -115,7 +115,7 @@ public class RefreshingList<T> : IList<T>
     /// <param name="item">The item to insert</param>
     public void Insert(int index, T item)
     {
-        _list.Insert(index, item);
+        innerList.Insert(index, item);
     }
 
     /// <summary>
@@ -125,7 +125,7 @@ public class RefreshingList<T> : IList<T>
     /// <returns>True if item was successfully removed; otherwise, false</returns>
     public bool Remove(T item)
     {
-        var wasRemoved = _list.Remove(item);
+        var wasRemoved = innerList.Remove(item);
         RefreshIfEmpty();
         return wasRemoved;
     }
@@ -136,7 +136,7 @@ public class RefreshingList<T> : IList<T>
     /// <param name="index">The zero-based index of the item to remove</param>
     public void RemoveAt(int index)
     {
-        _list.RemoveAt(index);
+        innerList.RemoveAt(index);
         RefreshIfEmpty();
     }
 
@@ -146,7 +146,7 @@ public class RefreshingList<T> : IList<T>
     /// <returns>An enumerator for the list</returns>
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return _list.GetEnumerator();
+        return innerList.GetEnumerator();
     }
 
     #region Is not in any interface
@@ -156,13 +156,13 @@ public class RefreshingList<T> : IList<T>
     /// </summary>
     public void Sort()
     {
-        _list.Sort();
+        innerList.Sort();
     }
 
     #endregion
 
     private void RefreshIfEmpty()
     {
-        if (_list.Count == 0) _list = sourceToRefresh.ToList();
+        if (innerList.Count == 0) innerList = sourceToRefresh.ToList();
     }
 }

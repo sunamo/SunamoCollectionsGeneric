@@ -55,7 +55,6 @@ public class DictionarySort<T, U> where T : notnull
     /// <returns>A new dictionary sorted by values in descending order.</returns>
     public Dictionary<T, U> SortByValuesDesc(Dictionary<T, U> dictionary)
     {
-        var keys = ReturnKeys(dictionary);
         var values = ReturnValues(dictionary);
         values.Sort();
         var result = new Dictionary<T, U>();
