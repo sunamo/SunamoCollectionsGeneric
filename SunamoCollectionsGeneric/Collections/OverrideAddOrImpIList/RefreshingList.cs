@@ -53,16 +53,16 @@ public class RefreshingList<T> : IList<T>
     public bool IsReadOnly => false;
 
     /// <summary>
-    /// Adds an item to the list
+    /// Adds a value to the list
     /// </summary>
-    /// <param name="item">The item to add</param>
-    public void Add(T item)
+    /// <param name="value">The value to add</param>
+    public void Add(T value)
     {
-        innerList.Add(item);
+        innerList.Add(value);
     }
 
     /// <summary>
-    /// Removes all items from the list
+    /// Removes all values from the list
     /// </summary>
     public void Clear()
     {
@@ -72,11 +72,11 @@ public class RefreshingList<T> : IList<T>
     /// <summary>
     /// Determines whether the list contains a specific value
     /// </summary>
-    /// <param name="item">The item to locate</param>
-    /// <returns>True if item is found; otherwise, false</returns>
-    public bool Contains(T item)
+    /// <param name="value">The value to locate</param>
+    /// <returns>True if value is found; otherwise, false</returns>
+    public bool Contains(T value)
     {
-        return innerList.Contains(item);
+        return innerList.Contains(value);
     }
 
     /// <summary>
@@ -99,33 +99,33 @@ public class RefreshingList<T> : IList<T>
     }
 
     /// <summary>
-    /// Determines the index of a specific item in the list
+    /// Determines the index of a specific value in the list
     /// </summary>
-    /// <param name="item">The item to locate</param>
-    /// <returns>The index of item if found; otherwise, -1</returns>
-    public int IndexOf(T item)
+    /// <param name="value">The value to locate</param>
+    /// <returns>The index of value if found; otherwise, -1</returns>
+    public int IndexOf(T value)
     {
-        return innerList.IndexOf(item);
+        return innerList.IndexOf(value);
     }
 
     /// <summary>
-    /// Inserts an item at the specified index
+    /// Inserts a value at the specified index
     /// </summary>
-    /// <param name="index">The zero-based index at which item should be inserted</param>
-    /// <param name="item">The item to insert</param>
-    public void Insert(int index, T item)
+    /// <param name="index">The zero-based index at which value should be inserted</param>
+    /// <param name="value">The value to insert</param>
+    public void Insert(int index, T value)
     {
-        innerList.Insert(index, item);
+        innerList.Insert(index, value);
     }
 
     /// <summary>
-    /// Removes the first occurrence of a specific object from the list
+    /// Removes the first occurrence of a specific value from the list
     /// </summary>
-    /// <param name="item">The item to remove</param>
-    /// <returns>True if item was successfully removed; otherwise, false</returns>
-    public bool Remove(T item)
+    /// <param name="value">The value to remove</param>
+    /// <returns>True if value was successfully removed; otherwise, false</returns>
+    public bool Remove(T value)
     {
-        var wasRemoved = innerList.Remove(item);
+        var wasRemoved = innerList.Remove(value);
         RefreshIfEmpty();
         return wasRemoved;
     }

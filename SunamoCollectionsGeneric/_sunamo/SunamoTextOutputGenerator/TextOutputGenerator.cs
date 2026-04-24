@@ -2,7 +2,7 @@ namespace SunamoCollectionsGeneric._sunamo.SunamoTextOutputGenerator;
 
 internal class TextOutputGenerator
 {
-    internal StringBuilder Builder = new();
+    internal StringBuilder Builder { get; set; } = new();
 
     public override string ToString()
     {
@@ -22,26 +22,26 @@ internal class TextOutputGenerator
         Builder.AppendLine(text);
     }
 
-    internal void List<TValue>(IList<TValue> items, string delimiter = "\r\n", string whenNoEntries = "")
+    internal void List<TValue>(IList<TValue> list, string delimiter = "\r\n", string whenNoEntries = "")
     {
-        if (items.Count() == 0)
+        if (list.Count() == 0)
             Builder.AppendLine(whenNoEntries);
         else
-            foreach (var item in items)
+            foreach (var item in list)
                 Append(item + delimiter);
     }
 
-    internal void List(IList<string> items, string header)
+    internal void List(IList<string> list, string header)
     {
-        List(items, header, new TextOutputGeneratorArgs { IsHeaderWrappedEmptyLines = true, ShouldInsertCount = false });
+        List(list, header, new TextOutputGeneratorArgs { IsHeaderWrappedEmptyLines = true, ShouldInsertCount = false });
     }
 
-    internal void List<THeader, TValue>(IList<TValue> items, THeader header, TextOutputGeneratorArgs args)
+    internal void List<THeader, TValue>(IList<TValue> list, THeader header, TextOutputGeneratorArgs args)
         where THeader : IEnumerable<char>
     {
         if (args.IsHeaderWrappedEmptyLines) Builder.AppendLine();
         Builder.AppendLine(header + ":");
         if (args.IsHeaderWrappedEmptyLines) Builder.AppendLine();
-        List(items, args.Delimiter, args.WhenNoEntries);
+        List(list, args.Delimiter, args.WhenNoEntries);
     }
 }

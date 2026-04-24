@@ -37,11 +37,11 @@ public class Joiner<T>
     }
 
     /// <summary>
-    /// Adds an item to the collection
+    /// Adds a value to the collection
     /// </summary>
-    /// <param name="item">The item to add</param>
-    public void Add(T item)
+    /// <param name="value">The value to add</param>
+    public void Add(T value)
     {
-        list.Add(item);
+        list.Add(value);
     }
 }

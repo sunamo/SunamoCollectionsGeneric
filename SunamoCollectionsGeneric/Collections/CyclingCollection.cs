@@ -9,7 +9,7 @@ public partial class CyclingCollection<T>
     /// <summary>
     /// Error message for when unable to load element
     /// </summary>
-    public static string XUnableToLoadElementAddSomeAndTryAgain = "UnableToLoadElementAddSomeAndTryAgain";
+    public const string XUnableToLoadElementAddSomeAndTryAgain = "UnableToLoadElementAddSomeAndTryAgain";
 
     /// <summary>
     /// Gets or sets whether the collection is currently navigating backwards
@@ -106,23 +106,23 @@ public partial class CyclingCollection<T>
     }
 
     /// <summary>
-    /// Adds an item to the collection
+    /// Adds a value to the collection
     /// </summary>
-    /// <param name="item">The item to add</param>
-    public void Add(T item)
+    /// <param name="value">The value to add</param>
+    public void Add(T value)
     {
-        Items.Add(item);
+        Items.Add(value);
         indexBackingField++;
         OnChange();
     }
 
     /// <summary>
-    /// Adds multiple items to the collection
+    /// Adds multiple values to the collection
     /// </summary>
-    /// <param name="items">The items to add</param>
-    public void AddRange(IList<T> items)
+    /// <param name="list">The list of values to add</param>
+    public void AddRange(IList<T> list)
     {
-        foreach (var item in items)
+        foreach (var item in list)
         {
             Items.Add(item);
             indexBackingField++;
@@ -189,15 +189,15 @@ public partial class CyclingCollection<T>
     }
 
     /// <summary>
-    /// Replaces the first occurrence of an old item with a new item
+    /// Replaces the first occurrence of an old value with a new value
     /// </summary>
-    /// <param name="oldItem">The item to replace</param>
-    /// <param name="newItem">The new item</param>
-    public void ReplaceOnce(T oldItem, T newItem)
+    /// <param name="oldValue">The value to replace</param>
+    /// <param name="newValue">The new value</param>
+    public void ReplaceOnce(T oldValue, T newValue)
     {
-        var itemIndex = Items.IndexOf(oldItem);
-        Items.RemoveAt(itemIndex);
-        Items.Insert(itemIndex, newItem);
+        var foundIndex = Items.IndexOf(oldValue);
+        Items.RemoveAt(foundIndex);
+        Items.Insert(foundIndex, newValue);
     }
 
     /// <summary>

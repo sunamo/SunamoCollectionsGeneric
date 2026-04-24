@@ -8,7 +8,7 @@ public partial class CAG
     /// <summary>
     /// Error message for invalid row index in GetRowOfTwoDimensionalArray method
     /// </summary>
-    public static string XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray = "InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray";
+    public const string XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray = "InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray";
 
     /// <summary>
     /// Converts variable arguments to an array

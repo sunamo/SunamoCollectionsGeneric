@@ -44,8 +44,8 @@ internal interface ISunamoDictionary<T, U> where T : notnull
     /// <summary>
     /// Adds the specified key/value pair to the dictionary
     /// </summary>
-    /// <param name="item">The key/value pair to add</param>
-    void Add(KeyValuePair<T, U> item);
+    /// <param name="pair">The key/value pair to add</param>
+    void Add(KeyValuePair<T, U> pair);
 
     /// <summary>
     /// Removes all keys and values from the dictionary
@@ -55,9 +55,9 @@ internal interface ISunamoDictionary<T, U> where T : notnull
     /// <summary>
     /// Determines whether the dictionary contains the specified key/value pair
     /// </summary>
-    /// <param name="item">The key/value pair to locate</param>
-    /// <returns>True if the item is found; otherwise, false</returns>
-    bool Contains(KeyValuePair<T, U> item);
+    /// <param name="pair">The key/value pair to locate</param>
+    /// <returns>True if the pair is found; otherwise, false</returns>
+    bool Contains(KeyValuePair<T, U> pair);
 
     /// <summary>
     /// Determines whether the dictionary contains the specified key
@@ -89,9 +89,9 @@ internal interface ISunamoDictionary<T, U> where T : notnull
     /// <summary>
     /// Removes the specified key/value pair
     /// </summary>
-    /// <param name="item">The key/value pair to remove</param>
-    /// <returns>True if the item was successfully removed; otherwise, false</returns>
-    bool Remove(KeyValuePair<T, U> item);
+    /// <param name="pair">The key/value pair to remove</param>
+    /// <returns>True if the pair was successfully removed; otherwise, false</returns>
+    bool Remove(KeyValuePair<T, U> pair);
 
     /// <summary>
     /// Gets the value associated with the specified key

@@ -163,8 +163,8 @@ public partial class CAG
     /// <returns>List of unique items</returns>
     public static List<T> RemoveDuplicitiesList<T>(IList<T> list)
     {
-        List<T> foundedDuplicities;
-        return RemoveDuplicitiesList(list, out foundedDuplicities);
+        List<T> foundDuplicates;
+        return RemoveDuplicitiesList(list, out foundDuplicates);
     }
 
     /// <summary>
@@ -174,11 +174,11 @@ public partial class CAG
     /// </summary>
     /// <typeparam name="T">The type of elements.</typeparam>
     /// <param name="list">The list to remove duplicates from.</param>
-    /// <param name="foundedDuplicities">Output list of all duplicate items found.</param>
+    /// <param name="foundDuplicates">Output list of all duplicate items found.</param>
     /// <returns>A list of unique items.</returns>
-    public static List<T> RemoveDuplicitiesList<T>(IList<T> list, out List<T> foundedDuplicities)
+    public static List<T> RemoveDuplicitiesList<T>(IList<T> list, out List<T> foundDuplicates)
     {
-        foundedDuplicities = new List<T>();
+        foundDuplicates = new List<T>();
         var uniqueItems = new List<T>();
         for (var i = list.Count - 1; i >= 0; i--)
         {
@@ -190,7 +190,7 @@ public partial class CAG
             else
             {
                 list.RemoveAt(i);
-                foundedDuplicities.Add(item);
+                foundDuplicates.Add(item);
             }
         }
 

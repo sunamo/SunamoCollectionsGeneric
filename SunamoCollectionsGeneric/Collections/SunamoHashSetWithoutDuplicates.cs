@@ -30,15 +30,15 @@ public class SunamoHashSetWithoutDuplicates<T>
     }
 
     /// <summary>
-    /// Adds a range of elements to the set and returns the duplicates that were not added
+    /// Adds a range of values to the set and returns the duplicates that were not added
     /// </summary>
-    /// <param name="elements">The elements to add</param>
+    /// <param name="list">The list of values to add</param>
     /// <param name="progressState">Progress state for tracking operation progress</param>
-    /// <returns>A list of duplicate elements that were already in the set</returns>
-    public List<T> AddRange(IList<T> elements, ProgressStateCAG progressState)
+    /// <returns>A list of duplicate values that were already in the set</returns>
+    public List<T> AddRange(IList<T> list, ProgressStateCAG progressState)
     {
         var duplicates = new List<T>();
-        foreach (var item in elements)
+        foreach (var item in list)
         {
             if (progressState.IsRegistered) progressState.OnAnotherItem();
 

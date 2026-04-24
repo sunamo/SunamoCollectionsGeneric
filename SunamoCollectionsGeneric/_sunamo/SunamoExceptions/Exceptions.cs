@@ -3,13 +3,13 @@ namespace SunamoCollectionsGeneric._sunamo.SunamoExceptions;
 internal sealed partial class Exceptions
 {
     #region Other
-    internal static string CheckBefore(string before)
+    internal static string CheckBefore(string prefix)
     {
-        return string.IsNullOrWhiteSpace(before) ? string.Empty : before + ": ";
+        return string.IsNullOrWhiteSpace(prefix) ? string.Empty : prefix + ": ";
     }
 
     internal static Tuple<string, string, string> PlaceOfException(
-bool isFillAlsoFirstTwo = true)
+        bool isFillingCallerInfo = true)
     {
         StackTrace stackTrace = new();
         var stackTraceText = stackTrace.ToString();
@@ -19,14 +19,14 @@ bool isFillAlsoFirstTwo = true)
         string methodName = string.Empty;
         for (var i = 0; i < lines.Count; i++)
         {
-            var item = lines[i];
-            if (isFillAlsoFirstTwo)
-                if (!item.StartsWith("   at ThrowEx"))
+            var line = lines[i];
+            if (isFillingCallerInfo)
+                if (!line.StartsWith("   at ThrowEx"))
                 {
-                    TypeAndMethodName(item, out type, out methodName);
-                    isFillAlsoFirstTwo = false;
+                    TypeAndMethodName(line, out type, out methodName);
+                    isFillingCallerInfo = false;
                 }
-            if (item.StartsWith("at System."))
+            if (line.StartsWith("at System."))
             {
                 lines.Add(string.Empty);
                 lines.Add(string.Empty);
@@ -35,6 +35,7 @@ bool isFillAlsoFirstTwo = true)
         }
         return new Tuple<string, string, string>(type, methodName, string.Join(Environment.NewLine, lines));
     }
+
     internal static void TypeAndMethodName(string stackTraceLine, out string type, out string methodName)
     {
         var methodCall = stackTraceLine.Split("at ")[1].Trim();
@@ -44,32 +45,29 @@ bool isFillAlsoFirstTwo = true)
         methodParts.RemoveAt(methodParts.Count - 1);
         type = string.Join(".", methodParts);
     }
+
     internal static string CallingMethod(int frameDepth = 1)
     {
         StackTrace stackTrace = new();
         var methodBase = stackTrace.GetFrame(frameDepth)?.GetMethod();
         if (methodBase == null)
         {
-            return "Method name cannot be get";
+            return "Method name could not be retrieved";
         }
         var methodName = methodBase.Name;
         return methodName;
     }
     #endregion
 
-    #region IsNullOrWhitespace
-    internal readonly static StringBuilder AdditionalInfoInnerStringBuilder = new();
-    internal readonly static StringBuilder AdditionalInfoStringBuilder = new();
-    #endregion
-
-    #region OnlyReturnString 
-    internal static string? ArgumentOutOfRangeException(string before, string paramName, string message)
+    #region OnlyReturnString
+    internal static string? ArgumentOutOfRangeException(string prefix, string parameterName, string message)
     {
-        return CheckBefore(before) + $"{paramName} is out of range, another info: {message}";
+        return CheckBefore(prefix) + $"{parameterName} is out of range, another info: {message}";
     }
-    internal static string? NotImplementedMethod(string before)
+
+    internal static string? NotImplementedMethod(string prefix)
     {
-        return CheckBefore(before) + "Not implemented method.";
+        return CheckBefore(prefix) + "Not implemented method.";
     }
     #endregion
 }

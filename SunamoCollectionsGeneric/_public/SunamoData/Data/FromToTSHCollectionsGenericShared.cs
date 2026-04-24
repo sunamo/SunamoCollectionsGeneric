@@ -14,17 +14,17 @@ public class FromToTSHCollectionsGenericShared<T>
     /// <summary>
     /// Gets or sets the type of date/time representation to use
     /// </summary>
-    public FromToUseCollectionsGeneric FtUse { get; set; } = FromToUseCollectionsGeneric.DateTime;
+    public FromToUseCollectionsGeneric FromToUse { get; set; } = FromToUseCollectionsGeneric.DateTime;
 
     /// <summary>
     /// Internal storage for the start of the range as a long value
     /// </summary>
-    protected long fromL;
+    protected long fromLong;
 
     /// <summary>
     /// Internal storage for the end of the range as a long value
     /// </summary>
-    protected long toL;
+    protected long toLong;
 
     /// <summary>
     /// Initializes a new instance of the FromToTSHCollectionsGenericShared class
@@ -32,7 +32,7 @@ public class FromToTSHCollectionsGenericShared<T>
     public FromToTSHCollectionsGenericShared()
     {
         var type = typeof(T);
-        if (type == typeof(int)) FtUse = FromToUseCollectionsGeneric.None;
+        if (type == typeof(int)) FromToUse = FromToUseCollectionsGeneric.None;
     }
 
     private FromToTSHCollectionsGenericShared(bool isEmpty) : this()
@@ -45,13 +45,13 @@ public class FromToTSHCollectionsGenericShared<T>
     /// </summary>
     /// <param name="from">The start of the range</param>
     /// <param name="to">The end of the range</param>
-    /// <param name="ftUse">The type of date/time representation to use</param>
+    /// <param name="fromToUse">The type of date/time representation to use</param>
     public FromToTSHCollectionsGenericShared(T from, T to,
-        FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime) : this()
+        FromToUseCollectionsGeneric fromToUse = FromToUseCollectionsGeneric.DateTime) : this()
     {
         this.From = from;
         this.To = to;
-        this.FtUse = ftUse;
+        this.FromToUse = fromToUse;
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ public class FromToTSHCollectionsGenericShared<T>
     /// </summary>
     public T From
     {
-        get => (T)(dynamic)fromL!;
-        set => fromL = (long)(dynamic)value!;
+        get => (T)(dynamic)fromLong!;
+        set => fromLong = (long)(dynamic)value!;
     }
 
     /// <summary>
@@ -68,17 +68,17 @@ public class FromToTSHCollectionsGenericShared<T>
     /// </summary>
     public T To
     {
-        get => (T)(dynamic)toL!;
-        set => toL = (long)(dynamic)value!;
+        get => (T)(dynamic)toLong!;
+        set => toLong = (long)(dynamic)value!;
     }
 
     /// <summary>
     /// Gets the start of the range as a long value
     /// </summary>
-    public long FromL => fromL;
+    public long FromLong => fromLong;
 
     /// <summary>
     /// Gets the end of the range as a long value
     /// </summary>
-    public long ToL => toL;
+    public long ToLong => toLong;
 }

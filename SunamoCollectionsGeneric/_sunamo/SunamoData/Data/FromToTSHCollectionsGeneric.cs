@@ -3,14 +3,14 @@ namespace SunamoCollectionsGeneric._sunamo.SunamoData.Data;
 internal class FromToTSHCollectionsGeneric<T>
 {
     internal bool IsEmpty { get; set; }
-    protected long fromL;
-    internal FromToUseCollectionsGeneric FtUse { get; set; } = FromToUseCollectionsGeneric.DateTime;
-    protected long toL;
+    protected long fromLong;
+    internal FromToUseCollectionsGeneric FromToUse { get; set; } = FromToUseCollectionsGeneric.DateTime;
+    protected long toLong;
 
     internal FromToTSHCollectionsGeneric()
     {
         var type = typeof(T);
-        if (type == typeof(int)) FtUse = FromToUseCollectionsGeneric.None;
+        if (type == typeof(int)) FromToUse = FromToUseCollectionsGeneric.None;
     }
 
     private FromToTSHCollectionsGeneric(bool isEmpty) : this()
@@ -19,25 +19,25 @@ internal class FromToTSHCollectionsGeneric<T>
     }
 
     internal FromToTSHCollectionsGeneric(T from, T to,
-        FromToUseCollectionsGeneric ftUse = FromToUseCollectionsGeneric.DateTime) : this()
+        FromToUseCollectionsGeneric fromToUse = FromToUseCollectionsGeneric.DateTime) : this()
     {
         this.From = from;
         this.To = to;
-        this.FtUse = ftUse;
+        this.FromToUse = fromToUse;
     }
 
     internal T From
     {
-        get => (T)(dynamic)fromL!;
-        set => fromL = (long)(dynamic)value!;
+        get => (T)(dynamic)fromLong!;
+        set => fromLong = (long)(dynamic)value!;
     }
 
     internal T To
     {
-        get => (T)(dynamic)toL!;
-        set => toL = (long)(dynamic)value!;
+        get => (T)(dynamic)toLong!;
+        set => toLong = (long)(dynamic)value!;
     }
 
-    internal long FromL => fromL;
-    internal long ToL => toL;
+    internal long FromLong => fromLong;
+    internal long ToLong => toLong;
 }

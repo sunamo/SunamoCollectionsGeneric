@@ -11,16 +11,16 @@ public class UniqueTableInWhole
     /// <summary>
     /// Error message for when both column and row uniqueness arguments are false
     /// </summary>
-    public static string XBothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse =
+    public const string XBothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse =
         "BothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse";
 
     /// <summary>
     /// Error message for when input elements count differs from expected column count
     /// </summary>
-    public static string XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells =
+    public const string XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells =
         "DifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells";
 
-    private int actualRow;
+    private int currentRowIndex;
     private readonly int expectedColumnCount;
     private readonly string[,] rows;
 
@@ -89,8 +89,8 @@ public class UniqueTableInWhole
     {
         if (cells.Count != expectedColumnCount) throw new Exception(XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells);
 
-        for (var i = 0; i < cells.Count; i++) rows[actualRow, i] = cells[i];
+        for (var i = 0; i < cells.Count; i++) rows[currentRowIndex, i] = cells[i];
 
-        actualRow++;
+        currentRowIndex++;
     }
 }

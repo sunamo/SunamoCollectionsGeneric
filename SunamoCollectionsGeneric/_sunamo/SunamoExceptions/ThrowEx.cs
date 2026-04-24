@@ -2,10 +2,15 @@ namespace SunamoCollectionsGeneric._sunamo.SunamoExceptions;
 
 internal partial class ThrowEx
 {
-    internal static bool ArgumentOutOfRangeException(string argName, string message = "")
-    { return ThrowIsNotNull(Exceptions.ArgumentOutOfRangeException(FullNameOfExecutedCode(), argName, message)); }
+    internal static bool ArgumentOutOfRangeException(string parameterName, string message = "")
+    {
+        return ThrowIsNotNull(Exceptions.ArgumentOutOfRangeException(FullNameOfExecutedCode(), parameterName, message));
+    }
 
-    internal static bool NotImplementedMethod() { return ThrowIsNotNull(Exceptions.NotImplementedMethod); }
+    internal static bool NotImplementedMethod()
+    {
+        return ThrowIsNotNull(Exceptions.NotImplementedMethod);
+    }
 
     #region Other
     internal static string FullNameOfExecutedCode()
@@ -19,44 +24,44 @@ internal partial class ThrowEx
     {
         if (methodName == null)
         {
-            int depth = 2;
+            int frameDepth = 2;
             if (isFromThrowEx)
             {
-                depth++;
+                frameDepth++;
             }
 
-            methodName = Exceptions.CallingMethod(depth);
+            methodName = Exceptions.CallingMethod(frameDepth);
         }
         string typeFullName;
         if (type is Type specificType)
         {
-            typeFullName = specificType.FullName ?? "Type cannot be get via type is Type";
+            typeFullName = specificType.FullName ?? "Type could not be retrieved when type is Type";
         }
-        else if (type is MethodBase method)
+        else if (type is MethodBase methodBase)
         {
-            typeFullName = method.ReflectedType?.FullName ?? "Type cannot be get via type is MethodBase";
-            methodName = method.Name;
+            typeFullName = methodBase.ReflectedType?.FullName ?? "Type could not be retrieved when type is MethodBase";
+            methodName = methodBase.Name;
         }
         else if (type is string)
         {
-            typeFullName = type.ToString() ?? "Type cannot be get via type is string";
+            typeFullName = type.ToString() ?? "Type could not be retrieved when type is string";
         }
         else
         {
             Type objectType = type.GetType();
-            typeFullName = objectType.FullName ?? "Type cannot be get via type.GetType()";
+            typeFullName = objectType.FullName ?? "Type could not be retrieved via type.GetType()";
         }
         return string.Concat(typeFullName, ".", methodName);
     }
 
-    internal static bool ThrowIsNotNull(string? exception, bool isReallyThrowing = true)
+    internal static bool ThrowIsNotNull(string? exceptionMessage, bool isReallyThrowing = true)
     {
-        if (exception != null)
+        if (exceptionMessage != null)
         {
             Debugger.Break();
             if (isReallyThrowing)
             {
-                throw new Exception(exception);
+                throw new Exception(exceptionMessage);
             }
             return true;
         }
@@ -64,13 +69,10 @@ internal partial class ThrowEx
     }
 
     #region For avoid FullNameOfExecutedCode
-
-
-
     internal static bool ThrowIsNotNull(Func<string, string?> exceptionFactory)
     {
-        string? exception = exceptionFactory(FullNameOfExecutedCode());
-        return ThrowIsNotNull(exception);
+        string? exceptionMessage = exceptionFactory(FullNameOfExecutedCode());
+        return ThrowIsNotNull(exceptionMessage);
     }
     #endregion
     #endregion

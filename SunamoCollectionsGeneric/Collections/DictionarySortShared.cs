@@ -150,18 +150,18 @@ public class DictionarySort<T, U> where T : notnull
     /// <summary>
     /// Finds the key for a specified value, starting from a specific index
     /// </summary>
-    /// <param name="indexFromWhichSearch">Index to start searching from</param>
+    /// <param name="startIndex">Index to start searching from</param>
     /// <param name="dictionary">The dictionary to search</param>
     /// <param name="searchValue">The value to find the key for</param>
     /// <returns>The key associated with the search value, or default if not found</returns>
-    public T KeyFromValue(int indexFromWhichSearch, Dictionary<T, U> dictionary, object searchValue)
+    public T KeyFromValue(int startIndex, Dictionary<T, U> dictionary, object searchValue)
     {
         var currentIndex = -1;
         var skippedEntries = new List<KeyValuePair<T, U>>();
         foreach (var item in dictionary)
         {
             currentIndex++;
-            if (currentIndex < indexFromWhichSearch)
+            if (currentIndex < startIndex)
             {
                 skippedEntries.Add(item);
                 continue;

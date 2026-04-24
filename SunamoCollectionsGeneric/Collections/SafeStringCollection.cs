@@ -5,7 +5,7 @@ namespace SunamoCollectionsGeneric.Collections;
 /// </summary>
 public class SafeStringCollection
 {
-    private readonly char replaceFor;
+    private readonly char replacementCharacter;
     private readonly List<char> unallowedChars;
 
     /// <summary>
@@ -17,11 +17,11 @@ public class SafeStringCollection
     /// Initializes a new instance with characters to replace and the replacement character
     /// </summary>
     /// <param name="unallowedChars">List of characters that are not allowed</param>
-    /// <param name="replaceFor">The character to replace unallowed characters with</param>
-    public SafeStringCollection(List<char> unallowedChars, char replaceFor)
+    /// <param name="replacementCharacter">The character to replace unallowed characters with</param>
+    public SafeStringCollection(List<char> unallowedChars, char replacementCharacter)
     {
         this.unallowedChars = unallowedChars;
-        this.replaceFor = replaceFor;
+        this.replacementCharacter = replacementCharacter;
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public class SafeStringCollection
         {
             var character = item;
 
-            if (unallowedChars.Contains(item)) character = replaceFor;
+            if (unallowedChars.Contains(item)) character = replacementCharacter;
 
             stringBuilder.Append(character);
         }

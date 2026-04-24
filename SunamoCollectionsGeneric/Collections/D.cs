@@ -76,10 +76,10 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     /// <summary>
     /// Adds the specified key/value pair to the dictionary
     /// </summary>
-    /// <param name="item">The key/value pair to add</param>
-    public void Add(KeyValuePair<T, U> item)
+    /// <param name="pair">The key/value pair to add</param>
+    public void Add(KeyValuePair<T, U> pair)
     {
-        dictionary.Add(item.Key, item.Value);
+        dictionary.Add(pair.Key, pair.Value);
     }
 
     /// <summary>
@@ -97,11 +97,11 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     /// <summary>
     /// Determines whether the dictionary contains the specified key/value pair
     /// </summary>
-    /// <param name="item">The key/value pair to locate</param>
-    /// <returns>True if the item is found; otherwise, false</returns>
-    public bool Contains(KeyValuePair<T, U> item)
+    /// <param name="pair">The key/value pair to locate</param>
+    /// <returns>True if the pair is found; otherwise, false</returns>
+    public bool Contains(KeyValuePair<T, U> pair)
     {
-        return dictionary.Contains(item);
+        return dictionary.Contains(pair);
     }
 
     /// <summary>
@@ -149,14 +149,14 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     /// <summary>
     /// Removes the specified key/value pair from the dictionary
     /// </summary>
-    /// <param name="item">The key/value pair to remove</param>
-    /// <returns>True if the item is successfully found and removed; otherwise, false</returns>
-    public bool Remove(KeyValuePair<T, U> item)
+    /// <param name="pair">The key/value pair to remove</param>
+    /// <returns>True if the pair is successfully found and removed; otherwise, false</returns>
+    public bool Remove(KeyValuePair<T, U> pair)
     {
 #if DEBUG
         OnRemove();
 #endif
-        return dictionary.Remove(item.Key);
+        return dictionary.Remove(pair.Key);
     }
 
     /// <summary>
