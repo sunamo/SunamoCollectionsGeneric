@@ -13,7 +13,7 @@ internal sealed partial class Exceptions
     {
         StackTrace stackTrace = new();
         var stackTraceText = stackTrace.ToString();
-        var lines = stackTraceText.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        var lines = stackTraceText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
         lines.RemoveAt(0);
         string type = string.Empty;
         string methodName = string.Empty;
@@ -40,7 +40,7 @@ internal sealed partial class Exceptions
     {
         var methodCall = stackTraceLine.Split("at ")[1].Trim();
         var fullMethodName = methodCall.Split("(")[0];
-        var methodParts = fullMethodName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        var methodParts = fullMethodName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         methodName = methodParts[^1];
         methodParts.RemoveAt(methodParts.Count - 1);
         type = string.Join(".", methodParts);
