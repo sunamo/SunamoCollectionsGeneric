@@ -35,8 +35,7 @@ public partial class CyclingCollection<T>
     /// </summary>
     public void OnChange()
     {
-        if (Change != null)
-            Change();
+        Change?.Invoke();
     }
 
     /// <summary>
@@ -51,7 +50,6 @@ public partial class CyclingCollection<T>
     /// <param name="parameters">The format parameters</param>
     public void OnNewStatus(string text, params string[] parameters)
     {
-        if (NewStatus != null)
-            NewStatus(string.Format(text, parameters));
+        NewStatus?.Invoke(string.Format(text, parameters));
     }
 }

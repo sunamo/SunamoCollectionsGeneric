@@ -26,7 +26,11 @@ public class SunamoHashSetWithoutDuplicates<T>
     public SunamoHashSetWithoutDuplicates(int capacity)
     {
         // Cant create with capacity coz is not in .NET standard
+#if NETSTANDARD2_0
+        Items = new HashSet<T>();
+#else
         Items = new HashSet<T>(capacity);
+#endif
     }
 
     /// <summary>

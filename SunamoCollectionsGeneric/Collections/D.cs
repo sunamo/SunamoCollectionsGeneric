@@ -87,9 +87,6 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     /// </summary>
     public void Clear()
     {
-#if DEBUG
-        OnRemove();
-#endif
 
         dictionary.Clear();
     }
@@ -140,9 +137,6 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     /// <returns>True if the element is successfully found and removed; otherwise, false</returns>
     public bool Remove(T key)
     {
-#if DEBUG
-        OnRemove();
-#endif
         return dictionary.Remove(key);
     }
 
@@ -153,9 +147,6 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
     /// <returns>True if the pair is successfully found and removed; otherwise, false</returns>
     public bool Remove(KeyValuePair<T, U> pair)
     {
-#if DEBUG
-        OnRemove();
-#endif
         return dictionary.Remove(pair.Key);
     }
 
@@ -170,10 +161,4 @@ public class D<T, U> : ISunamoDictionary<T, U>, IEnumerable, IDictionary<T, U> w
         return dictionary.TryGetValue(key, out value!);
     }
 
-#if DEBUG
-    private void OnRemove()
-    {
-        Debugger.Break();
-    }
-#endif
 }

@@ -24,7 +24,7 @@ internal class TextOutputGenerator
 
     internal void List<TValue>(IList<TValue> list, string delimiter = "\r\n", string whenNoEntries = "")
     {
-        if (list.Count() == 0)
+        if (list.Count == 0)
             Builder.AppendLine(whenNoEntries);
         else
             foreach (var item in list)
