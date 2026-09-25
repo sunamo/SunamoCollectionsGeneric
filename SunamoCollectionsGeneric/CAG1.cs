@@ -1,16 +1,7 @@
 namespace SunamoCollectionsGeneric;
 
-/// <summary>
-/// Collection helper class providing utility methods for working with generic collections (partial class continuation)
-/// </summary>
 public partial class CAG
 {
-    /// <summary>
-    /// Finds the maximum number of elements among all inner lists
-    /// </summary>
-    /// <typeparam name="T">The type of elements</typeparam>
-    /// <param name="lists">The list of lists to examine</param>
-    /// <returns>The count of the largest inner list</returns>
     public static int MaxElementsItemsInnerList<T>(List<List<T>> lists)
     {
         var max = 0;
@@ -20,13 +11,6 @@ public partial class CAG
         return max;
     }
 
-    /// <summary>
-    /// Trims all inner lists to the specified count by taking only the first targetCount elements
-    /// </summary>
-    /// <typeparam name="T">The type of elements</typeparam>
-    /// <param name="lists">The list of lists to trim</param>
-    /// <param name="targetCount">The maximum number of elements to keep in each inner list</param>
-    /// <returns>The modified list with trimmed inner lists</returns>
     public static List<List<T>> TrimInnersToCount<T>(List<List<T>> lists, int targetCount)
     {
         for (var i = 0; i < lists.Count; i++)
@@ -34,12 +18,6 @@ public partial class CAG
         return lists;
     }
 
-    /// <summary>
-    /// Finds the lowest count among all inner lists
-    /// </summary>
-    /// <typeparam name="T">The type of elements</typeparam>
-    /// <param name="lists">The list of lists to examine</param>
-    /// <returns>The count of the smallest inner list</returns>
     public static int LowestCount<T>(List<List<T>> lists)
     {
         var min = int.MaxValue;
@@ -49,13 +27,6 @@ public partial class CAG
         return min;
     }
 
-    /// <summary>
-    /// Checks if all elements in the list are equal to the specified element
-    /// </summary>
-    /// <typeparam name = "T">The type of elements</typeparam>
-    /// <param name = "element">The element to compare against</param>
-    /// <param name = "list">The list to check</param>
-    /// <returns>True if all elements are equal to the specified element, false otherwise</returns>
     public static bool IsAllTheSame<T>(T element, IList<T> list)
     {
         for (var i = 0; i < list.Count; i++)
@@ -64,14 +35,7 @@ public partial class CAG
         return true;
     }
 
-    /// <summary>
-    /// Gets every duplicated item once.
-    /// More duplicates in the list result in more items in the output.
-    /// </summary>
-    /// <typeparam name="T">The type of elements.</typeparam>
-    /// <param name="list">The list to search for duplicates.</param>
-    /// <param name="alreadyProcessed">Output list of all unique items encountered.</param>
-    /// <returns>A list of duplicated items, each appearing once.</returns>
+    // More duplicates in the list result in more items in the output.
     public static List<T> GetDuplicities<T>(List<T> list, out List<T> alreadyProcessed)
     {
         alreadyProcessed = new List<T>(list.Count);
@@ -85,25 +49,11 @@ public partial class CAG
         return duplicated;
     }
 
-    /// <summary>
-    /// Gets every duplicated item once.
-    /// </summary>
-    /// <typeparam name="T">The type of elements.</typeparam>
-    /// <param name="list">The list to search for duplicates.</param>
-    /// <returns>A list of duplicated items, each appearing once.</returns>
     public static List<T> GetDuplicities<T>(List<T> list)
     {
-        List<T> alreadyProcessed;
-        return GetDuplicities(list, out alreadyProcessed);
+        return GetDuplicities(list, out _);
     }
 
-    /// <summary>
-    /// Returns equal ranges in the list that match the search pattern.
-    /// </summary>
-    /// <typeparam name="T">The type of elements.</typeparam>
-    /// <param name="list">The list to search in.</param>
-    /// <param name="searchPattern">The pattern to search for.</param>
-    /// <returns>List of ranges where the pattern was found.</returns>
     public static List<FromToCollectionsGenericShared> EqualRanges<T>(List<T> list, List<T> searchPattern)
     {
         var result = new List<FromToCollectionsGenericShared>();
@@ -155,27 +105,13 @@ public partial class CAG
         return result;
     }
 
-    /// <summary>
-    /// Removes duplicates from the list (direct edit)
-    /// </summary>
-    /// <typeparam name="T">The type of elements</typeparam>
-    /// <param name="list">The list to remove duplicates from</param>
-    /// <returns>List of unique items</returns>
     public static List<T> RemoveDuplicitiesList<T>(IList<T> list)
     {
-        List<T> foundDuplicates;
-        return RemoveDuplicitiesList(list, out foundDuplicates);
+        return RemoveDuplicitiesList(list, out _);
     }
 
-    /// <summary>
-    /// Removes duplicates from the list (direct edit).
-    /// Returns a list of unique items.
-    /// The out parameter contains every duplicate (possibly repeated).
-    /// </summary>
-    /// <typeparam name="T">The type of elements.</typeparam>
-    /// <param name="list">The list to remove duplicates from.</param>
-    /// <param name="foundDuplicates">Output list of all duplicate items found.</param>
-    /// <returns>A list of unique items.</returns>
+    // Returns a list of unique items.
+    // The out parameter contains every duplicate (possibly repeated).
     public static List<T> RemoveDuplicitiesList<T>(IList<T> list, out List<T> foundDuplicates)
     {
         foundDuplicates = new List<T>();
@@ -197,13 +133,6 @@ public partial class CAG
         return uniqueItems;
     }
 
-    /// <summary>
-    /// Checks if the specified element is equal to any element in the list
-    /// </summary>
-    /// <typeparam name = "T">The type of elements</typeparam>
-    /// <param name = "element">The element to search for</param>
-    /// <param name = "list">The list to search in</param>
-    /// <returns>True if element is found in the list, false otherwise</returns>
     public static bool IsEqualToAnyElement<T>(T element, IList<T> list)
     {
         foreach (var item in list)
@@ -212,13 +141,6 @@ public partial class CAG
         return false;
     }
 
-    /// <summary>
-    /// Checks if the specified element is equal to any of the provided items
-    /// </summary>
-    /// <typeparam name = "T">The type of elements</typeparam>
-    /// <param name = "element">The element to search for</param>
-    /// <param name = "items">The items to search in</param>
-    /// <returns>True if element is found in items, false otherwise</returns>
     public static bool IsEqualToAnyElement<T>(T element, params T[] items)
     {
         return IsEqualToAnyElement(element, items.ToList());
