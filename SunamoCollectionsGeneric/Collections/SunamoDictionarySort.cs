@@ -1,11 +1,18 @@
 namespace SunamoCollectionsGeneric.Collections;
 
+/// <summary>
+/// Dictionary with sorting capabilities for keys and values
+/// </summary>
+/// <typeparam name="T">The type of keys</typeparam>
+/// <typeparam name="U">The type of values</typeparam>
 public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
 {
     private readonly DictionarySort<T, U> dictionarySort = new();
 
-    // Sorting a-z. Slash as first, then numbers, then letters - all in standard.
-    // No Reserve() calling
+    /// <summary>
+    ///     Sorting a-z. Slash as first, then numbers, then letters - all in standard.
+    ///     No Reserve() calling
+    /// </summary>
     public void SortByKeysDesc()
     {
         var snapshot = this.ToDictionary(entry => entry.Key,
@@ -16,7 +23,9 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
         foreach (var item in keys) Add(item, snapshot[item]);
     }
 
-    // Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// <summary>
+    /// Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// </summary>
     public void SortByValuesDesc()
     {
         var snapshot = this.ToDictionary(entry => entry.Key,
@@ -34,7 +43,9 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
         }
     }
 
-    // z-a, then numbers 9-0, then slash. Call Reverse()
+    /// <summary>
+    ///     z-a, then numbers 9-0, then slash. Call Reverse()
+    /// </summary>
     public void SortByKeyAsc()
     {
         var snapshot = this.ToDictionary(entry => entry.Key,
@@ -46,7 +57,9 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
         foreach (var item in keys) Add(item, snapshot[item]);
     }
 
-    // z-a, then numbers 9-0, then slash. Call Reverse().
+    /// <summary>
+    /// z-a, then numbers 9-0, then slash. Call Reverse().
+    /// </summary>
     public void SortByValuesAsc()
     {
         var snapshot = this.ToDictionary(entry => entry.Key,
@@ -64,6 +77,12 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
         }
     }
 
+    /// <summary>
+    /// Removes entries from the dictionary where the value list contains only one object
+    /// </summary>
+    /// <typeparam name="TValue">The type of values in the list</typeparam>
+    /// <param name="dictionary">The dictionary to filter</param>
+    /// <returns>A new dictionary containing only entries with more than one value</returns>
     public Dictionary<T, List<TValue>> RemoveWhereInValuesIsOnlyOneObject<TValue>(Dictionary<T, List<TValue>> dictionary)
     {
         var result = new Dictionary<T, List<TValue>>();

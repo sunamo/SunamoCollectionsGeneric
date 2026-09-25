@@ -1,7 +1,17 @@
 namespace SunamoCollectionsGeneric.Collections;
 
+/// <summary>
+/// Helper class for sorting dictionaries by keys or values
+/// </summary>
+/// <typeparam name="T">The type of keys</typeparam>
+/// <typeparam name="U">The type of values</typeparam>
 public class DictionarySort<T, U> where T : notnull
 {
+    /// <summary>
+    /// Returns all values from the dictionary as a list
+    /// </summary>
+    /// <param name="dictionary">The dictionary to extract values from</param>
+    /// <returns>A list of all values in the dictionary</returns>
     public List<U> ReturnValues(Dictionary<T, U> dictionary)
     {
         var result = new List<U>();
@@ -10,6 +20,11 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
+    /// <summary>
+    /// Returns all keys from the dictionary as a list
+    /// </summary>
+    /// <param name="dictionary">The dictionary to extract keys from</param>
+    /// <returns>A list of all keys in the dictionary</returns>
     public List<T> ReturnKeys(Dictionary<T, U> dictionary)
     {
         var result = new List<T>();
@@ -18,7 +33,11 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
-    // Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// <summary>
+    /// Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// </summary>
+    /// <param name="dictionary">The dictionary to sort.</param>
+    /// <returns>A new dictionary sorted by keys in descending order.</returns>
     public Dictionary<T, U> SortByKeysDesc(Dictionary<T, U> dictionary)
     {
         var keys = ReturnKeys(dictionary);
@@ -29,7 +48,11 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
-    // Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// <summary>
+    /// Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// </summary>
+    /// <param name="dictionary">The dictionary to sort.</param>
+    /// <returns>A new dictionary sorted by values in descending order.</returns>
     public Dictionary<T, U> SortByValuesDesc(Dictionary<T, U> dictionary)
     {
         var values = ReturnValues(dictionary);
@@ -44,6 +67,14 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
+    /// <summary>
+    /// Finds the key for a specified value, starting from a specific index and excluding already added keys
+    /// </summary>
+    /// <param name="addedKeys">Keys that have already been processed</param>
+    /// <param name="startIndex">Index to start searching from</param>
+    /// <param name="dictionary">The dictionary to search</param>
+    /// <param name="searchValue">The value to find the key for</param>
+    /// <returns>The key associated with the search value, or default if not found</returns>
     public T KeyFromValue(List<T> addedKeys, int startIndex, Dictionary<T, U> dictionary, object searchValue)
     {
         var currentIndex = -1;
@@ -70,7 +101,11 @@ public class DictionarySort<T, U> where T : notnull
         return default!;
     }
 
-    // Sorted z->a, then numbers from largest to smallest, slashes after. Calls reverse.
+    /// <summary>
+    /// Sorted z->a, then numbers from largest to smallest, slashes after. Calls reverse.
+    /// </summary>
+    /// <param name="dictionary">The dictionary to sort.</param>
+    /// <returns>A new dictionary sorted by keys in ascending order.</returns>
     public Dictionary<T, U> SortByKeysAsc(Dictionary<T, U> dictionary)
     {
         var keys = ReturnKeys(dictionary);
@@ -82,6 +117,11 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
+    /// <summary>
+    /// Removes entries from the dictionary where the value list contains only one object
+    /// </summary>
+    /// <param name="dictionary">The dictionary to filter</param>
+    /// <returns>A new dictionary containing only entries with more than one value</returns>
     public Dictionary<T, List<U>> RemoveWhereIsInValueOnly1Object(Dictionary<T, List<U>> dictionary)
     {
         var result = new Dictionary<T, List<U>>();
@@ -92,6 +132,12 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
+    /// <summary>
+    /// Finds the first key associated with the specified value
+    /// </summary>
+    /// <param name="dictionary">The dictionary to search</param>
+    /// <param name="searchValue">The value to find the key for</param>
+    /// <returns>The key associated with the search value, or default if not found</returns>
     public T KeyFromValue(Dictionary<T, U> dictionary, U searchValue)
     {
         foreach (var item in dictionary)
@@ -101,6 +147,13 @@ public class DictionarySort<T, U> where T : notnull
         return default!;
     }
 
+    /// <summary>
+    /// Finds the key for a specified value, starting from a specific index
+    /// </summary>
+    /// <param name="startIndex">Index to start searching from</param>
+    /// <param name="dictionary">The dictionary to search</param>
+    /// <param name="searchValue">The value to find the key for</param>
+    /// <returns>The key associated with the search value, or default if not found</returns>
     public T KeyFromValue(int startIndex, Dictionary<T, U> dictionary, object searchValue)
     {
         var currentIndex = -1;

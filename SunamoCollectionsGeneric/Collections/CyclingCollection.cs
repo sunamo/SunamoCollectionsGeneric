@@ -1,22 +1,45 @@
 namespace SunamoCollectionsGeneric.Collections;
 
+/// <summary>
+/// Collection that supports cycling through items with forward and backward navigation
+/// </summary>
+/// <typeparam name="T">The type of elements in the collection</typeparam>
 public partial class CyclingCollection<T>
 {
+    /// <summary>
+    /// Error message for when unable to load element
+    /// </summary>
     public const string XUnableToLoadElementAddSomeAndTryAgain = "UnableToLoadElementAddSomeAndTryAgain";
 
+    /// <summary>
+    /// Gets or sets whether the collection is currently navigating backwards
+    /// </summary>
     public bool IsGoingBack { get; set; }
 
+    /// <summary>
+    /// Initializes a new instance with the specified cycling behavior
+    /// </summary>
+    /// <param name="isCycling">Whether to cycle back to the beginning when reaching the end</param>
     public CyclingCollection(bool isCycling)
     {
         this.IsCycling = isCycling;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the CyclingCollection class
+    /// </summary>
     public CyclingCollection()
     {
     }
 
+    /// <summary>
+    /// Gets the current index position in the collection
+    /// </summary>
     public int ActualIndex => index;
 
+    /// <summary>
+    /// Gets or sets whether to include spaces in formatted output
+    /// </summary>
     public bool MakesSpaces
     {
         get => makesSpaces;
@@ -27,6 +50,9 @@ public partial class CyclingCollection<T>
         }
     }
 
+    /// <summary>
+    /// Gets the current item without error handling
+    /// </summary>
     public T GetIterationSimple
     {
         get
@@ -37,7 +63,9 @@ public partial class CyclingCollection<T>
         }
     }
 
-    // If can't be obtained, try to get element previous or next.
+    /// <summary>
+    ///     If can't be obtained, try to get element previous or next.
+    /// </summary>
     public T GetIteration
     {
         get
@@ -77,6 +105,10 @@ public partial class CyclingCollection<T>
         }
     }
 
+    /// <summary>
+    /// Adds a value to the collection
+    /// </summary>
+    /// <param name="value">The value to add</param>
     public void Add(T value)
     {
         Items.Add(value);
@@ -84,6 +116,10 @@ public partial class CyclingCollection<T>
         OnChange();
     }
 
+    /// <summary>
+    /// Adds multiple values to the collection
+    /// </summary>
+    /// <param name="list">The list of values to add</param>
     public void AddRange(IList<T> list)
     {
         foreach (var item in list)
@@ -95,6 +131,9 @@ public partial class CyclingCollection<T>
         OnChange();
     }
 
+    /// <summary>
+    /// Removes all items from the collection
+    /// </summary>
     public void Clear()
     {
         Items.Clear();
@@ -102,6 +141,11 @@ public partial class CyclingCollection<T>
         OnChange();
     }
 
+    /// <summary>
+    /// Sets the current iteration index to the specified value
+    /// </summary>
+    /// <param name="newIndex">The new index position</param>
+    /// <returns>The item at the new index</returns>
     public T SetIteration(int newIndex)
     {
         index = ValidateIndex(newIndex);
@@ -118,11 +162,19 @@ public partial class CyclingCollection<T>
         return newIndex;
     }
 
+    /// <summary>
+    /// Sets the iteration index without triggering the Change event
+    /// </summary>
+    /// <param name="newIndex">The new index position</param>
     public void SetIterationWithoutEvent(int newIndex)
     {
         index = newIndex;
     }
 
+    /// <summary>
+    /// Returns a string representation showing current position and total count
+    /// </summary>
+    /// <returns>A string in the format "current/total"</returns>
     public override string ToString()
     {
         var stringBuilder = new StringBuilder();
@@ -136,6 +188,11 @@ public partial class CyclingCollection<T>
         return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Replaces the first occurrence of an old value with a new value
+    /// </summary>
+    /// <param name="oldValue">The value to replace</param>
+    /// <param name="newValue">The new value</param>
     public void ReplaceOnce(T oldValue, T newValue)
     {
         var foundIndex = Items.IndexOf(oldValue);
@@ -143,6 +200,9 @@ public partial class CyclingCollection<T>
         Items.Insert(foundIndex, newValue);
     }
 
+    /// <summary>
+    /// Gets or sets the list of items in the collection
+    /// </summary>
     public List<T> Items { get; set; } = new();
     private int indexBackingField;
     private int index
@@ -166,10 +226,20 @@ public partial class CyclingCollection<T>
 
     private bool makesSpaces;
 
+    /// <summary>
+    /// Event raised when the collection state changes
+    /// </summary>
     public event Action? Change;
 
+    /// <summary>
+    /// Gets or sets whether the collection cycles back to the beginning when reaching the end
+    /// </summary>
     public bool IsCycling { get; set; } = true;
 
+    /// <summary>
+    /// Moves to the previous item in the collection
+    /// </summary>
+    /// <returns>The previous item</returns>
     public T Before()
     {
         IsGoingBack = true;
@@ -190,6 +260,10 @@ public partial class CyclingCollection<T>
         return GetIteration;
     }
 
+    /// <summary>
+    /// Moves to the next item in the collection
+    /// </summary>
+    /// <returns>The next item</returns>
     public T Next()
     {
         IsGoingBack = false;
@@ -210,6 +284,11 @@ public partial class CyclingCollection<T>
         return GetIteration;
     }
 
+    /// <summary>
+    /// Moves backward by the specified number of items
+    /// </summary>
+    /// <param name="count">The number of items to move backward</param>
+    /// <returns>The item at the new position</returns>
     public T Before(int count)
     {
         if (count > Items.Count)

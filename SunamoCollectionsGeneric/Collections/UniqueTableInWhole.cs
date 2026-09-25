@@ -1,10 +1,22 @@
 namespace SunamoCollectionsGeneric.Collections;
 
+/// <summary>
+/// Represents a unique table where each row contains all columns.
+/// Similar class with two dimension array is ValuesTableGrid.
+/// Can be: Every column of row unique, Every row of column unique,
+/// Every column as whole different, Every rows as whole different.
+/// </summary>
 public class UniqueTableInWhole
 {
+    /// <summary>
+    /// Error message for when both column and row uniqueness arguments are false
+    /// </summary>
     public const string XBothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse =
         "BothColumnAndRowArgumentsInUniqueTableInWholeIsUniqueAsRowOrColumnWasFalse";
 
+    /// <summary>
+    /// Error message for when input elements count differs from expected column count
+    /// </summary>
     public const string XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells =
         "DifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells";
 
@@ -12,6 +24,11 @@ public class UniqueTableInWhole
     private readonly int expectedColumnCount;
     private readonly string[,] rows;
 
+    /// <summary>
+    /// Initializes a new instance with the specified dimensions
+    /// </summary>
+    /// <param name="columnCount">The number of columns in the table</param>
+    /// <param name="rowCount">The number of rows in the table</param>
     public UniqueTableInWhole(int columnCount, int rowCount)
     {
         expectedColumnCount = columnCount;
@@ -35,6 +52,14 @@ public class UniqueTableInWhole
         return hashSet.Count == columnsCount;
     }
 
+    /// <summary>
+    /// Checks if the table is unique as rows or columns.
+    /// If isColumnsUnique is true, verifies all columns in all rows are unique.
+    /// If isRowsUnique is true, verifies all rows in all columns are unique.
+    /// </summary>
+    /// <param name="isColumnsUnique">Whether to check that each row has unique column values.</param>
+    /// <param name="isRowsUnique">Whether to check that each column has unique row values.</param>
+    /// <returns>True if the table satisfies the specified uniqueness constraints.</returns>
     public bool IsUniqueAsRowsOrColumns(bool isColumnsUnique, bool isRowsUnique)
     {
         if (!isColumnsUnique && !isRowsUnique)
@@ -56,6 +81,10 @@ public class UniqueTableInWhole
         return true;
     }
 
+    /// <summary>
+    /// Adds a row of cells to the table
+    /// </summary>
+    /// <param name="cells">The cells to add as a new row</param>
     public void AddCells(List<string> cells)
     {
         if (cells.Count != expectedColumnCount) throw new Exception(XDifferentCountInputElementsOfArrayInUniqueTableInWholeAddCells);
