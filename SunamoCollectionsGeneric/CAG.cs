@@ -172,7 +172,7 @@ public partial class CAG
     /// <returns>A jagged array representation of the input.</returns>
     public static T[][] ToJagged<T>(T[, ] array)
     {
-        if (ReferenceEquals(null, array))
+        if (array is null)
             return null!;
         // Jagged array creation
         var result = new T[array.GetLength(0)][];

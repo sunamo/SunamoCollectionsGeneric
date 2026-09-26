@@ -93,8 +93,7 @@ public partial class CAG
     /// <returns>A list of duplicated items, each appearing once.</returns>
     public static List<T> GetDuplicities<T>(List<T> list)
     {
-        List<T> alreadyProcessed;
-        return GetDuplicities(list, out alreadyProcessed);
+        return GetDuplicities(list, out _);
     }
 
     /// <summary>
@@ -163,8 +162,7 @@ public partial class CAG
     /// <returns>List of unique items</returns>
     public static List<T> RemoveDuplicitiesList<T>(IList<T> list)
     {
-        List<T> foundDuplicates;
-        return RemoveDuplicitiesList(list, out foundDuplicates);
+        return RemoveDuplicitiesList(list, out _);
     }
 
     /// <summary>
