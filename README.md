@@ -1,5 +1,10 @@
 # SunamoCollectionsGeneric
 
+## Short description
+
+Knihovna pro práci s generickými kolekcemi. Je součástí sady balíčků Sunamo.
+
+
 Working with generic collections.
 
 ## Overview
