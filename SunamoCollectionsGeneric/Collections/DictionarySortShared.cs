@@ -1,7 +1,15 @@
 namespace SunamoCollectionsGeneric.Collections;
 
+/// <summary>
+/// Represents the dictionary sort t u type.
+/// </summary>
 public class DictionarySort<T, U> where T : notnull
 {
+    /// <summary>
+    /// Return values.
+    /// </summary>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <returns>The return values result.</returns>
     public List<U> ReturnValues(Dictionary<T, U> dictionary)
     {
         var result = new List<U>();
@@ -10,6 +18,11 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
+    /// <summary>
+    /// Return keys.
+    /// </summary>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <returns>The return keys result.</returns>
     public List<T> ReturnKeys(Dictionary<T, U> dictionary)
     {
         var result = new List<T>();
@@ -19,6 +32,11 @@ public class DictionarySort<T, U> where T : notnull
     }
 
     // Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// <summary>
+    /// Sort by keys desc.
+    /// </summary>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <returns>The sort by keys desc result.</returns>
     public Dictionary<T, U> SortByKeysDesc(Dictionary<T, U> dictionary)
     {
         var keys = ReturnKeys(dictionary);
@@ -30,6 +48,11 @@ public class DictionarySort<T, U> where T : notnull
     }
 
     // Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// <summary>
+    /// Sort by values desc.
+    /// </summary>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <returns>The sort by values desc result.</returns>
     public Dictionary<T, U> SortByValuesDesc(Dictionary<T, U> dictionary)
     {
         var values = ReturnValues(dictionary);
@@ -44,6 +67,14 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
+    /// <summary>
+    /// Key from value.
+    /// </summary>
+    /// <param name="addedKeys">The added keys.</param>
+    /// <param name="startIndex">The start index.</param>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <param name="searchValue">The search value.</param>
+    /// <returns>The key from value result.</returns>
     public T KeyFromValue(List<T> addedKeys, int startIndex, Dictionary<T, U> dictionary, object searchValue)
     {
         var currentIndex = -1;
@@ -71,6 +102,11 @@ public class DictionarySort<T, U> where T : notnull
     }
 
     // Sorted z->a, then numbers from largest to smallest, slashes after. Calls reverse.
+    /// <summary>
+    /// Sort by keys asc.
+    /// </summary>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <returns>The sort by keys asc result.</returns>
     public Dictionary<T, U> SortByKeysAsc(Dictionary<T, U> dictionary)
     {
         var keys = ReturnKeys(dictionary);
@@ -82,6 +118,11 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
+    /// <summary>
+    /// Remove where is in value only 1 object.
+    /// </summary>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <returns>The remove where is in value only 1 object result.</returns>
     public Dictionary<T, List<U>> RemoveWhereIsInValueOnly1Object(Dictionary<T, List<U>> dictionary)
     {
         var result = new Dictionary<T, List<U>>();
@@ -92,6 +133,12 @@ public class DictionarySort<T, U> where T : notnull
         return result;
     }
 
+    /// <summary>
+    /// Key from value.
+    /// </summary>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <param name="searchValue">The search value.</param>
+    /// <returns>The key from value result.</returns>
     public T KeyFromValue(Dictionary<T, U> dictionary, U searchValue)
     {
         foreach (var item in dictionary)
@@ -101,6 +148,13 @@ public class DictionarySort<T, U> where T : notnull
         return default!;
     }
 
+    /// <summary>
+    /// Key from value.
+    /// </summary>
+    /// <param name="startIndex">The start index.</param>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <param name="searchValue">The search value.</param>
+    /// <returns>The key from value result.</returns>
     public T KeyFromValue(int startIndex, Dictionary<T, U> dictionary, object searchValue)
     {
         var currentIndex = -1;

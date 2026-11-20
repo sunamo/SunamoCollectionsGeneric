@@ -1,20 +1,43 @@
 namespace SunamoCollectionsGeneric;
 
+/// <summary>
+/// Represents the CAG type.
+/// </summary>
 public partial class CAG
 {
+    /// <summary>
+    /// The x invalid row index in method CA get row of two dimensional array constant.
+    /// </summary>
     public const string XInvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray = "InvalidRowIndexInMethodCAGetRowOfTwoDimensionalArray";
 
+    /// <summary>
+    /// To array t t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="array">The array.</param>
+    /// <returns>The to array t t result.</returns>
     public static T[] ToArrayT<T>(params T[] array)
     {
         return array;
     }
 
+    /// <summary>
+    /// Add if not contains t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <param name="element">The element.</param>
+    /// <returns>The add if not contains t result.</returns>
     public static void AddIfNotContains<T>(List<T> list, T element)
     {
         if (!list.Contains(element))
             list.Add(element);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the get element actual or before t class.
+    /// </summary>
+    /// <param name="element">The element.</param>
     public static T GetElementActualOrBefore<T>(IList<T> list, int index)
     {
         if (list.Count > index)
@@ -25,6 +48,15 @@ public partial class CAG
         return default!;
     }
 
+    /// <summary>
+    /// Get index or break t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="index">The index.</param>
+    /// <param name="list">The list.</param>
+    /// <param name="listName">The list name.</param>
+    /// <param name="returnWhenIndexNotExists">The return when index not exists.</param>
+    /// <returns>The get index or break t result.</returns>
     public static T GetIndexOrBreak<T>(int index, IList<T> list, string listName = "", T? returnWhenIndexNotExists = default(T))
     {
         if (list.Count > index)
@@ -47,6 +79,13 @@ public partial class CAG
     }
 
     // In the first index are rows, in the second are columns.
+    /// <summary>
+    /// Get column of two dimensional array t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="rows">The rows.</param>
+    /// <param name="columnIndex">The column index.</param>
+    /// <returns>The get column of two dimensional array t result.</returns>
     public static List<T> GetColumnOfTwoDimensionalArray<T>(T[, ] rows, int columnIndex)
     {
         var rowsCount = rows.GetLength(0);
@@ -63,6 +102,13 @@ public partial class CAG
     }
 
     // In the first index are rows, in the second are columns.
+    /// <summary>
+    /// Get row of two dimensional array t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="rows">The rows.</param>
+    /// <param name="rowIndex">The row index.</param>
+    /// <returns>The get row of two dimensional array t result.</returns>
     public static List<T> GetRowOfTwoDimensionalArray<T>(T[, ] rows, int rowIndex)
     {
         var rowsCount = rows.GetLength(0);
@@ -79,6 +125,13 @@ public partial class CAG
         return null!;
     }
 
+    /// <summary>
+    /// More or zero t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <param name="zeroOrMore">The zero or more.</param>
+    /// <returns>The more or zero t result.</returns>
     public static bool MoreOrZero<T>(List<T> list, out bool? zeroOrMore)
     {
         zeroOrMore = null;
@@ -97,6 +150,12 @@ public partial class CAG
         return false;
     }
 
+    /// <summary>
+    /// Create list and insert element t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="element">The element.</param>
+    /// <returns>The create list and insert element t result.</returns>
     public static List<T> CreateListAndInsertElement<T>(T element)
     {
         var list = new List<T>();
@@ -105,6 +164,12 @@ public partial class CAG
     }
 
     // Changes from an array where every element has two specifications of location to an ordinary array with inner arrays.
+    /// <summary>
+    /// To jagged t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="array">The array.</param>
+    /// <returns>The to jagged t result.</returns>
     public static T[][] ToJagged<T>(T[, ] array)
     {
         if (array is null)
@@ -120,6 +185,13 @@ public partial class CAG
         return result;
     }
 
+    /// <summary>
+    /// One dimension array to two direction t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="flatArray">The flat array.</param>
+    /// <param name="width">The width.</param>
+    /// <returns>The one dimension array to two direction t result.</returns>
     public static T[, ] OneDimensionArrayToTwoDirection<T>(T[] flatArray, int width)
     {
         var height = (int)Math.Ceiling(flatArray.Length / (double)width);
@@ -135,6 +207,13 @@ public partial class CAG
         return result;
     }
 
+    /// <summary>
+    /// Count of value t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="value">The value.</param>
+    /// <param name="items">The items.</param>
+    /// <returns>The count of value t result.</returns>
     public static int CountOfValue<T>(T value, params T[] items)
     {
         var count = 0;
@@ -144,6 +223,14 @@ public partial class CAG
         return count;
     }
 
+    /// <summary>
+    /// Compare list sanitize string output.
+    /// </summary>
+    /// <param name="firstList">The first list.</param>
+    /// <param name="secondList">The second list.</param>
+    /// <param name="typeScriptHelperGetNamesAndTypes">The type script helper get names and types.</param>
+    /// <param name="isTsInterface">The is ts interface.</param>
+    /// <returns>The compare list sanitize string output result.</returns>
     public static string CompareListSanitizeStringOutput(List<string> firstList, List<string> secondList, Func<List<string>, Tuple<List<string>, List<string>>>? typeScriptHelperGetNamesAndTypes = null, bool isTsInterface = false)
     {
         if (isTsInterface && typeScriptHelperGetNamesAndTypes != null)
@@ -169,6 +256,13 @@ public partial class CAG
         return result;
     }
 
+    /// <summary>
+    /// Compare list t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="firstList">The first list.</param>
+    /// <param name="secondList">The second list.</param>
+    /// <returns>The compare list t result.</returns>
     public static List<T> CompareList<T>(List<T> firstList, List<T> secondList)
         where T : IEquatable<T>
     {
@@ -202,11 +296,21 @@ public partial class CAG
     }
 
     // This could also be named ToListObject because it doesn't take or return a specific type (e.g., string) but a generic type.
+    /// <summary>
+    /// To list t.
+    /// </summary>
+    /// <param name="e.g.">The e g.</param>
+    /// <param name="string">The string.</param>
+    /// <returns>The to list t result.</returns>
     public static List<T> ToList<T>(params T[] array)
     {
         return array.ToList();
     }
 
+    /// <summary>
+    /// Min elements items inner list t.
+    /// </summary>
+    /// <returns>The min elements items inner list t result.</returns>
     public static int MinElementsItemsInnerList<T>(List<List<T>> lists)
     {
         var min = int.MaxValue;
