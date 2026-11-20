@@ -1,4 +1,3 @@
-// variables names: ok
 namespace SunamoCollectionsGeneric.Collections.OverrideAddOrImpIList;
 
 // For debug purposes. RefreshingList is derived from this.
