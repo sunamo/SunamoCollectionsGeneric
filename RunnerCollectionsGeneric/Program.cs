@@ -1,4 +1,3 @@
-// variables names: ok
 namespace RunnerCollectionsGeneric;
 
 internal class Program

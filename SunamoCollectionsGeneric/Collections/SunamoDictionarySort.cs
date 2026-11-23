@@ -1,11 +1,17 @@
 namespace SunamoCollectionsGeneric.Collections;
 
+/// <summary>
+/// Represents the sunamo dictionary sort t u type.
+/// </summary>
 public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
 {
     private readonly DictionarySort<T, U> dictionarySort = new();
 
     // Sorting a-z. Slash as first, then numbers, then letters - all in standard.
     // No Reserve() calling
+    /// <summary>
+    /// Sort by keys desc.
+    /// </summary>
     public void SortByKeysDesc()
     {
         var snapshot = this.ToDictionary(entry => entry.Key,
@@ -17,6 +23,9 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
     }
 
     // Sorted a->z, slash first, then numbers, then letters - all standard. Compared without calling Reverse.
+    /// <summary>
+    /// Sort by values desc.
+    /// </summary>
     public void SortByValuesDesc()
     {
         var snapshot = this.ToDictionary(entry => entry.Key,
@@ -35,6 +44,9 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
     }
 
     // z-a, then numbers 9-0, then slash. Call Reverse()
+    /// <summary>
+    /// Sort by key asc.
+    /// </summary>
     public void SortByKeyAsc()
     {
         var snapshot = this.ToDictionary(entry => entry.Key,
@@ -47,6 +59,9 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
     }
 
     // z-a, then numbers 9-0, then slash. Call Reverse().
+    /// <summary>
+    /// Sort by values asc.
+    /// </summary>
     public void SortByValuesAsc()
     {
         var snapshot = this.ToDictionary(entry => entry.Key,
@@ -64,6 +79,12 @@ public class SunamoDictionarySort<T, U> : Dictionary<T, U> where T : notnull
         }
     }
 
+    /// <summary>
+    /// Remove where in values is only one object t value.
+    /// </summary>
+    /// <typeparam name="TValue">The type TValue.</typeparam>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <returns>The remove where in values is only one object t value result.</returns>
     public Dictionary<T, List<TValue>> RemoveWhereInValuesIsOnlyOneObject<TValue>(Dictionary<T, List<TValue>> dictionary)
     {
         var result = new Dictionary<T, List<TValue>>();

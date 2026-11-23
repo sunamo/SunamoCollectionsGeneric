@@ -2,6 +2,12 @@ namespace SunamoCollectionsGeneric;
 
 public partial class CAG
 {
+    /// <summary>
+    /// Max elements items inner list t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="lists">The lists.</param>
+    /// <returns>The max elements items inner list t result.</returns>
     public static int MaxElementsItemsInnerList<T>(List<List<T>> lists)
     {
         var max = 0;
@@ -11,6 +17,13 @@ public partial class CAG
         return max;
     }
 
+    /// <summary>
+    /// Trim inners to count t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="lists">The lists.</param>
+    /// <param name="targetCount">The target count.</param>
+    /// <returns>The trim inners to count t result.</returns>
     public static List<List<T>> TrimInnersToCount<T>(List<List<T>> lists, int targetCount)
     {
         for (var i = 0; i < lists.Count; i++)
@@ -18,6 +31,12 @@ public partial class CAG
         return lists;
     }
 
+    /// <summary>
+    /// Lowest count t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="lists">The lists.</param>
+    /// <returns>The lowest count t result.</returns>
     public static int LowestCount<T>(List<List<T>> lists)
     {
         var min = int.MaxValue;
@@ -27,6 +46,13 @@ public partial class CAG
         return min;
     }
 
+    /// <summary>
+    /// Is all the same t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="element">The element.</param>
+    /// <param name="list">The list.</param>
+    /// <returns>The is all the same t result.</returns>
     public static bool IsAllTheSame<T>(T element, IList<T> list)
     {
         for (var i = 0; i < list.Count; i++)
@@ -36,6 +62,13 @@ public partial class CAG
     }
 
     // More duplicates in the list result in more items in the output.
+    /// <summary>
+    /// Get duplicities t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <param name="alreadyProcessed">The already processed.</param>
+    /// <returns>The get duplicities t result.</returns>
     public static List<T> GetDuplicities<T>(List<T> list, out List<T> alreadyProcessed)
     {
         alreadyProcessed = new List<T>(list.Count);
@@ -49,11 +82,24 @@ public partial class CAG
         return duplicated;
     }
 
+    /// <summary>
+    /// Get duplicities t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <returns>The get duplicities t result.</returns>
     public static List<T> GetDuplicities<T>(List<T> list)
     {
         return GetDuplicities(list, out _);
     }
 
+    /// <summary>
+    /// Equal ranges t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <param name="searchPattern">The search pattern.</param>
+    /// <returns>The equal ranges t result.</returns>
     public static List<FromToCollectionsGenericShared> EqualRanges<T>(List<T> list, List<T> searchPattern)
     {
         var result = new List<FromToCollectionsGenericShared>();
@@ -105,6 +151,12 @@ public partial class CAG
         return result;
     }
 
+    /// <summary>
+    /// Remove duplicities list t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <returns>The remove duplicities list t result.</returns>
     public static List<T> RemoveDuplicitiesList<T>(IList<T> list)
     {
         return RemoveDuplicitiesList(list, out _);
@@ -112,6 +164,13 @@ public partial class CAG
 
     // Returns a list of unique items.
     // The out parameter contains every duplicate (possibly repeated).
+    /// <summary>
+    /// Remove duplicities list t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <param name="foundDuplicates">The found duplicates.</param>
+    /// <returns>The remove duplicities list t result.</returns>
     public static List<T> RemoveDuplicitiesList<T>(IList<T> list, out List<T> foundDuplicates)
     {
         foundDuplicates = new List<T>();
@@ -133,6 +192,13 @@ public partial class CAG
         return uniqueItems;
     }
 
+    /// <summary>
+    /// Is equal to any element t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="element">The element.</param>
+    /// <param name="list">The list.</param>
+    /// <returns>The is equal to any element t result.</returns>
     public static bool IsEqualToAnyElement<T>(T element, IList<T> list)
     {
         foreach (var item in list)
@@ -141,6 +207,13 @@ public partial class CAG
         return false;
     }
 
+    /// <summary>
+    /// Is equal to any element t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="element">The element.</param>
+    /// <param name="items">The items.</param>
+    /// <returns>The is equal to any element t result.</returns>
     public static bool IsEqualToAnyElement<T>(T element, params T[] items)
     {
         return IsEqualToAnyElement(element, items.ToList());
