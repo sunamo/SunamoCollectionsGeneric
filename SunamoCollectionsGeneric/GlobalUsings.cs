@@ -25,7 +25,6 @@ global using SunamoCollectionsGeneric;
 global using SunamoCollectionsGeneric.Data;
 global using SunamoCollectionsGeneric._sunamo;
 global using SunamoCollectionsGeneric.Collections.OverrideAddOrImpIList;
-global using SunamoCollectionsGeneric._sunamo.SunamoData.Data;
 global using ILogger = Microsoft.Extensions.Logging.ILogger;
 global using Microsoft.Extensions.Logging;
 global using NullLogger = Microsoft.Extensions.Logging.Abstractions.NullLogger;
